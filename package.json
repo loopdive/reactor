@@ -6,7 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint --cache --fix --max-warnings 0.",
+        "lint": "eslint --cache --fix --max-warnings 0",
+        "lint:css": "stylelint './**/*.{js,jsx,ts,tsx}' --max-warnings 0",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
     },
     "dependencies": {
@@ -30,6 +31,10 @@
         "husky": "^4.2.5",
         "lint-staged": "^10.2.13",
         "prettier": "^2.1.1",
+        "stylelint": "^13.7.0",
+        "stylelint-config-recommended": "^3.0.0",
+        "stylelint-config-styled-components": "^0.1.1",
+        "stylelint-processor-styled-components": "^1.10.0",
         "typescript": "^4.0.2"
     },
     "husky": {
@@ -38,14 +43,10 @@
         }
     },
     "lint-staged": {
-        "*.{js,jsx}": [
+        "*.{js,jsx,ts,tsx}": [
             "prettier --write",
             "yarn lint",
-            "git add"
-        ],
-        "*.{ts,tsx}": [
-            "prettier --write",
-            "yarn lint",
+            "yarn lint:css",
             "git add"
         ],
         "*.{css,scss}": [
