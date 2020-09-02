@@ -50,17 +50,14 @@
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --cache --fix --max-warnings 0",
-      "stylelint --cache",
-      "git add"
+      "stylelint --cache"
     ],
     "*.{css,scss}": [
       "prettier --write",
-      "stylelint --cache --fix",
-      "git add"
+      "stylelint --cache --fix"
     ],
     "*.{json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   }
 }
