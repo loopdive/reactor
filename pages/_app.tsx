@@ -1,7 +1,8 @@
 import '../styles/globals.css';
+import { FC } from 'react';
+import type { AppProps } from 'next/app';
 
-// eslint-disable-next-line react/prop-types
-const MyApp = ({ Component, pageProps }) => {
+const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     return <Component {...pageProps} />;
 };
 

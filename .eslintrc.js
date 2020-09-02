@@ -37,8 +37,7 @@ module.exports = {
                 aspects: ['invalidHref', 'preferButton']
             }
         ],
-        '@typescript-eslint/ban-ts-comment': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off'
+        '@typescript-eslint/ban-ts-comment': 'off'
     },
     parser: '@typescript-eslint/parser',
     plugins: ['simple-import-sort']
