@@ -38,6 +38,8 @@ module.exports = {
       },
     ],
     "@typescript-eslint/ban-ts-comment": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
   },
   parser: "@typescript-eslint/parser",
   plugins: ["simple-import-sort"],
