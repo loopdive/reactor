@@ -1,5 +1,11 @@
 import React, { FC } from "react";
 
-export default { title: "Button" };
+import Button from "./index";
 
-export const withText: FC = () => <button>Hello Button</button>;
+export default {
+  title: "Button",
+};
+
+export const withText: FC = () => (
+  <Button onChange={(): void => {}}>Click On Me!</Button>
+);
