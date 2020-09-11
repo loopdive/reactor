@@ -2,22 +2,22 @@ import React, { FC } from "react";
 
 type Props = {
   Toggle: FC;
-  Dropdown: FC;
+  Menu: FC;
   items: {
     key: string;
     Item: FC;
   }[];
 };
 
-export const Dropdown: FC<Props> = ({ Toggle, items, Dropdown }) => {
+export const Dropdown: FC<Props> = ({ Toggle, items, Menu }) => {
   return (
     <>
       <Toggle />
-      <Dropdown>
+      <Menu>
         {items.map(({ key, Item }) => (
           <Item key={key} />
         ))}
-      </Dropdown>
+      </Menu>
     </>
   );
 };

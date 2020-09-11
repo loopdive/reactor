@@ -40,7 +40,7 @@ export const withText: FC = () => {
     [open, setOpen]
   );
 
-  const Drop: FC = useCallback(
+  const MenuWithLogic: FC = useCallback(
     ({ children }) => open && <Menu>{children}</Menu>,
     [open]
   );
@@ -58,7 +58,7 @@ export const withText: FC = () => {
           Item: () => <Row index={1} />,
         },
       ]}
-      Dropdown={Drop}
+      Menu={MenuWithLogic}
     />
   );
 };
