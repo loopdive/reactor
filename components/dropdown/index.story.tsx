@@ -3,7 +3,7 @@ import React, { FC, useState, useCallback } from "react";
 import Dropdown from "./index";
 import ToggleButton from "./ToggleButton";
 import RowButton from "./RowButton";
-import MenuBox from "./MenuBox";
+import Menu from "./Menu";
 
 export default {
   title: "Button",
@@ -42,7 +42,7 @@ export const withText: FC = () => {
 
   // hooks up menu to open state
   const ConnectedMenuBox: FC = useCallback(
-    ({ children }) => open && <MenuBox>{children}</MenuBox>,
+    ({ children }) => open && <Menu>{children}</Menu>,
     [open]
   );
 
