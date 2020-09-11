@@ -3,7 +3,7 @@
   "include": [
     "../types.d.ts",
     "../next-env.d.ts",
-    "../**/*.stories.ts",
-    "../**/*.stories.tsx"
+    "../**/*.story.ts",
+    "../**/*.story.tsx"
   ]
 }
