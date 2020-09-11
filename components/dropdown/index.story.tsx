@@ -3,7 +3,7 @@ import React, { FC, useState, useCallback } from "react";
 import Dropdown from "./index";
 import ToggleButton from "./ToggleButton";
 import RowButton from "./RowButton";
-import Menu from "./Menu";
+import MenuBox from "./MenuBox";
 
 export default {
   title: "Button",
@@ -14,7 +14,7 @@ export const withText: FC = () => {
   const [selected, setSelected] = useState<boolean[]>([false, false]);
 
   // hooks up state with row button component
-  const Row: FC<{
+  const ConnectedRowButton: FC<{
     index: number;
   }> = useCallback(
     ({ index }) => (
@@ -34,31 +34,32 @@ export const withText: FC = () => {
     [selected, setSelected]
   );
 
-  // hooks up state with toggle button component
-  const Toggle: FC = useCallback(
+  // hooks up toggle button to trigger menu open state
+  const ConnectedToggleButton: FC = useCallback(
     () => <ToggleButton onClick={() => setOpen((value) => !value)} />,
     [open, setOpen]
   );
 
-  const MenuWithLogic: FC = useCallback(
-    ({ children }) => open && <Menu>{children}</Menu>,
+  // hooks up menu to open state
+  const ConnectedMenuBox: FC = useCallback(
+    ({ children }) => open && <MenuBox>{children}</MenuBox>,
     [open]
   );
 
   return (
     <Dropdown
-      Toggle={Toggle}
+      Toggle={ConnectedToggleButton}
       items={[
         {
           key: "1",
-          Item: () => <Row index={0} />,
+          Item: () => <ConnectedRowButton index={0} />,
         },
         {
           key: "2",
-          Item: () => <Row index={1} />,
+          Item: () => <ConnectedRowButton index={1} />,
         },
       ]}
-      Menu={MenuWithLogic}
+      Menu={ConnectedMenuBox}
     />
   );
 };
