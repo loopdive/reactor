@@ -13,7 +13,7 @@ export const withText: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<boolean[]>([false, false]);
 
-  // hooks up state with row button component
+  // hooks up state with menu item click
   const ConnectedRowButton: FC<{
     index: number;
   }> = useCallback(
@@ -34,14 +34,14 @@ export const withText: FC = () => {
     [selected, setSelected]
   );
 
-  // hooks up toggle button to trigger menu open state
+  // hooks up click on toggle button to trigger dropdown open state
   const ConnectedToggleButton: FC = useCallback(
     () => <ToggleButton onClick={() => setOpen((value) => !value)} />,
     [open, setOpen]
   );
 
-  // hooks up menu to open state
-  const ConnectedMenuBox: FC = useCallback(
+  // hooks up menu to show on dropdown open state
+  const ConnectedMenu: FC = useCallback(
     ({ children }) => open && <Menu>{children}</Menu>,
     [open]
   );
@@ -59,7 +59,7 @@ export const withText: FC = () => {
           Item: () => <ConnectedRowButton index={1} />,
         },
       ]}
-      Menu={ConnectedMenuBox}
+      Menu={ConnectedMenu}
     />
   );
 };
