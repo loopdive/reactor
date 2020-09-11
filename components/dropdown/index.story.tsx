@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useState, useCallback, useMemo } from "react";
 import Dropdown from "./index";
 import ToggleButton from "./ToggleButton";
 import RowButton from "./RowButton";
@@ -46,19 +46,24 @@ export const withText: FC = () => {
     [open]
   );
 
+  const MenuItems = useMemo(
+    () => [
+      {
+        key: "1",
+        Item: () => <ConnectedRowButton index={0} />,
+      },
+      {
+        key: "2",
+        Item: () => <ConnectedRowButton index={1} />,
+      },
+    ],
+    [ConnectedRowButton]
+  );
+
   return (
     <Dropdown
       Toggle={ConnectedToggleButton}
-      items={[
-        {
-          key: "1",
-          Item: () => <ConnectedRowButton index={0} />,
-        },
-        {
-          key: "2",
-          Item: () => <ConnectedRowButton index={1} />,
-        },
-      ]}
+      items={MenuItems}
       Menu={ConnectedMenu}
     />
   );
