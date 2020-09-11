@@ -1,13 +1,18 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, CSSProperties } from "react";
 import styled from "styled-components";
 
 type Props = {
   children: ReactNode;
   onChange: () => void;
+  style?: CSSProperties;
 };
 
-export const Component: FC<Props> = ({ children, onChange }) => {
-  return <Button onChange={onChange}>{children}</Button>;
+export const Component: FC<Props> = ({ children, onChange, style }) => {
+  return (
+    <Button onChange={onChange} style={style}>
+      {children}
+    </Button>
+  );
 };
 
 const Button = styled.span`
