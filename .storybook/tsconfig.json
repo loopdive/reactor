@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../types.d.ts",
+    "../next-env.d.ts",
+    "../**/*.story.ts",
+    "../**/*.story.tsx"
+  ]
+}
