@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { FC } from "react";
 import styled from "styled-components";
 import Dropdown from "../dropdown";
