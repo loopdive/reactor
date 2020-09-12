@@ -1,16 +1,14 @@
-import React, { FC, ReactNode } from "react";
+import styled from "styled-components";
 
-type Props = { children?: ReactNode; onClick: () => void };
+export default styled.button`
+  color: white;
+  background-color: rgb(30, 30, 30);
+  border: none;
+  padding: 10px 20px;
+  outline: none;
 
-export const ToggleButton: FC<Props> = ({ children, onClick }) => {
-  return (
-    <button
-      style={{ backgroundColor: "blue", border: "none" }}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
-
-export default ToggleButton;
+  &:hover {
+    color: yellow;
+    background-color: rgb(63, 63, 255);
+  }
+`;

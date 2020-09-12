@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { FC } from "react";
 import styled from "styled-components";
-import Dropdown from ".";
+import Dropdown from "../dropdown";
 import BlueButton from "./ToggleButton";
 import RedButton from "./RowButton";
 import List from "./Menu";
@@ -22,17 +22,14 @@ const MenuItemButton = ({ label }: { label: string }) => (
   />
 );
 
-const menuBarItems = ["File", "Edit", "View", "Windows"];
-const fileMenuItems = ["New", "Open", "Save", "Quit"];
-
-export const withText: FC = () => (
-  <MenuBar>
-    {menuBarItems.map((item, index) => (
-      <MenuItemButton key={index} label={item} />
+export const MenuBar: FC<{ items: string[] }> = ({ items }) => (
+  <Row>
+    {items.map((item, index) => (
+      <MenuItemButton key={`${item}${index}`} label={item} />
     ))}
-  </MenuBar>
+  </Row>
 );
 
-const MenuBar = styled.div`
+const Row = styled.div`
   display: flex;
 `;
