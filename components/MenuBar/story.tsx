@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { ThemeProvider } from "styled-components";
 import { MenuBar } from ".";
 import ToggleButton from "../themes/default/ToggleButton";
-import UnderlinedButton from "../themes/default/UnderlinedButton";
 import Menu from "../themes/default/Menu";
 import RowButton from "../themes/default/RowButton";
 import { dark, light } from "../themes/default/colors";
@@ -26,7 +25,7 @@ export const lightTheme: FC = () => (
   <ThemeProvider theme={light}>
     <MenuBar
       categories={categories}
-      MenuButton={UnderlinedButton}
+      MenuButton={ToggleButton}
       Menu={Menu}
       MenuItemButton={RowButton}
     />
