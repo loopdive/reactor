@@ -1,25 +1,21 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import Dropdown from "../dropdown";
+import DropdownMenu from "../DropdownMenu";
 import { ToggleButton, RowButton, Menu } from "../themes/default";
 import { OnClick } from "../types";
-
-/** an labeled menu bar item with a text and a dropdown */
-const MenuBarItem: FC<{ label: string }> = ({ label }) => (
-  <Dropdown
-    Button={({ onClick }: { onClick: OnClick }) => (
-      <ToggleButton onClick={onClick}>{label}</ToggleButton>
-    )}
-    List={Menu}
-    options={[RowButton, RowButton]}
-  />
-);
 
 /** a menu bar with labeled items like in a desktop application */
 export const MenuBar: FC<{ items: string[] }> = ({ items }) => (
   <RowLayout>
     {items.map((item, index) => (
-      <MenuBarItem key={`${item}${index}`} label={item} />
+      <DropdownMenu
+        key={`${item}${index}`}
+        Button={({ onClick }: { onClick: OnClick }) => (
+          <ToggleButton onClick={onClick}>{item}</ToggleButton>
+        )}
+        List={Menu}
+        options={[RowButton, RowButton]}
+      />
     ))}
   </RowLayout>
 );
