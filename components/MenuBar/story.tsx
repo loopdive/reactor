@@ -1,20 +1,36 @@
 import React, { FC } from "react";
+import { ThemeProvider } from "styled-components";
 import { MenuBar } from ".";
 import ToggleButton from "../themes/default/ToggleButton";
+import UnderlinedButton from "../themes/default/UnderlinedButton";
 import Menu from "../themes/default/Menu";
 import RowButton from "../themes/default/RowButton";
+import { dark, light } from "../themes/default/colors";
 
 export default {
   title: "MenuBar",
 };
 
-export const withText: FC = () => (
-  <MenuBar
-    categories={categories}
-    MenuButton={ToggleButton}
-    Menu={Menu}
-    MenuItemButton={RowButton}
-  />
+export const darkTheme: FC = () => (
+  <ThemeProvider theme={dark}>
+    <MenuBar
+      categories={categories}
+      MenuButton={ToggleButton}
+      Menu={Menu}
+      MenuItemButton={RowButton}
+    />
+  </ThemeProvider>
+);
+
+export const lightTheme: FC = () => (
+  <ThemeProvider theme={light}>
+    <MenuBar
+      categories={categories}
+      MenuButton={UnderlinedButton}
+      Menu={Menu}
+      MenuItemButton={RowButton}
+    />
+  </ThemeProvider>
 );
 
 const categories = [

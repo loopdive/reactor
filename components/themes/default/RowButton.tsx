@@ -1,17 +1,21 @@
 import styled from "styled-components";
+import { Theme } from "./colors";
 
 export default styled.button<{ selected: boolean }>`
   border: none;
   outline: none;
   min-height: 20px;
   min-width: 50px;
-  color: white;
+  color: ${(props: { theme: Theme }) => props.theme.color.foreground};
   padding: 10px 20px;
-  background-color: ${(props: { selected: boolean }) =>
-    props.selected ? "blue" : "rgb(30, 30, 30)"};
+  background-color: ${(props: { selected: boolean; theme: Theme }) =>
+    props.selected
+      ? props.theme.color.highlight
+      : props.theme.color.background};
   white-space: nowrap;
 
   &:hover {
-    background-color: blue;
+    background-color: ${(props: { theme: Theme }) =>
+      props.theme.color.highlight};
   }
 `;
