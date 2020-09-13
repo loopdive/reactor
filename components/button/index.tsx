@@ -1,5 +1,5 @@
-import React, { FC, ReactNode, CSSProperties } from "./node_modules/react";
-import styled from "./node_modules/styled-components";
+import React, { FC, ReactNode, CSSProperties } from "react";
+import styled from "styled-components";
 
 type Props = {
   children: ReactNode;

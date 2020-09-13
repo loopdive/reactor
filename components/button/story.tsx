@@ -1,4 +1,4 @@
-import React, { FC } from "./node_modules/react";
+import React, { FC } from "react";
 
 import Button from "./index";
 
