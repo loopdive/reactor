@@ -17,7 +17,7 @@ export const dark: Theme = {
 export const light: Theme = {
   color: {
     foreground: "black",
-    background: "white",
+    background: "rgb(240, 240, 240)",
     highlight: "rgb(63, 63, 255)",
   },
 };
