@@ -18,7 +18,7 @@ export const Dropdown: FC<Props> = ({ Button, List, options }) => {
   useOnClickOutside(ref, () => setOpen(false));
 
   return (
-    <PositionRelative
+    <BoundingBox
       onMouseEnter={() => {
         setOpen(true);
       }}
@@ -32,7 +32,7 @@ export const Dropdown: FC<Props> = ({ Button, List, options }) => {
           ))}
         </List>
       </DropdownBox>
-    </PositionRelative>
+    </BoundingBox>
   );
 };
 
@@ -43,7 +43,7 @@ export type Clickable = ReactType<{
   onClick: OnClick;
 }>;
 
-const PositionRelative = styled.div`
+const BoundingBox = styled.div`
   position: relative;
 `;
 
