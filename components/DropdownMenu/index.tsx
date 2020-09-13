@@ -1,11 +1,11 @@
 import React, { FC, useRef, ReactType, ReactNode } from "react";
 import styled from "styled-components";
-import { useSwitch } from "../Switch/useSwitch";
+import { useSwitch, SwitchButtonType } from "../Switch/useSwitch";
 import { OnClick } from "../types";
 import useOnClickOutside from "use-onclickoutside";
 
 type Props = {
-  Button: Clickable;
+  Button: SwitchButtonType;
   List: ReactType<{ children: ReactNode }>;
   options: Clickable[];
 };
@@ -39,7 +39,7 @@ export const Dropdown: FC<Props> = ({ Button, List, options }) => {
 export default Dropdown;
 
 /** a component with an onClick event */
-type Clickable = ReactType<{
+export type Clickable = ReactType<{
   onClick: OnClick;
 }>;
 
