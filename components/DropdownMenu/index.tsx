@@ -11,7 +11,7 @@ type Props = {
 };
 
 /** a dropdown menu component with a button opening the menu that contains a list of menu items */
-export const Dropdown: FC<Props> = ({ Button, List, options }) => {
+export const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
   // hooks up click on toggle button to trigger dropdown open state
   const [MenuButton, open, setOpen] = useSwitch(Button);
   const ref = useRef<HTMLDivElement>(null);
@@ -25,18 +25,18 @@ export const Dropdown: FC<Props> = ({ Button, List, options }) => {
       onMouseLeave={() => setOpen(false)}
     >
       <MenuButton />
-      <DropdownBox open={open} ref={ref}>
+      <Menu open={open} ref={ref}>
         <List>
           {options.map((Option, index) => (
             <Option key={index} />
           ))}
         </List>
-      </DropdownBox>
+      </Menu>
     </BoundingBox>
   );
 };
 
-export default Dropdown;
+export default DropdownMenu;
 
 /** a component with an onClick event */
 export type Clickable = ReactType<{
@@ -47,7 +47,7 @@ const BoundingBox = styled.div`
   position: relative;
 `;
 
-const DropdownBox = styled.div`
+const Menu = styled.div`
   visibility: ${(props: { open: boolean }) =>
     props.open ? "visible" : "hidden"};
 `;
