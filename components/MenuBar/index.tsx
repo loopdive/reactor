@@ -9,26 +9,28 @@ export default {
   title: "Button",
 };
 
-const MenuItemButton = ({ label }: { label: string }) => (
+type OnClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+
+/** an labeled menu bar item with a text and a dropdown */
+const MenuBarItem: FC<{ label: string }> = ({ label }) => (
   <Dropdown
-    Button={({
-      onClick,
-    }: {
-      onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-    }) => <BlueButton onClick={onClick}>{label}</BlueButton>}
+    Button={({ onClick }: { onClick: OnClick }) => (
+      <BlueButton onClick={onClick}>{label}</BlueButton>
+    )}
     List={List}
     options={[RedButton, RedButton]}
   />
 );
 
+/** a menu bar with labeled items like in a desktop application */
 export const MenuBar: FC<{ items: string[] }> = ({ items }) => (
-  <Row>
+  <RowLayout>
     {items.map((item, index) => (
-      <MenuItemButton key={`${item}${index}`} label={item} />
+      <MenuBarItem key={`${item}${index}`} label={item} />
     ))}
-  </Row>
+  </RowLayout>
 );
 
-const Row = styled.div`
+const RowLayout = styled.div`
   display: flex;
 `;

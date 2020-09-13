@@ -1,21 +1,20 @@
 import React, { FC, ReactType, ReactNode } from "react";
 import styled from "styled-components";
-import { useSwitch } from "./useSwitch";
+import { useSwitch } from "../button/useSwitch";
 
 type Props = {
-  Button: ReactType<{
-    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  }>;
+  Button: Clickable;
   List: ReactType<{ children: ReactNode }>;
-  options: ReactType<{
-    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  }>[];
+  options: Clickable[];
 };
+
+/** a dropdown menu component with a button opening the menu that contains a list of menu items */
 export const Dropdown: FC<Props> = ({ Button, List, options }) => {
   // hooks up click on toggle button to trigger dropdown open state
   const [MenuButton, open] = useSwitch(Button);
+
   return (
-    <Layout>
+    <RelativePosition>
       <MenuButton />
       {open && (
         <List>
@@ -24,12 +23,17 @@ export const Dropdown: FC<Props> = ({ Button, List, options }) => {
           ))}
         </List>
       )}
-    </Layout>
+    </RelativePosition>
   );
 };
 
 export default Dropdown;
 
-const Layout = styled.div`
+/** a component with an onClick event */
+type Clickable = ReactType<{
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}>;
+
+const RelativePosition = styled.div`
   position: relative;
 `;
