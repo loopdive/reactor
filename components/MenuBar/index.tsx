@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import Dropdown from "../dropdown";
-import BlueButton from "./ToggleButton";
-import RedButton from "./RowButton";
-import List from "./Menu";
+import { ToggleButton, RowButton, Menu } from "../themes/thomas";
 
 export default {
   title: "Button",
@@ -15,10 +13,10 @@ type OnClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 const MenuBarItem: FC<{ label: string }> = ({ label }) => (
   <Dropdown
     Button={({ onClick }: { onClick: OnClick }) => (
-      <BlueButton onClick={onClick}>{label}</BlueButton>
+      <ToggleButton onClick={onClick}>{label}</ToggleButton>
     )}
-    List={List}
-    options={[RedButton, RedButton]}
+    List={Menu}
+    options={[RowButton, RowButton]}
   />
 );
 
