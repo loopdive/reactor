@@ -46,11 +46,20 @@ export const example: FC = () => {
 
 const ThemeSelector = styled.div`
   font-family: Arial, Helvetica, sans-serif;
-  margin: 25px;
-  color: white;
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: lightgray;
 
   label {
     margin: 10px;
+  }
+
+  select {
+    font-size: 14px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: none;
   }
 `;
 
