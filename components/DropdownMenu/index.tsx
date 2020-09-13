@@ -7,7 +7,7 @@ import useOnClickOutside from "use-onclickoutside";
 type Props = {
   Button: SwitchButtonType;
   List: ReactType<{ children: ReactNode }>;
-  options: Clickable[];
+  options: FC[];
 };
 
 /** a dropdown menu component with a button opening the menu that contains a list of menu items */
@@ -28,7 +28,7 @@ export const Dropdown: FC<Props> = ({ Button, List, options }) => {
       <DropdownBox open={open} ref={ref}>
         <List>
           {options.map((Option, index) => (
-            <Option key={index} onClick={() => alert("click")} />
+            <Option key={index} />
           ))}
         </List>
       </DropdownBox>

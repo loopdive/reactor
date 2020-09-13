@@ -8,7 +8,7 @@ import { OnClick } from "../types";
 
 type MenuCategory = {
   category: string;
-  items: string[];
+  items: { label: string; onClick: OnClick }[];
 };
 
 /** a menu bar with labeled items like in a desktop application */
@@ -21,9 +21,9 @@ export const MenuBar: FC<{ categories: MenuCategory[] }> = ({ categories }) => (
           <ToggleButton onClick={onClick}>{category}</ToggleButton>
         )}
         List={Menu}
-        options={items.map((item) => ({ onClick }: { onClick: OnClick }) => (
+        options={items.map(({ label, onClick }) => () => (
           <RowButton selected={false} onClick={onClick}>
-            {item}
+            {label}
           </RowButton>
         ))}
       />
