@@ -1,10 +1,13 @@
 import React, { ReactType, useState, FC, useCallback } from "react";
+import { OnClick } from "../types";
 
 export function useListSelection(
-  ListItem: ReactType<{
-    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  ListItem: ReactType<{ onClick: OnClick }>
+): [
+  FC<{
+    id: string;
   }>
-) {
+] {
   const [selected, setSelected] = useState<{ [buttonId: string]: boolean }>({});
 
   // hooks up state with menu item click

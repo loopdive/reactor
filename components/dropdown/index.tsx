@@ -1,6 +1,7 @@
 import React, { FC, ReactType, ReactNode } from "react";
 import styled from "styled-components";
 import { useSwitch } from "../button/useSwitch";
+import { OnClick } from "../types";
 
 type Props = {
   Button: Clickable;
@@ -31,7 +32,7 @@ export default Dropdown;
 
 /** a component with an onClick event */
 type Clickable = ReactType<{
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick: OnClick;
 }>;
 
 const RelativePosition = styled.div`

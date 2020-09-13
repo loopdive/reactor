@@ -1,9 +1,10 @@
 import React, { ReactType, useState, useMemo } from "react";
+import { OnClick } from "../types";
 
 /** adds an on off switch state to a button */
 export function useSwitch(
   Button: ReactType<{
-    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    onClick: OnClick;
   }>
 ): [ReactType, boolean, (toggle: boolean) => void] {
   const [toggle, setToggle] = useState<boolean>(false);

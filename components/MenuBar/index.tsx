@@ -1,13 +1,8 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import Dropdown from "../dropdown";
-import { ToggleButton, RowButton, Menu } from "../themes/thomas";
-
-export default {
-  title: "Button",
-};
-
-type OnClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+import { ToggleButton, RowButton, Menu } from "../themes/default";
+import { OnClick } from "../types";
 
 /** an labeled menu bar item with a text and a dropdown */
 const MenuBarItem: FC<{ label: string }> = ({ label }) => (
