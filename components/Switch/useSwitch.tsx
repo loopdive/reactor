@@ -7,14 +7,14 @@ export function useSwitch(
     onClick: OnClick;
   }>
 ): [ReactType, boolean, (toggle: boolean) => void] {
-  const [toggle, setToggle] = useState<boolean>(false);
+  const [activated, setActivated] = useState<boolean>(false);
   return [
     // eslint-disable-next-line react/display-name
-    useMemo(() => () => <Button onClick={() => setToggle(() => !toggle)} />, [
-      toggle,
-      setToggle,
-    ]),
-    toggle,
-    setToggle,
+    useMemo(
+      () => () => <Button onClick={() => setActivated(() => !activated)} />,
+      [activated, setActivated]
+    ),
+    activated,
+    setActivated,
   ];
 }

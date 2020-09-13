@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export default styled.div`
-  position: absolute;
-  border: 1px solid rgb(60, 60, 60);
   display: flex;
   flex-direction: column;
-  height: 50px;
   justify-content: space-between;
+  align-items: stretch;
+  position: absolute;
+  background-color: rgb(30, 30, 30);
+  min-width: 50px;
 `;
