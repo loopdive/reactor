@@ -17,7 +17,7 @@ export const useThemeSelector = (
           id="themes"
           onChange={(event) => setTheme(themes[event?.target?.value])}
           onBlur={(event) => setTheme(themes[event?.target?.value])}
-          value={"theme.name"}
+          value={theme.name}
         >
           {Object.keys(themes).map((key) => (
             <option
