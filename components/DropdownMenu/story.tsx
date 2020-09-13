@@ -6,7 +6,7 @@ import Menu from "../themes/default/Menu";
 import RowButton from "../themes/default/RowButton";
 
 export default {
-  title: "MenuBar",
+  title: "DropdownMenu",
 };
 
 const category = "File";
