@@ -1,21 +1,6 @@
-import React, { FC, ReactNode, CSSProperties } from "react";
 import styled from "styled-components";
 
-type Props = {
-  children: ReactNode;
-  onChange: () => void;
-  style?: CSSProperties;
-};
-
-export const Component: FC<Props> = ({ children, onChange, style }) => {
-  return (
-    <Button onChange={onChange} style={style}>
-      {children}
-    </Button>
-  );
-};
-
-const Button = styled.span`
+export default styled.span`
   display: inline-block;
   padding: 15px 25px;
   border-radius: 25px;
@@ -32,5 +17,3 @@ const Button = styled.span`
     transform: translateY(-3px);
   }
 `;
-
-export default Component;

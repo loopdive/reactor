@@ -1,6 +1,6 @@
 import React, { FC, ReactType, ReactNode } from "react";
 import styled from "styled-components";
-import { useSwitch } from "../button/useSwitch";
+import { useSwitch } from "../Switch/useSwitch";
 import { OnClick } from "../types";
 
 type Props = {
