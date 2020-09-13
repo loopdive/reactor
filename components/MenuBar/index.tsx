@@ -11,11 +11,12 @@ type MenuCategory = {
 /** a menu bar with labeled items like in a desktop application */
 export const MenuBar: FC<{
   categories: MenuCategory[];
+  Bar: ReactType;
   MenuButton: SwitchButtonType;
   Menu: ReactType<{ children: ReactNode }>;
   MenuItemButton: SwitchButtonType;
-}> = ({ categories, MenuButton, Menu, MenuItemButton }) => (
-  <div style={{ display: "flex" }}>
+}> = ({ categories, Bar, MenuButton, Menu, MenuItemButton }) => (
+  <Bar>
     {categories.map(({ category, items }, index) => (
       <DropdownMenu
         key={`${category}${index}`}
@@ -30,5 +31,5 @@ export const MenuBar: FC<{
         ))}
       />
     ))}
-  </div>
+  </Bar>
 );

@@ -1,66 +1,41 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { MenuBar } from ".";
 import ToggleButton from "../themes/default/ToggleButton";
 import Menu from "../themes/default/Menu";
 import RowButton from "../themes/default/RowButton";
 import { dark, light } from "../themes/default/colors";
+import { useThemeSelector } from "../themes/useThemeSelector";
 
 export default {
   title: "MenuBar",
 };
 
-const themes = {
-  dark: dark,
-  light: light,
-};
-
 export const example: FC = () => {
-  const [theme, setTheme] = useState("dark");
-
+  const [ThemeSelector, theme] = useThemeSelector(["dark", "light"]);
   return (
-    <ThemeProvider theme={themes[theme]}>
-      <ThemeSelector>
-        <label htmlFor="themes">Theme</label>
-        <select
-          id="themes"
-          onChange={(event) => setTheme(event.target.value)}
-          onBlur={(event) => setTheme(event.target.value)}
-          value={theme}
-        >
-          <option value="dark" selected>
-            Dark
-          </option>
-          <option value="light">Light</option>
-        </select>
-      </ThemeSelector>
-      <MenuBar
-        categories={categories}
-        MenuButton={ToggleButton}
-        Menu={Menu}
-        MenuItemButton={RowButton}
-      />
-    </ThemeProvider>
+    <>
+      <ThemeSelector />
+      <ThemeProvider theme={themes[theme]}>
+        <MenuBar
+          categories={categories}
+          Bar={Bar}
+          MenuButton={ToggleButton}
+          Menu={Menu}
+          MenuItemButton={RowButton}
+        />
+      </ThemeProvider>
+    </>
   );
 };
 
-const ThemeSelector = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  margin-bottom: 25px;
-  color: lightgray;
+const themes = {
+  dark,
+  light,
+};
 
-  label {
-    margin: 10px;
-  }
-
-  select {
-    font-size: 14px;
-    color: white;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
+const Bar = styled.div`
+  display: flex;
 `;
 
 const categories = [
