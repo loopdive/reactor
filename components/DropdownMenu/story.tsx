@@ -9,6 +9,20 @@ export default {
   title: "DropdownMenu",
 };
 
+export const withText: FC = () => (
+  <DropdownMenu
+    Button={({ onClick }: { onClick: OnClick }) => (
+      <ToggleButton onClick={onClick}>{category}</ToggleButton>
+    )}
+    List={Menu}
+    options={items.map(({ label, onClick }) => () => (
+      <RowButton selected={false} onClick={onClick}>
+        {label}
+      </RowButton>
+    ))}
+  />
+);
+
 const category = "File";
 const items = [
   {
@@ -36,17 +50,3 @@ const items = [
     },
   },
 ];
-
-export const withText: FC = () => (
-  <DropdownMenu
-    Button={({ onClick }: { onClick: OnClick }) => (
-      <ToggleButton onClick={onClick}>{category}</ToggleButton>
-    )}
-    List={Menu}
-    options={items.map(({ label, onClick }) => () => (
-      <RowButton selected={false} onClick={onClick}>
-        {label}
-      </RowButton>
-    ))}
-  />
-);
