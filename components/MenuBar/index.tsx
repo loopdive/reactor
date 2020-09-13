@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import styled from "styled-components";
 import DropdownMenu from "../DropdownMenu";
 import ToggleButton from "../themes/default/ToggleButton";
 import Menu from "../themes/default/Menu";
@@ -13,7 +12,7 @@ type MenuCategory = {
 
 /** a menu bar with labeled items like in a desktop application */
 export const MenuBar: FC<{ categories: MenuCategory[] }> = ({ categories }) => (
-  <RowLayout>
+  <div style={{ display: "flex" }}>
     {categories.map(({ category, items }, index) => (
       <DropdownMenu
         key={`${category}${index}`}
@@ -28,9 +27,5 @@ export const MenuBar: FC<{ categories: MenuCategory[] }> = ({ categories }) => (
         ))}
       />
     ))}
-  </RowLayout>
+  </div>
 );
-
-const RowLayout = styled.div`
-  display: flex;
-`;

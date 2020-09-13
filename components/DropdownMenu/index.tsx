@@ -1,5 +1,4 @@
 import React, { FC, useRef, ReactType, ReactNode } from "react";
-import styled from "styled-components";
 import { useSwitch, SwitchButtonType } from "../Switch/useSwitch";
 import { OnClick } from "../types";
 import useOnClickOutside from "use-onclickoutside";
@@ -18,21 +17,22 @@ export const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
   useOnClickOutside(ref, () => setOpen(false));
 
   return (
-    <BoundingBox
+    <div
+      style={{ position: "relative" }}
       onMouseEnter={() => {
         setOpen(true);
       }}
       onMouseLeave={() => setOpen(false)}
     >
       <MenuButton />
-      <Menu open={open} ref={ref}>
+      <div ref={ref} style={{ visibility: open ? "visible" : "hidden" }}>
         <List>
           {options.map((Option, index) => (
             <Option key={index} />
           ))}
         </List>
-      </Menu>
-    </BoundingBox>
+      </div>
+    </div>
   );
 };
 
@@ -42,12 +42,3 @@ export default DropdownMenu;
 export type Clickable = ReactType<{
   onClick: OnClick;
 }>;
-
-const BoundingBox = styled.div`
-  position: relative;
-`;
-
-const Menu = styled.div`
-  visibility: ${(props: { open: boolean }) =>
-    props.open ? "visible" : "hidden"};
-`;
