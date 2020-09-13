@@ -4,19 +4,19 @@ import { MenuBar } from ".";
 import ToggleButton from "../themes/default/ToggleButton";
 import Menu from "../themes/default/Menu";
 import RowButton from "../themes/default/RowButton";
-import { dark, light } from "../themes/default/colors";
 import { useThemeSelector } from "../themes/useThemeSelector";
+import { dark, light } from "../themes/default/colors";
 
 export default {
   title: "MenuBar",
 };
 
 export const example: FC = () => {
-  const [ThemeSelector, theme] = useThemeSelector(["dark", "light"]);
+  const [ThemeSelector, theme] = useThemeSelector(dark, { dark, light });
   return (
     <>
       <ThemeSelector />
-      <ThemeProvider theme={themes[theme]}>
+      <ThemeProvider theme={theme}>
         <MenuBar
           categories={categories}
           Bar={Bar}
@@ -27,11 +27,6 @@ export const example: FC = () => {
       </ThemeProvider>
     </>
   );
-};
-
-const themes = {
-  dark,
-  light,
 };
 
 const Bar = styled.div`

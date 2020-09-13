@@ -1,4 +1,6 @@
 export type Theme = {
+  name: string;
+  default?: boolean;
   color: {
     foreground: string;
     background: string;
@@ -7,6 +9,8 @@ export type Theme = {
 };
 
 export const dark: Theme = {
+  name: "dark",
+  default: true,
   color: {
     foreground: "white",
     background: "rgb(30, 30, 30)",
@@ -15,6 +19,7 @@ export const dark: Theme = {
 };
 
 export const light: Theme = {
+  name: "light",
   color: {
     foreground: "black",
     background: "rgb(240, 240, 240)",

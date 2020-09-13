@@ -1,27 +1,31 @@
 import React, { ReactType, useState, FC, useMemo } from "react";
 import styled from "styled-components";
+import { Theme } from "./default/colors";
 
 export const useThemeSelector = (
-  themes: string[]
-): [ReactType, string, (theme: string) => void] => {
-  const [theme, setTheme] = useState(themes[0]);
+  initialTheme: Theme,
+  themes: {
+    [name: string]: Theme;
+  }
+): [ReactType, Theme, (theme: Theme) => void] => {
+  const [theme, setTheme] = useState(initialTheme);
   const Component: FC = useMemo(
     () => () => (
       <ThemeSelector>
         <label htmlFor="themes">Theme</label>
         <select
           id="themes"
-          onChange={(event) => setTheme(event.target.value)}
-          onBlur={(event) => setTheme(event.target.value)}
-          value={theme}
+          onChange={(event) => setTheme(themes[event?.target?.value])}
+          onBlur={(event) => setTheme(themes[event?.target?.value])}
+          value={"theme.name"}
         >
-          {themes.map((theme, index) => (
+          {Object.keys(themes).map((key) => (
             <option
-              key={theme}
-              value={theme}
-              selected={index === 0 ? true : false}
+              key={themes[key].name}
+              value={themes[key].name}
+              selected={themes[key]?.default}
             >
-              {theme}
+              {themes[key].name}
             </option>
           ))}
         </select>
