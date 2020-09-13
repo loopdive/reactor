@@ -1,8 +1,6 @@
-import React, { FC } from "react";
-import DropdownMenu from "../DropdownMenu";
-import ToggleButton from "../themes/default/ToggleButton";
-import Menu from "../themes/default/Menu";
-import RowButton from "../themes/default/RowButton";
+import React, { FC, ReactType, ReactNode } from "react";
+import DropdownMenu, { SwitchButtonType } from "../DropdownMenu";
+
 import { OnClick } from "../types";
 
 type MenuCategory = {
@@ -11,19 +9,24 @@ type MenuCategory = {
 };
 
 /** a menu bar with labeled items like in a desktop application */
-export const MenuBar: FC<{ categories: MenuCategory[] }> = ({ categories }) => (
+export const MenuBar: FC<{
+  categories: MenuCategory[];
+  MenuButton: SwitchButtonType;
+  Menu: ReactType<{ children: ReactNode }>;
+  MenuItemButton: SwitchButtonType;
+}> = ({ categories, MenuButton, Menu, MenuItemButton }) => (
   <div style={{ display: "flex" }}>
     {categories.map(({ category, items }, index) => (
       <DropdownMenu
         key={`${category}${index}`}
         Button={({ onClick }: { onClick: OnClick }) => (
-          <ToggleButton onClick={onClick}>{category}</ToggleButton>
+          <MenuButton onClick={onClick}>{category}</MenuButton>
         )}
         List={Menu}
         options={items.map(({ label, onClick }) => () => (
-          <RowButton selected={false} onClick={onClick}>
+          <MenuItemButton activated={false} onClick={onClick}>
             {label}
-          </RowButton>
+          </MenuItemButton>
         ))}
       />
     ))}

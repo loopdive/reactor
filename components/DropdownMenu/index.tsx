@@ -3,6 +3,8 @@ import { useSwitch, SwitchButtonType } from "../Switch/useSwitch";
 import { OnClick } from "../types";
 import useOnClickOutside from "use-onclickoutside";
 
+export type { SwitchButtonType };
+
 type Props = {
   Button: SwitchButtonType;
   List: ReactType<{ children: ReactNode }>;

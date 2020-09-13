@@ -1,9 +1,21 @@
 import React, { FC } from "react";
 import { MenuBar } from ".";
+import ToggleButton from "../themes/default/ToggleButton";
+import Menu from "../themes/default/Menu";
+import RowButton from "../themes/default/RowButton";
 
 export default {
   title: "MenuBar",
 };
+
+export const withText: FC = () => (
+  <MenuBar
+    categories={categories}
+    MenuButton={ToggleButton}
+    Menu={Menu}
+    MenuItemButton={RowButton}
+  />
+);
 
 const categories = [
   {
@@ -110,5 +122,3 @@ const categories = [
     ],
   },
 ];
-
-export const withText: FC = () => <MenuBar categories={categories} />;
