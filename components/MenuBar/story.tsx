@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { ThemeProvider } from "styled-components";
+import React, { FC, useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import { MenuBar } from ".";
 import ToggleButton from "../themes/default/ToggleButton";
 import Menu from "../themes/default/Menu";
@@ -10,27 +10,49 @@ export default {
   title: "MenuBar",
 };
 
-export const darkTheme: FC = () => (
-  <ThemeProvider theme={dark}>
-    <MenuBar
-      categories={categories}
-      MenuButton={ToggleButton}
-      Menu={Menu}
-      MenuItemButton={RowButton}
-    />
-  </ThemeProvider>
-);
+const themes = {
+  dark: dark,
+  light: light,
+};
 
-export const lightTheme: FC = () => (
-  <ThemeProvider theme={light}>
-    <MenuBar
-      categories={categories}
-      MenuButton={ToggleButton}
-      Menu={Menu}
-      MenuItemButton={RowButton}
-    />
-  </ThemeProvider>
-);
+export const example: FC = () => {
+  const [theme, setTheme] = useState("dark");
+
+  return (
+    <ThemeProvider theme={themes[theme]}>
+      <ThemeSelector>
+        <label htmlFor="themes">Theme</label>
+        <select
+          id="themes"
+          onChange={(event) => setTheme(event.target.value)}
+          onBlur={(event) => setTheme(event.target.value)}
+          value={theme}
+        >
+          <option value="dark" selected>
+            Dark
+          </option>
+          <option value="light">Light</option>
+        </select>
+      </ThemeSelector>
+      <MenuBar
+        categories={categories}
+        MenuButton={ToggleButton}
+        Menu={Menu}
+        MenuItemButton={RowButton}
+      />
+    </ThemeProvider>
+  );
+};
+
+const ThemeSelector = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 25px;
+  color: white;
+
+  label {
+    margin: 10px;
+  }
+`;
 
 const categories = [
   {
