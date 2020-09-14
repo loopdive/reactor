@@ -13,7 +13,8 @@ export const test: FC = () => {
         <div
           style={{
             height: "100vh",
-            width: 100
+            width: 300,
+            borderRight: "1px solid rgba(30, 30, 30, 0.05)"
           }}
         >
           Hello Motto
