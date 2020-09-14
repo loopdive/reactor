@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useEffect, useRef } from "react";
-import { animated, useSpring } from "react-spring";
+import { animated, config, useSpring } from "react-spring";
 
 import useOnClickOutside from "use-onclickoutside";
 import { useDisableBodyScroll } from "./useDisableBodyScroll";
@@ -26,6 +26,7 @@ export const Sidebar: FC<Props> = ({
   const ref = useRef();
 
   const props = useSpring({
+    config: config.molasses,
     transform: `translateX(${left ? "-" : ""}${open ? 0 : 100}%)`,
     boxShadow: `${left ? "" : "-"}10px 4px 12px -5px rgba(0, 0, 0, 0${
       open ? ".1" : ""
