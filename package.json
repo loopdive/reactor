@@ -12,7 +12,9 @@
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --cache --fix --ext .js,.ts,.tsx .",
     "lint:css": "stylelint './**/*.{js,jsx,ts,tsx,css,scss}' --cache",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "next": "9.5.2",
@@ -21,11 +23,17 @@
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@storybook/addon-actions": "^6.0.21",
+    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-links": "^6.0.21",
+    "@storybook/react": "^6.0.21",
     "@types/node": "^14.6.2",
     "@types/react": "^16.9.49",
     "@types/styled-components": "^5.1.2",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
+    "babel-loader": "^8.1.0",
     "eslint": "^7.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
@@ -36,6 +44,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
     "prettier": "^2.1.1",
+    "react-is": "^16.13.1",
     "stylelint": "^13.7.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
@@ -50,7 +59,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --cache --fix --max-warnings 0",
+      "eslint --cache --fix",
       "stylelint --cache"
     ],
     "*.{css,scss}": [
