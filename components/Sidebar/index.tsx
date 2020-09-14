@@ -1,14 +1,16 @@
-import React, { FC, ReactNode, useRef } from "react";
+import React, { FC, ReactNode, useEffect, useRef } from "react";
 import { animated, useSpring } from "react-spring";
 
 import useOnClickOutside from "use-onclickoutside";
+import { useDisableBodyScroll } from "./useDisableBodyScroll";
 
 type Props = {
   orientation?: "left" | "right";
-  open?: boolean;
+  open: boolean;
   onClose?: () => void;
   children: ReactNode;
   closeOnOutsideClick?: boolean;
+  disableBodyScroll?: boolean;
 };
 
 export const Sidebar: FC<Props> = ({
@@ -16,15 +18,12 @@ export const Sidebar: FC<Props> = ({
   open,
   onClose,
   children,
-  closeOnOutsideClick = true
+  closeOnOutsideClick = true,
+  disableBodyScroll = true
 }) => {
   const left = orientation === "left";
 
   const ref = useRef();
-
-  useOnClickOutside(ref, () =>
-    setTimeout(() => closeOnOutsideClick && open && onClose(), 150)
-  );
 
   const props = useSpring({
     transform: `translateX(${left ? "-" : ""}${open ? 0 : 100}%)`,
@@ -32,6 +31,18 @@ export const Sidebar: FC<Props> = ({
       open ? ".3" : ""
     })`
   });
+
+  const [disableBodyScrollHandler] = useDisableBodyScroll();
+
+  useEffect(() => {
+    if (disableBodyScroll) {
+      disableBodyScrollHandler(open);
+    }
+  }, [open]);
+
+  useOnClickOutside(ref, () =>
+    setTimeout(() => closeOnOutsideClick && open && onClose(), 150)
+  );
 
   return (
     <animated.div
