@@ -60,7 +60,7 @@
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --cache --fix",
-      "stylelint --cache"
+      "stylelint --cache --max-warnings 0"
     ],
     "*.{css,scss}": [
       "prettier --write",
