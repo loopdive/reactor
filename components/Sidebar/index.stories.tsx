@@ -8,7 +8,7 @@ export const test: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <div style={{ height: "150vh" }}>
       <Sidebar open={open} onClose={() => setOpen(false)}>
         <div
           style={{
@@ -25,6 +25,6 @@ export const test: FC = () => {
       >
         toggle
       </button>
-    </>
+    </div>
   );
 };
