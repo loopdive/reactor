@@ -11,6 +11,7 @@ type Props = {
   children: ReactNode;
   closeOnOutsideClick?: boolean;
   disableBodyScroll?: boolean;
+  animate?: boolean;
 };
 
 export const Sidebar: FC<Props> = ({
@@ -19,7 +20,8 @@ export const Sidebar: FC<Props> = ({
   onClose,
   children,
   closeOnOutsideClick = true,
-  disableBodyScroll = true
+  disableBodyScroll = true,
+  animate = true
 }) => {
   const left = orientation === "left";
 
@@ -27,6 +29,7 @@ export const Sidebar: FC<Props> = ({
 
   const props = useSpring({
     config: config.molasses,
+    immediate: !animate,
     transform: `translateX(${left ? "-" : ""}${open ? 0 : 100}%)`,
     boxShadow: `${left ? "" : "-"}10px 4px 12px -5px rgba(0, 0, 0, 0${
       open ? ".1" : ""
