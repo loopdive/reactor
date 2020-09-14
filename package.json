@@ -59,8 +59,8 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --cache --fix",
-      "stylelint --cache --max-warnings 0"
+      "eslint --cache --fix --max-warnings 0",
+      "stylelint --cache"
     ],
     "*.{css,scss}": [
       "prettier --write",
