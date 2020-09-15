@@ -5,7 +5,7 @@ import { dark } from "../themes/default/colors";
 import { useSwitch } from "./useSwitch";
 
 export default {
-  title: "Switch"
+  title: "Switch",
 };
 
 export const withText: FC = () => {

@@ -20,7 +20,7 @@ export const test: FC = () => {
             height: "100vh",
             width: 300,
             borderRight: "1px solid rgba(30, 30, 30, 0.05)",
-            backgroundColor: "white"
+            backgroundColor: "white",
           }}
         >
           Hello Motto

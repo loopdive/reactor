@@ -24,7 +24,7 @@ export const Sidebar: FC<Props> = ({
   closeOnOutsideClick = true,
   disableBodyScroll = true,
   animate = true,
-  animatedProps = {}
+  animatedProps = {},
 }) => {
   const left = orientation === "left";
 
@@ -52,11 +52,11 @@ export const Sidebar: FC<Props> = ({
           boxShadow: `${left ? "" : "-"}10px 4px 12px -5px rgba(0, 0, 0, 0${
             open ? ".1" : ""
           })`,
-          ...animatedProps
+          ...animatedProps,
         }),
         position: "fixed",
         top: 0,
-        [orientation]: 0
+        [orientation]: 0,
       }}
     >
       {children}

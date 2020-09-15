@@ -19,7 +19,7 @@ export function useSwitch(
       [activated, setActivated]
     ),
     activated,
-    setActivated
+    setActivated,
   ];
 }
 

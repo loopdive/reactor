@@ -8,7 +8,7 @@ import { useThemeSelector } from "../themes/useThemeSelector";
 import { dark, light } from "../themes/default/colors";
 
 export default {
-  title: "MenuBar"
+  title: "MenuBar",
 };
 
 export const example: FC = () => {
@@ -41,27 +41,27 @@ const categories = [
         label: "New",
         onClick: () => {
           alert("New");
-        }
+        },
       },
       {
         label: "Open",
         onClick: () => {
           alert("Open");
-        }
+        },
       },
       {
         label: "Save",
         onClick: () => {
           alert("Save");
-        }
+        },
       },
       {
         label: "Close",
         onClick: () => {
           alert("Close");
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     category: "Edit",
@@ -70,21 +70,21 @@ const categories = [
         label: "Cut",
         onClick: () => {
           alert("Cut");
-        }
+        },
       },
       {
         label: "Copy",
         onClick: () => {
           alert("Copy");
-        }
+        },
       },
       {
         label: "Paste",
         onClick: () => {
           alert("Paste");
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     category: "View",
@@ -93,9 +93,9 @@ const categories = [
         label: "Wrap",
         onClick: () => {
           alert("Wrap");
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     category: "Window",
@@ -104,21 +104,21 @@ const categories = [
         label: "Window 1",
         onClick: () => {
           alert("Window 1");
-        }
+        },
       },
       {
         label: "Window 2",
         onClick: () => {
           alert("Window 2");
-        }
+        },
       },
       {
         label: "Window 3",
         onClick: () => {
           alert("Window 3");
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     category: "Help",
@@ -127,14 +127,14 @@ const categories = [
         label: "Documentation",
         onClick: () => {
           alert("Documentation");
-        }
+        },
       },
       {
         label: "About",
         onClick: () => {
           alert("About");
-        }
-      }
-    ]
-  }
+        },
+      },
+    ],
+  },
 ];

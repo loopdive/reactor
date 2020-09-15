@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import Button from "./index";
 
 export default {
-  title: "Button"
+  title: "Button",
 };
 
 export const withText: FC = () => (
