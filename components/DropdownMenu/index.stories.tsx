@@ -9,7 +9,7 @@ import { useThemeSelector } from "../themes/useThemeSelector";
 import { dark, light } from "../themes/default/colors";
 
 export default {
-  title: "DropdownMenu"
+  title: "DropdownMenu",
 };
 
 export const withText: FC = () => {
@@ -41,24 +41,24 @@ const items = [
     label: "New",
     onClick: () => {
       alert("New");
-    }
+    },
   },
   {
     label: "Open",
     onClick: () => {
       alert("Open");
-    }
+    },
   },
   {
     label: "Save",
     onClick: () => {
       alert("Save");
-    }
+    },
   },
   {
     label: "Close",
     onClick: () => {
       alert("Close");
-    }
-  }
+    },
+  },
 ];
