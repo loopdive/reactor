@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import { config } from "react-spring";
 
 import Sidebar from "./index";
 
@@ -9,12 +10,17 @@ export const test: FC = () => {
 
   return (
     <div style={{ height: "150vh" }}>
-      <Sidebar open={open} onClose={() => setOpen(false)}>
+      <Sidebar
+        open={open}
+        onClose={() => setOpen(false)}
+        animatedProps={{ config: config.molasses }}
+      >
         <div
           style={{
             height: "100vh",
             width: 300,
-            borderRight: "1px solid rgba(30, 30, 30, 0.05)"
+            borderRight: "1px solid rgba(30, 30, 30, 0.05)",
+            backgroundColor: "white"
           }}
         >
           Hello Motto
