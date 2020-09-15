@@ -1,8 +1,8 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, ReactNode } from "react";
 
 import { animated, useSpring } from "react-spring";
 
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useScrollFlags } from "./useScrollFlags";
 
 type Props = { children: ReactNode; hideOnDownScroll?: boolean };
 
@@ -24,32 +24,6 @@ const Topbar: FC<Props> = ({ children, hideOnDownScroll }) => {
       {children}
     </animated.div>
   );
-};
-
-export const useScrollFlags = (
-  hideOnDownScroll: boolean
-): { scrollUp: boolean; isTop: boolean } => {
-  const [scrollUp, setScrollUp] = useState<boolean>(true);
-  const [isTop, setIsTop] = useState<boolean>(true);
-
-  useScrollPosition(
-    ({ prevPos, currPos }) => {
-      if (hideOnDownScroll) {
-        if (currPos.y > prevPos.y) {
-          setScrollUp(true);
-        } else if (currPos.y < prevPos.y) {
-          setScrollUp(false);
-        }
-      }
-
-      if (currPos.y === 0) {
-        setIsTop(true);
-      } else setIsTop(false);
-    },
-    [hideOnDownScroll]
-  );
-
-  return { scrollUp, isTop };
 };
 
 export default Topbar;
