@@ -1,7 +1,8 @@
 import React, { FC, ReactNode, useEffect, useRef } from "react";
-import { animated, config, useSpring } from "react-spring";
+import { animated, useSpring } from "react-spring";
 
 import useOnClickOutside from "use-onclickoutside";
+import { AnimatedProps } from "../types";
 import { useDisableBodyScroll } from "./useDisableBodyScroll";
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
   closeOnOutsideClick?: boolean;
   disableBodyScroll?: boolean;
   animate?: boolean;
+  animatedProps?: AnimatedProps;
 };
 
 export const Sidebar: FC<Props> = ({
@@ -21,20 +23,12 @@ export const Sidebar: FC<Props> = ({
   children,
   closeOnOutsideClick = true,
   disableBodyScroll = true,
-  animate = true
+  animate = true,
+  animatedProps = {}
 }) => {
   const left = orientation === "left";
 
   const ref = useRef();
-
-  const props = useSpring({
-    config: config.molasses,
-    immediate: !animate,
-    transform: `translateX(${left ? "-" : ""}${open ? 0 : 100}%)`,
-    boxShadow: `${left ? "" : "-"}10px 4px 12px -5px rgba(0, 0, 0, 0${
-      open ? ".1" : ""
-    })`
-  });
 
   const [disableBodyScrollHandler] = useDisableBodyScroll();
 
@@ -52,7 +46,14 @@ export const Sidebar: FC<Props> = ({
     <animated.div
       ref={ref}
       style={{
-        ...props,
+        ...useSpring({
+          immediate: !animate,
+          transform: `translateX(${left ? "-" : ""}${open ? 0 : 100}%)`,
+          boxShadow: `${left ? "" : "-"}10px 4px 12px -5px rgba(0, 0, 0, 0${
+            open ? ".1" : ""
+          })`,
+          ...animatedProps
+        }),
         position: "fixed",
         top: 0,
         [orientation]: 0
