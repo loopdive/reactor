@@ -4,18 +4,18 @@ module.exports = {
     ecmaVersion: 2020, // Use the latest ecmascript standard
     sourceType: "module", // Allows using import/export statements
     ecmaFeatures: {
-      jsx: true // Enable JSX since we're using React
-    }
+      jsx: true, // Enable JSX since we're using React
+    },
   },
   settings: {
     react: {
-      version: "detect" // Automatically detect the react version
-    }
+      version: "detect", // Automatically detect the react version
+    },
   },
   env: {
     browser: true, // Enables browser globals like window and document
     amd: true, // Enables require() and define() as global variables as per the amd spec.
-    node: true // Enables Node.js global variables and Node.js scoping.
+    node: true, // Enables Node.js global variables and Node.js scoping.
   },
   extends: [
     "eslint:recommended",
@@ -24,7 +24,7 @@ module.exports = {
     "plugin:prettier/recommended", // Make this the last element so prettier config overrides other formatting rules
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
   ],
   rules: {
     "prettier/prettier": ["error", {}, { usePrettierrc: true }], // Use our .prettierrc file as source
@@ -35,13 +35,13 @@ module.exports = {
       {
         components: ["Link"],
         specialLink: ["hrefLeft", "hrefRight"],
-        aspects: ["invalidHref", "preferButton"]
-      }
+        aspects: ["invalidHref", "preferButton"],
+      },
     ],
     "@typescript-eslint/ban-ts-comment": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["simple-import-sort"]
+  plugins: ["simple-import-sort"],
 };
