@@ -48,7 +48,7 @@ export const Sidebar: FC<Props> = ({
       style={{
         ...useSpring({
           immediate: !animate,
-          transform: `translateX(${left ? "-" : ""}${open ? 0 : 100}%)`,
+          transform: `translate3d(${left ? "-" : ""}${open ? 0 : 100}%, 0, 0)`,
           boxShadow: `${left ? "" : "-"}10px 4px 12px -5px rgba(0, 0, 0, 0${
             open ? ".1" : ""
           })`,
