@@ -1579,6 +1579,11 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@n8tb1t/use-scroll-position@^1.0.47":
+  version "1.0.47"
+  resolved "https://registry.yarnpkg.com/@n8tb1t/use-scroll-position/-/use-scroll-position-1.0.47.tgz#6b471ecb2fdc09179fd93791680ddd9714df1935"
+  integrity sha512-qilO+6vtiwP5L9Oqphee0XRXPOpOOQ9W/jNSZaf1Gx3v/EWrVOXxVRxEPv377BGw9Cf1/Rj13bBu+YVAjHk+gw==
+
 "@next/react-dev-overlay@9.5.2":
   version "9.5.2"
   resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-9.5.2.tgz#5d7878782e2819926b0dcd0f880c26ed527e9880"
