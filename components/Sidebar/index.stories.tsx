@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { config } from "react-spring";
 
-import Sidebar from "./index";
+import SideBar from "./index";
 
 export default { title: "SideBar" };
 
@@ -10,7 +10,7 @@ export const test: FC = () => {
 
   return (
     <div style={{ height: "150vh" }}>
-      <Sidebar
+      <SideBar
         open={open}
         onClose={() => setOpen(false)}
         animatedProps={{ config: config.molasses }}
@@ -25,7 +25,7 @@ export const test: FC = () => {
         >
           Hello Motto
         </div>
-      </Sidebar>
+      </SideBar>
       <button
         onClick={() => setOpen((o) => !o)}
         style={{ position: "fixed", top: "50%", left: "50%" }}
