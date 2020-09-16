@@ -59,7 +59,6 @@ const Container = styled(animated.div)<{ styles: FlattenSimpleInterpolation }>`
   border: 0.19em solid ${(props: { theme: Theme }) => props.theme.switch.border};
   border-radius: 2.5em;
   position: relative;
-
   ${(props) => props.styles}
 `;
 
