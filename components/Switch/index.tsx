@@ -3,11 +3,12 @@ import React, { FC } from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
 
-type Props = { size?: number; activated: boolean; setActivated: () => void };
+type Props = { size?: number; activated: boolean; onClick: () => void };
 
-const Switch: FC<Props> = ({ size = 16, activated, setActivated }) => {
+const Switch: FC<Props> = ({ size = 16, activated, onClick }) => {
+  console.log({ size });
   return (
-    <Container style={{ fontSize: size }} onClick={setActivated}>
+    <Container style={{ fontSize: size }} onClick={onClick}>
       <Toggle
         style={{
           ...useSpring({
