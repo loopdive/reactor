@@ -20,11 +20,7 @@ export const useThemeSelector = (
           value={theme.name}
         >
           {Object.keys(themes).map((key) => (
-            <option
-              key={themes[key].name}
-              value={themes[key].name}
-              selected={themes[key]?.default}
-            >
+            <option key={themes[key].name} value={themes[key].name}>
               {themes[key].name}
             </option>
           ))}
