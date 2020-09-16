@@ -2,10 +2,11 @@ import React, { FC, useState } from "react";
 
 import { ThemeProvider } from "styled-components";
 import Button from "../themes/default/Button";
-import { dark } from "../themes/default/colors";
+import { dark, light } from "../themes/default/colors";
 import { useSwitch } from "./useSwitch";
 
 import Switch from "./index";
+import { useThemeSelector } from "../themes/useThemeSelector";
 
 export default {
   title: "Switch",
@@ -23,12 +24,21 @@ export const withText: FC = () => {
 };
 
 export const withSwitch: FC = () => {
+  const [ThemeSelector, theme] = useThemeSelector(light, { dark, light });
+  const [S] = useSwitch(Switch);
   const [activated, setActivated] = useState(false);
 
   return (
-    <Switch
-      activated={activated}
-      setActivated={() => setActivated((a) => !a)}
-    />
+    <>
+      <ThemeSelector />
+      <ThemeProvider theme={theme}>
+        <S size={30} style={{ marginBottom: 10 }} />
+        <Switch
+          size={30}
+          activated={activated}
+          onClick={() => setActivated(!activated)}
+        />
+      </ThemeProvider>
+    </>
   );
 };
