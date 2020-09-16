@@ -26,32 +26,30 @@ const Switch: FC<Props> = ({
   styles,
   animatedProps,
   theme,
-}) => {
-  return (
-    <Container
-      onClick={onClick}
-      styles={styles}
+}) => (
+  <Container
+    onClick={onClick}
+    styles={styles}
+    style={{
+      fontSize: theme?.switch?.size || size,
+      ...style,
+      ...useSpring({
+        backgroundColor: activated
+          ? theme?.switch?.selected || "green"
+          : theme?.switch?.unselected || "red",
+        ...animatedProps,
+      }),
+    }}
+  >
+    <Toggle
       style={{
-        fontSize: theme?.switch?.size || size,
-        ...style,
         ...useSpring({
-          backgroundColor: activated
-            ? theme?.switch?.selected || "green"
-            : theme?.switch?.unselected || "red",
-          ...animatedProps,
+          left: `${activated ? "4%" : "59%"}`,
         }),
       }}
-    >
-      <Toggle
-        style={{
-          ...useSpring({
-            left: `${activated ? "4%" : "59%"}`,
-          }),
-        }}
-      />
-    </Container>
-  );
-};
+    />
+  </Container>
+);
 
 const Container = styled(animated.div)<{ styles: FlattenSimpleInterpolation }>`
   height: 3.2em;
