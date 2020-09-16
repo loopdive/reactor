@@ -32,12 +32,12 @@ const Switch: FC<Props> = ({
       onClick={onClick}
       styles={styles}
       style={{
-        fontSize: size,
+        fontSize: theme?.switch?.size || size,
         ...style,
         ...useSpring({
           backgroundColor: activated
-            ? theme.switch.selected || "green"
-            : theme.switch.unselected || "red",
+            ? theme?.switch?.selected || "green"
+            : theme?.switch?.unselected || "red",
           ...animatedProps,
         }),
       }}

@@ -11,6 +11,7 @@ export type Theme = {
     unselected: string;
     border: string;
     selector: string;
+    size: number;
   };
 };
 
@@ -27,6 +28,7 @@ export const dark: Theme = {
     unselected: "rgba(0, 0, 0, 0)",
     border: "white",
     selector: "orange",
+    size: 16,
   },
 };
 
@@ -42,5 +44,6 @@ export const light: Theme = {
     unselected: "red",
     border: "transparent",
     selector: "white",
+    size: 30,
   },
 };
