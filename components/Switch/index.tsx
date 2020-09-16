@@ -1,14 +1,47 @@
-import React, { FC } from "react";
+import React, { CSSProperties, FC } from "react";
 
 import { animated, useSpring } from "react-spring";
-import styled from "styled-components";
+import styled, {
+  FlattenSimpleInterpolation,
+  withTheme,
+} from "styled-components";
+import { Theme } from "../themes/default/colors";
+import { AnimatedProps } from "../types";
 
-type Props = { size?: number; activated: boolean; onClick: () => void };
+type Props = {
+  size?: number;
+  activated: boolean;
+  onClick: () => void;
+  style?: CSSProperties;
+  styles?: FlattenSimpleInterpolation;
+  animatedProps?: AnimatedProps;
+  theme?: Theme;
+};
 
-const Switch: FC<Props> = ({ size = 16, activated, onClick }) => {
-  console.log({ size });
+const Switch: FC<Props> = ({
+  size = 16,
+  activated,
+  onClick,
+  style,
+  styles,
+  animatedProps,
+  theme,
+}) => {
   return (
-    <Container style={{ fontSize: size }} onClick={onClick}>
+    <Container
+      onClick={onClick}
+      styles={styles}
+      style={{
+        fontSize: size,
+        ...style,
+        ...useSpring({
+          backgroundColor: activated
+            ? theme.switch.selected || "green"
+            : theme.switch.unselected || "red",
+          ...animatedProps,
+        }),
+      }}
+    >
       <Toggle
         style={{
           ...useSpring({
@@ -20,12 +53,14 @@ const Switch: FC<Props> = ({ size = 16, activated, onClick }) => {
   );
 };
 
-const Container = styled.div`
+const Container = styled(animated.div)<{ styles: FlattenSimpleInterpolation }>`
   height: 3.2em;
   width: 6.8em;
-  border: 0.19em solid white;
+  border: 0.19em solid ${(props: { theme: Theme }) => props.theme.switch.border};
   border-radius: 2.5em;
   position: relative;
+
+  ${(props) => props.styles}
 `;
 
 const Toggle = styled(animated.div)`
@@ -33,9 +68,9 @@ const Toggle = styled(animated.div)`
   height: 2.5em;
   width: 2.5em;
   border-radius: 50%;
-  background-color: white;
+  background-color: ${(props: { theme: Theme }) => props.theme.switch.selector};
   top: 50%;
   transform: translateY(-50%);
 `;
 
-export default Switch;
+export default withTheme(Switch);
