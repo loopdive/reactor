@@ -8,12 +8,13 @@ export function useSwitch(
   const [activated, setActivated] = useState<boolean>(false);
   return [
     useMemo(
-      () => ({ children }: { children: ReactNode }) => (
+      () => (props: { children: ReactNode }) => (
         <Button
           activated={activated}
           onClick={() => setActivated(() => !activated)}
+          {...props}
         >
-          {children}
+          {props.children}
         </Button>
       ),
       [activated, setActivated]
@@ -25,6 +26,6 @@ export function useSwitch(
 
 export type SwitchButtonType = ReactType<{
   activated?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   onClick: OnClick;
 }>;
