@@ -7,7 +7,11 @@ export const test: FC = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <>
-      <Hamburger activated={toggle} onClick={() => setToggle(!toggle)} />
+      <Hamburger
+        size={25}
+        activated={toggle}
+        onClick={() => setToggle(!toggle)}
+      />
     </>
   );
 };

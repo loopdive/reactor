@@ -5,17 +5,18 @@ import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
 
 type Props = {
+  size?: number;
   activated?: boolean;
   onClick?: () => void;
 };
 
-const Hamburger: FC<Props> = ({ activated, onClick }) => {
+const Hamburger: FC<Props> = ({ size = 20, activated, onClick }) => {
   return (
-    <Container onClick={onClick}>
+    <Container style={{ fontSize: size }} onClick={onClick}>
       <Line
         style={{
           ...useSpring({
-            top: activated ? "50%" : "20%",
+            top: activated ? "50%" : "25%",
             transform: !activated
               ? "translate(-50%, -50%) rotate(0deg)"
               : " translate(-50%, -50%) rotate(135deg)",
@@ -33,7 +34,7 @@ const Hamburger: FC<Props> = ({ activated, onClick }) => {
       <Line
         style={{
           ...useSpring({
-            top: activated ? "50%" : "80%",
+            top: activated ? "50%" : "75%",
             transform: !activated
               ? "translate(-50%, -50%) rotate(0deg)"
               : " translate(-50%, -50%) rotate(-135deg)",
@@ -45,20 +46,19 @@ const Hamburger: FC<Props> = ({ activated, onClick }) => {
 };
 
 const Container = styled.div`
-  height: 50px;
-  width: 50px;
+  height: 2em;
+  width: 2em;
   position: relative;
 `;
 
 const Line = styled(animated.span)`
   position: absolute;
-  width: 80%;
-  height: 4px;
+  width: 75%;
+  height: 0.15em;
   background-color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(0deg);
-  border-radius: 3px;
 `;
 
 export default Hamburger;
