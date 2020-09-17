@@ -13,6 +13,11 @@ export type Theme = {
     selector: string;
     size: number;
   };
+  searchbar: {
+    background: string;
+    iconsColor: string;
+    textColor: string;
+  };
 };
 
 export const dark: Theme = {
@@ -30,6 +35,11 @@ export const dark: Theme = {
     selector: "orange",
     size: 16,
   },
+  searchbar: {
+    background: "rgba(255, 255, 255, 0.05)",
+    iconsColor: "rgba(255, 255, 255, 0.25)",
+    textColor: "rgba(255, 255, 255, 0.7)",
+  },
 };
 
 export const light: Theme = {
@@ -45,5 +55,10 @@ export const light: Theme = {
     border: "transparent",
     selector: "white",
     size: 30,
+  },
+  searchbar: {
+    background: "rgba(0, 0, 0, 0.05)",
+    iconsColor: "rgba(0, 0, 0, 0.25)",
+    textColor: "rgba(0, 0, 0, 0.7)",
   },
 };

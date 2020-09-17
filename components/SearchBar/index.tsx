@@ -5,9 +5,10 @@ import { animated } from "react-spring";
 
 import { Search } from "@styled-icons/heroicons-solid/Search";
 import { Close } from "@styled-icons/evaicons-solid/Close";
+import { Theme } from "../themes/default/colors";
 
 type Props = {
-  size: number;
+  size?: number;
   onChange: (value: string) => void;
   onFocus?: () => void;
   value: string;
@@ -57,7 +58,8 @@ const Container = styled(animated.div)`
   height: 2em;
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: ${(props: { theme: Theme }) =>
+    props.theme.searchbar.background};
 
   border-radius: 1em;
   box-shadow: inset 2px 1px 5px rgba(0, 0, 0, 0.075);
@@ -69,12 +71,12 @@ const Input = styled(animated.input)`
   border: 0 solid;
   flex: 1;
   outline: none;
-  color: rgba(0, 0, 0, 0.7);
+  color: ${(props: { theme: Theme }) => props.theme.searchbar.textColor};
   font-size: 0.8em;
 `;
 
 const icons = css`
-  color: rgba(0, 0, 0, 0.25);
+  color: ${(props: { theme: Theme }) => props.theme.searchbar.iconsColor};
 
   margin: 0 0.5em;
 `;
