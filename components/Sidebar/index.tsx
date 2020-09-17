@@ -16,7 +16,7 @@ type Props = {
   animatedProps?: AnimatedProps;
 };
 
-export const Sidebar: FC<Props> = ({
+export const SideBar: FC<Props> = ({
   orientation = "left",
   open,
   onClose,
@@ -64,4 +64,4 @@ export const Sidebar: FC<Props> = ({
   );
 };
 
-export default Sidebar;
+export default SideBar;
