@@ -8,7 +8,7 @@ import styled, {
 import { Theme } from "../themes/default/colors";
 import { AnimatedProps } from "../types";
 
-export type SwitchProps = {
+type Props = {
   size?: number;
   activated?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
@@ -18,7 +18,7 @@ export type SwitchProps = {
   theme?: Theme;
 };
 
-const Switch: FC<SwitchProps> = ({
+const Switch: FC<Props> = ({
   size = 16,
   activated,
   onClick,
