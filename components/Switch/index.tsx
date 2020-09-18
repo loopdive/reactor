@@ -8,17 +8,17 @@ import styled, {
 import { Theme } from "../themes/default/colors";
 import { AnimatedProps } from "../types";
 
-type Props = {
+export type SwitchProps = {
   size?: number;
-  activated: boolean;
-  onClick: () => void;
+  activated?: boolean;
+  onClick?: () => void;
   style?: CSSProperties;
   styles?: FlattenSimpleInterpolation;
   animatedProps?: AnimatedProps;
   theme?: Theme;
 };
 
-const Switch: FC<Props> = ({
+const Switch: FC<SwitchProps> = ({
   size = 16,
   activated,
   onClick,
