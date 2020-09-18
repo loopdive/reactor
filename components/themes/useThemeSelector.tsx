@@ -1,4 +1,4 @@
-import React, { ReactType, useState, FC, useMemo } from "react";
+import React, { ElementType, useState, FC, useMemo } from "react";
 import styled from "styled-components";
 import { Theme } from "./default/colors";
 
@@ -7,7 +7,7 @@ export const useThemeSelector = (
   themes: {
     [name: string]: Theme;
   }
-): [ReactType, Theme, (theme: Theme) => void] => {
+): [ElementType, Theme, (theme: Theme) => void] => {
   const [theme, setTheme] = useState(initialTheme);
   const Component: FC = useMemo(
     () => () => (
