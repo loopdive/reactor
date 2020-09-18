@@ -15,7 +15,7 @@ export function useSwitch<Props>(
         onClick={() => setActivated(() => !activated)}
         {...props}
       >
-        {props.children}
+        {props?.children}
       </Button>
     ),
     [activated, setActivated, props]
