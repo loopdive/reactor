@@ -4,13 +4,13 @@ import styled from "styled-components";
 
 import { animated, useSpring } from "react-spring";
 
-type Props = {
+export type HamburgerProps = {
   size?: number;
   activated?: boolean;
   onClick?: () => void;
 };
 
-const Hamburger: FC<Props> = ({ size = 20, activated, onClick }) => {
+const Hamburger: FC<HamburgerProps> = ({ size = 20, activated, onClick }) => {
   return (
     <Container style={{ fontSize: size }} onClick={onClick}>
       <Line

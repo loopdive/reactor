@@ -1,17 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
+import { useSwitch } from "../Switch/useSwitch";
 
-import Hamburger from "./index";
+import Hamburger, { HamburgerProps } from "./index";
 export default { title: "Hamburger" };
 
 export const test: FC = () => {
-  const [toggle, setToggle] = useState(false);
-  return (
-    <>
-      <Hamburger
-        size={25}
-        activated={toggle}
-        onClick={() => setToggle(!toggle)}
-      />
-    </>
-  );
+  const [H] = useSwitch<HamburgerProps>(Hamburger, { size: 25 });
+  return <>{H}</>;
 };
