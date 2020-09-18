@@ -1,4 +1,4 @@
-import React, { FC, ReactType, ReactNode } from "react";
+import React, { FC, ElementType, ReactNode } from "react";
 import DropdownMenu, { SwitchButtonType } from "../DropdownMenu";
 
 import { OnClick } from "../types";
@@ -11,9 +11,9 @@ type MenuCategory = {
 /** a menu bar with labeled items like in a desktop application */
 export const MenuBar: FC<{
   categories: MenuCategory[];
-  Bar: ReactType;
+  Bar: ElementType;
   MenuButton: SwitchButtonType;
-  Menu: ReactType<{ children: ReactNode }>;
+  Menu: ElementType<{ children: ReactNode }>;
   MenuItemButton: SwitchButtonType;
 }> = ({ categories, Bar, MenuButton, Menu, MenuItemButton }) => (
   <Bar>
