@@ -11,7 +11,7 @@ import { AnimatedProps } from "../types";
 export type SwitchProps = {
   size?: number;
   activated?: boolean;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   style?: CSSProperties;
   styles?: FlattenSimpleInterpolation;
   animatedProps?: AnimatedProps;
