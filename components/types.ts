@@ -1,8 +1,6 @@
-import React, { CSSProperties } from "react";
+import { CSSProperties, EventHandler, MouseEvent } from "react";
 import { SpringConfig } from "react-spring";
 
-export type OnClick = (
-  event: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>
-) => void;
+export type OnClick = EventHandler<MouseEvent<HTMLElement>>;
 
 export type AnimatedProps = { config?: SpringConfig } & CSSProperties;
