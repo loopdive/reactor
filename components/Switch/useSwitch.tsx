@@ -1,9 +1,10 @@
 import React, { ElementType, ReactNode, useMemo, useState } from "react";
+import { OnClick } from "../types";
 
 /** adds an on off switch state to a button */
 export function useSwitch<Props>(
   Button: SwitchButtonType,
-  props: Props & { children?: ReactNode }
+  props?: Props & { children?: ReactNode }
 ): [JSX.Element, boolean, (toggle: boolean) => void] {
   const [activated, setActivated] = useState<boolean>(false);
 
@@ -26,5 +27,5 @@ export function useSwitch<Props>(
 export type SwitchButtonType = ElementType<{
   activated?: boolean;
   children?: ReactNode;
-  onClick: () => void;
+  onClick: OnClick;
 }>;
