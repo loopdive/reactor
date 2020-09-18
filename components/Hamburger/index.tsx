@@ -7,7 +7,7 @@ import { animated, useSpring } from "react-spring";
 export type HamburgerProps = {
   size?: number;
   activated?: boolean;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 const Hamburger: FC<HamburgerProps> = ({ size = 20, activated, onClick }) => {
