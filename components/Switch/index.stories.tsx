@@ -7,8 +7,6 @@ import { useSwitch } from "./useSwitch";
 
 import Switch from "./index";
 import { useThemeSelector } from "../themes/useThemeSelector";
-import { SwitchProps } from ".";
-
 export default {
   title: "Switch",
 };
@@ -22,7 +20,7 @@ export const withButton: FC = () => {
 export const withSwitch: FC = () => {
   const [ThemeSelector, theme] = useThemeSelector(light, { dark, light });
 
-  const [S] = useSwitch<SwitchProps>(Switch, {
+  const [S] = useSwitch(Switch, {
     style: { marginBottom: 10 },
     size: 30,
   });

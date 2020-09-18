@@ -1,5 +1,5 @@
-import React, { FC, useRef, ElementType, ReactNode } from "react";
-import { useSwitch, SwitchButtonType } from "../Switch/useSwitch";
+import React, { FC, useRef, useState, ElementType, ReactNode } from "react";
+import { SwitchButtonType } from "../Switch/useSwitch";
 import { OnClick } from "../types";
 import useOnClickOutside from "use-onclickoutside";
 
@@ -14,7 +14,7 @@ type Props = {
 /** a dropdown menu component with a button opening the menu that contains a list of menu items */
 export const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
   // hooks up click on toggle button to trigger dropdown open state
-  const [MenuButton, open, setOpen] = useSwitch(Button);
+  const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => setOpen(false));
 
@@ -26,7 +26,7 @@ export const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
       }}
       onMouseLeave={() => setOpen(false)}
     >
-      {MenuButton}
+      <Button activated={open} onClick={() => setOpen(!open)} />
       <div ref={ref} style={{ visibility: open ? "visible" : "hidden" }}>
         <List>
           {options.map((Option, index) => (
