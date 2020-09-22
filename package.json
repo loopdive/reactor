@@ -5,13 +5,25 @@
   "engines": {
     "node": ">=10"
   },
-  "scripts": {
+  "source": "src/index.tsx",          
+  "main": "lib/reactor.js",           
+  "module": "lib/reactor.module.js",  
+  "unpkg": "lib/reactor.umd.js",
+  "license": "MIT",
+  "scripts": { 
+    "build": "microbundle build --jsx React.createElement --external react -o lib",
+    "dev": "microbundle watch --jsx React.createElement --external react -o lib",   
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --cache --fix --ext .js,.ts,.tsx .",
-    "lint:css": "stylelint './**/*.{js,jsx,ts,tsx,css,scss}' --cache",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "lint:css": "stylelint './src/**/*.{js,jsx,ts,tsx,css,scss}' --cache",
+    "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+  },
+  "peerDependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "styled-components": "^5.1.1"
   },
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^1.0.47",
@@ -25,6 +37,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
+    "@babel/plugin-transform-typescript": "^7.11.0",
     "@storybook/addon-actions": "^6.0.21",
     "@storybook/addon-essentials": "^6.0.21",
     "@storybook/addon-links": "^6.0.21",
@@ -44,6 +60,7 @@
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
+    "microbundle": "^0.12.3",
     "prettier": "^2.1.1",
     "react-is": "^16.13.1",
     "stylelint": "^13.7.0",

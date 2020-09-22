@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { MenuBar } from ".";
+import MenuBar from ".";
 import ToggleButton from "../themes/default/ToggleButton";
 import Menu from "../themes/default/Menu";
 import RowButton from "../themes/default/RowButton";

@@ -9,7 +9,7 @@ type MenuCategory = {
 };
 
 /** a menu bar with labeled items like in a desktop application */
-export const MenuBar: FC<{
+const MenuBar: FC<{
   categories: MenuCategory[];
   Bar: ElementType;
   MenuButton: SwitchButtonType;
@@ -24,12 +24,16 @@ export const MenuBar: FC<{
           <MenuButton onClick={onClick}>{category}</MenuButton>
         )}
         List={Menu}
-        options={items.map(({ label, onClick }) => () => (
-          <MenuItemButton activated={false} onClick={onClick}>
-            {label}
-          </MenuItemButton>
-        ))}
+        options={items.map(({ label, onClick }) => {
+          return () => (
+            <MenuItemButton activated={false} onClick={onClick}>
+              {label}
+            </MenuItemButton>
+          );
+        })}
       />
     ))}
   </Bar>
 );
+
+export default MenuBar;
