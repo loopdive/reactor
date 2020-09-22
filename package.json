@@ -9,6 +9,7 @@
   "main": "lib/reactor.js",
   "module": "lib/reactor.module.js",
   "unpkg": "lib/reactor.umd.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "microbundle build --jsx React.createElement --external react -o lib",
