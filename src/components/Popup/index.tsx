@@ -8,7 +8,7 @@ type Props = {
 };
 
 /** a popup menu component with a button opening the menu that contains a list of menu items */
-export const Popup: FC<Props> = ({ open, close, children }) => {
+const Popup: FC<Props> = ({ open, close, children }) => {
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => !open && close());
 

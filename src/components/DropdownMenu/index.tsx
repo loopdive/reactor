@@ -12,7 +12,7 @@ type Props = {
 };
 
 /** a dropdown menu component with a button opening the menu that contains a list of menu items */
-export const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
+const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
   // hooks up click on toggle button to trigger dropdown open state
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

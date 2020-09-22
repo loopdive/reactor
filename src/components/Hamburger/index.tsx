@@ -45,6 +45,8 @@ const Hamburger: FC<Props> = ({ size = 20, activated, onClick }) => {
   );
 };
 
+export default Hamburger;
+
 const Container = styled.div`
   height: 2em;
   width: 2em;
@@ -60,5 +62,3 @@ const Line = styled(animated.span)`
   left: 50%;
   transform: translate(-50%, -50%) rotate(0deg);
 `;
-
-export default Hamburger;
