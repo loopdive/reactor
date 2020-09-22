@@ -1,7 +1,7 @@
 import { FC, ReactNode, ElementType } from "react";
 export declare type Props = {
-  children?: ReactNode;
-  open?: boolean;
+    children?: ReactNode;
+    open?: boolean;
 };
 /** a accordion component is either open or closed and opens a rectangular are that occupies space */
 export declare type AccordionElementType = ElementType<Props>;
