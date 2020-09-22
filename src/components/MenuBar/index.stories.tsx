@@ -17,13 +17,13 @@ export const example: FC = () => {
     <>
       <ThemeSelector />
       <ThemeProvider theme={theme}>
-        <MenuBar
+        {/* <MenuBar
           categories={categories}
           Bar={Bar}
           MenuButton={ToggleButton}
           Menu={Menu}
           MenuItemButton={RowButton}
-        />
+        /> */}
       </ThemeProvider>
     </>
   );

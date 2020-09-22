@@ -26,7 +26,12 @@ export const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
       }}
       onMouseLeave={() => setOpen(false)}
     >
-      <Button activated={open} onClick={() => setOpen(!open)} />
+      <Button
+        activated={open}
+        onClick={() => {
+          setOpen(!open);
+        }}
+      />
       <div ref={ref} style={{ visibility: open ? "visible" : "hidden" }}>
         <List>
           {options.map((Option, index) => (

@@ -11,7 +11,7 @@ declare type Props = {
     animatedProps?: AnimatedProps;
     theme?: Theme;
 };
-declare const _default: React.ForwardRefExoticComponent<Pick<React.PropsWithChildren<Props>, "size" | "activated" | "onClick" | "style" | "styles" | "animatedProps" | "children"> & {
+declare const _default: React.ForwardRefExoticComponent<Pick<React.PropsWithChildren<Props>, "style" | "children" | "onClick" | "size" | "activated" | "animatedProps" | "styles"> & {
     theme?: any;
 }>;
 export default _default;
