@@ -1,14 +1,11 @@
 {
-  "name": "teamups",
+  "name": "@interfacers/reactor",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --cache --fix --ext .js,.ts,.tsx .",
     "lint:css": "stylelint './**/*.{js,jsx,ts,tsx,css,scss}' --cache",
@@ -18,7 +15,6 @@
   },
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^1.0.47",
-    "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-spring": "^8.0.27",
