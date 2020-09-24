@@ -1,0 +1,54 @@
+import { useCallback, useEffect, useRef } from "react";
+
+export const useAnimation = (
+  keyframes: Keyframe[] | PropertyIndexedKeyframes,
+  options?: KeyframeAnimationOptions
+): {
+  ref: React.MutableRefObject<HTMLDivElement>;
+  animation: Animation;
+  pause: () => void;
+  play: () => void;
+  reverse: () => void;
+  playback: (value: number) => void;
+  position: (percentage: number) => void;
+} => {
+  const ref = useRef<HTMLDivElement>();
+
+  let { current: animation } = useRef<Animation>();
+
+  const pause = () => animation && animation.pause();
+
+  const play = () => animation && animation.play();
+
+  const reverse = () => animation && animation.reverse();
+
+  const playback = (value: number) => {
+    if (animation) animation.playbackRate = value;
+  };
+
+  const position = useCallback((percent: number) => {
+    if (animation && options.duration) {
+      if (animation.playState !== "paused") {
+        pause();
+      }
+      animation.currentTime = Number(options.duration) * (percent / 100);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (ref.current && keyframes) {
+      console.log("creating animation");
+      animation = ref.current.animate(keyframes, options);
+    }
+  }, [ref.current, keyframes, options]);
+
+  return {
+    ref,
+    animation,
+    pause,
+    play,
+    reverse,
+    playback,
+    position,
+  };
+};
