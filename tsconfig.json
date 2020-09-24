@@ -3,8 +3,5 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react"
-  },
-  "exclude": ["__tests__/**/*"],
-  "include": ["src/**/*"],
-  "files": ["src/index.tsx"]
+  }
 }
