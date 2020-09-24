@@ -10,5 +10,5 @@ declare type Props = {
     animate?: boolean;
     animatedProps?: AnimatedProps;
 };
-export declare const SideBar: FC<Props>;
+declare const SideBar: FC<Props>;
 export default SideBar;

@@ -10,7 +10,7 @@ declare type Props = {
     options: FC[];
 };
 /** a dropdown menu component with a button opening the menu that contains a list of menu items */
-export declare const DropdownMenu: FC<Props>;
+declare const DropdownMenu: FC<Props>;
 export default DropdownMenu;
 /** a component with an onClick event */
 export declare type Clickable = ElementType<{
