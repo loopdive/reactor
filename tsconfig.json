@@ -1,12 +1,6 @@
 {
   "version": "2.0.0",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "module": "ESNext",
-    "target": "ESNext",
-    "jsx": "react"
-  },
-  "exclude": ["__tests__/**/*"],
-  "include": ["src/**/*"],
-  "files": ["src/index.tsx"]
+    "allowSyntheticDefaultImports": true
+  }
 }
