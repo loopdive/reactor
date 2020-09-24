@@ -16,6 +16,7 @@
     "type" : "git",
     "url" : "github:interfacers/reactor"
   },
+  "prepare": "npm run build",
   "scripts": {
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch --jsx React.createElement",
