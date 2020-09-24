@@ -16,7 +16,7 @@ export const useAnimation = (
 
   let { current: animation } = useRef<Animation>();
 
-  const pause = () => animation && animation.pause();
+  const pause = () => animation && animation?.pause();
 
   const play = () => animation && animation.play();
 
@@ -37,7 +37,6 @@ export const useAnimation = (
 
   useEffect(() => {
     if (ref.current && keyframes) {
-      console.log("creating animation");
       animation = ref.current.animate(keyframes, options);
     }
   }, [ref.current, keyframes, options]);
