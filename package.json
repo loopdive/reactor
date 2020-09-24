@@ -13,9 +13,13 @@
   "unpkg": "dist/reactor.umd.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "github:interfacers/reactor"
+  },
   "scripts": {
-    "build": "microbundle build --target node --jsx React.createElement",
-    "dev": "microbundle watch --target node --jsx React.createElement",
+    "build": "microbundle --jsx React.createElement",
+    "dev": "microbundle watch --jsx React.createElement",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --cache --fix --ext .js,.ts,.tsx .",
     "lint:css": "stylelint './src/**/*.{js,jsx,ts,tsx,css,scss}' --cache",
