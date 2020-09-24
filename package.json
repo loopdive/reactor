@@ -22,7 +22,7 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": "16.13.1"
+    "react": ">=16.8.0"
   },
   "dependencies": {},
   "devDependencies": {
