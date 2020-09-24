@@ -1,7 +1,8 @@
 {
   "version": "2.0.0",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react"
   },
   "exclude": ["__tests__/**/*"],
   "include": ["src/**/*"],
