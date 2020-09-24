@@ -19,8 +19,8 @@
   "prepare": "npm run build",
   "prepublish": "npm run build",
   "scripts": {
-    "build": "microbundle --jsx React.createElement --target=node",
-    "dev": "microbundle watch --jsx React.createElement --target=node",
+    "build": "microbundle --jsx React.createElement",
+    "dev": "microbundle watch --jsx React.createElement",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --cache --fix --ext .js,.ts,.tsx .",
     "lint:css": "stylelint './src/**/*.{js,jsx,ts,tsx,css,scss}' --cache",
@@ -36,10 +36,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
-    "@babel/plugin-transform-typescript": "^7.11.0",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@n8tb1t/use-scroll-position": "^1.0.47",
