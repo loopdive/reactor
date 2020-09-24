@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, useState } from "react";
+import * as React from "react";
+import { FC, ReactNode, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import SearchBar from "./index";
 

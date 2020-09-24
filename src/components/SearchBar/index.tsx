@@ -1,4 +1,5 @@
-import React, { ElementType, FC, HTMLProps } from "react";
+import * as React from "react";
+import { ElementType, FC, HTMLProps } from "react";
 
 type Props = {
   size?: number;

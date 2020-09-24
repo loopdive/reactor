@@ -1,4 +1,5 @@
-import React, { FC, ElementType, ReactNode } from "react";
+import * as React from "react";
+import { FC, ElementType, ReactNode } from "react";
 import DropdownMenu, { SwitchButtonType } from "../DropdownMenu";
 
 import { OnClick } from "../types";

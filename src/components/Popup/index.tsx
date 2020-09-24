@@ -1,4 +1,5 @@
-import React, { FC, useRef, ReactNode } from "react";
+import * as React from "react";
+import { FC, useRef, ReactNode } from "react";
 import useOnClickOutside from "use-onclickoutside";
 
 type Props = {

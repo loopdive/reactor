@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, ElementType, useState, useEffect } from "react";
+import * as React from "react";
+import { FC, ReactNode, ElementType, useState, useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import useMeasure from "react-use-measure";
 
