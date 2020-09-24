@@ -7,7 +7,6 @@
   },
   "source": "src/index.tsx",
   "main": "lib/reactor.js",
-  "module": "lib/reactor.module.js",
   "umd:main": "lib/reactor.umd.js",
   "unpkg": "lib/reactor.umd.js",
   "types": "lib/index.d.ts",
