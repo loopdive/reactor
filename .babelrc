@@ -1,3 +1,4 @@
 {
-  "plugins": ["@babel/plugin-proposal-optional-chaining"]
+  "plugins": ["@babel/plugin-proposal-optional-chaining"],
+  "ignore": ["node_modules"]
 }

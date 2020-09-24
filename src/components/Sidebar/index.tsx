@@ -29,7 +29,7 @@ const SideBar: FC<Props> = ({
 }) => {
   const left = orientation === "left";
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [disableBodyScrollHandler] = useDisableBodyScroll();
 
@@ -40,7 +40,7 @@ const SideBar: FC<Props> = ({
   }, [open]);
 
   useOnClickOutside(ref, () =>
-    setTimeout(() => closeOnOutsideClick && open && onClose(), 150)
+    setTimeout(() => closeOnOutsideClick && open && onClose && onClose(), 150)
   );
 
   return (

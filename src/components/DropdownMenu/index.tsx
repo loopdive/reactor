@@ -29,6 +29,7 @@ const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
     >
       <Button
         activated={open}
+        // @ts-ignore
         onClick={() => {
           setOpen(!open);
         }}

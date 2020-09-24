@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ElementType, FC, HTMLProps } from "react";
+import { ElementType, FC, ChangeEvent, KeyboardEvent, HTMLProps } from "react";
 
 type Props = {
   size?: number;
@@ -28,11 +28,12 @@ const SearchBar: FC<Props> = ({
         value={value}
         placeholder={placeholder}
         aria-label={ariaLabel}
-        onChange={(event) => onChange(event.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            //  @ts-ignore
-            e.target.blur();
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          onChange(event.target.value || "")
+        }
+        onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+          if (event.key === "Enter") {
+            event.currentTarget.blur();
           }
         }}
         onFocus={() => {

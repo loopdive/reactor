@@ -14,7 +14,7 @@ type Props = {
   activated?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   style?: CSSProperties;
-  styles?: FlattenSimpleInterpolation;
+  styles: FlattenSimpleInterpolation;
   animatedProps?: AnimatedProps;
   theme?: Theme;
 };

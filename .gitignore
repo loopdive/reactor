@@ -17,6 +17,9 @@
 # production
 /build
 
+# builds
+.rpt2_cache
+
 # misc
 .DS_Store
 *.pem
@@ -31,9 +34,6 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-
-# vercel
-.vercel
 
 .eslintcache
 .stylelintcache

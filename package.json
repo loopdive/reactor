@@ -1,27 +1,31 @@
 {
   "name": "@interfacers/reactor",
   "version": "0.1.23",
+  "description": "generic react component library",
+  "author": "ttraenkler",
+  "contributors": [
+    "ttraenkler",
+    "alessiojorge"
+  ],
+  "license": "MIT",
+  "repository": "interfacers/reactor",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
   },
-  "source": "src/index.tsx",
-  "main": "dist/reactor.js",
-  "umd:main": "dist/reactor.umd.js",
-  "module": "dist/reactor.module.js",
-  "esmodule": "dist/reactor.modern.js",
-  "unpkg": "dist/reactor.umd.js",
-  "types": "dist/index.d.ts",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "github:interfacers/reactor"
-  },
-  "prepare": "npm run build",
-  "prepublish": "npm run build",
   "scripts": {
-    "build": "microbundle --jsx React.createElement",
-    "dev": "microbundle watch --jsx React.createElement",
-    "lint": "yarn lint:js && yarn lint:css",
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "dev": "microbundle-crl watch --no-compress --format modern,cjs",
+    "prepare": "run-s build",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "yarn lint:js && yarn lint:css",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build",
     "lint:js": "eslint --cache --fix --ext .js,.ts,.tsx .",
     "lint:css": "stylelint './src/**/*.{js,jsx,ts,tsx,css,scss}' --cache",
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'",
@@ -29,9 +33,9 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "styled-components": ">=5.2.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "styled-components": "^5.0.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -44,26 +48,42 @@
     "@storybook/addon-essentials": "^6.0.21",
     "@storybook/addon-links": "^6.0.21",
     "@storybook/react": "^6.0.21",
-    "@types/node": "^14.6.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^12.12.38",
     "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.7",
     "@types/styled-components": "^5.1.2",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "eslint": "^7.8.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^4.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.21.1",
+    "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-simple-import-sort": "^5.0.3",
+    "eslint-plugin-standard": "^4.0.1",
+    "gh-pages": "^2.2.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
-    "microbundle": "^0.12.3",
+    "microbundle-crl": "^0.13.10",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1",
     "react": "16.13.1",
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
+    "react-scripts": "^3.4.3",
     "react-spring": "^8.0.27",
     "react-use-measure": "^2.0.1",
     "styled-components": "^5.2.0",
@@ -83,15 +103,16 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --cache --fix --max-warnings 0",
-      "stylelint --cache"
+      "eslint --cache --fix --max-warnings 0"
     ],
     "*.{css,scss}": [
-      "prettier --write",
-      "stylelint --cache --fix"
+      "prettier --write"
     ],
     "*.{json,md}": [
       "prettier --write"
     ]
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

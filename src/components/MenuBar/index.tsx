@@ -22,6 +22,7 @@ const MenuBar: FC<{
       <DropdownMenu
         key={`${category}${index}`}
         Button={({ onClick }: { onClick: OnClick }) => (
+          // @ts-ignore
           <MenuButton onClick={onClick}>{category}</MenuButton>
         )}
         List={Menu}
