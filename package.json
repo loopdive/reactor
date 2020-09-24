@@ -29,7 +29,9 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "styled-components": ">=5.2.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -63,6 +65,7 @@
     "microbundle": "^0.12.3",
     "prettier": "^2.1.1",
     "react": "16.13.1",
+    "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
     "react-spring": "^8.0.27",
     "react-use-measure": "^2.0.1",
