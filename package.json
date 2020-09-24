@@ -1,6 +1,6 @@
 {
   "name": "@interfacers/reactor",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "description": "generic react component library",
   "author": "ttraenkler",
   "contributors": [
@@ -10,14 +10,13 @@
   "license": "MIT",
   "repository": "interfacers/reactor",
   "main": "dist/index.js",
-  "module": "dist/index.module.js",
   "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,umd",
-    "dev": "microbundle-crl watch --no-compress --format modern,umd",
+    "build": "microbundle-crl --no-compress --format cjs",
+    "dev": "microbundle-crl watch --no-compress --format cjs",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
