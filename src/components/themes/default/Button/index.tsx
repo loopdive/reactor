@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default styled.span`
+export const DefaultButton = styled.button`
   display: inline-block;
   padding: 15px 25px;
   border-radius: 25px;
@@ -17,4 +17,7 @@ export default styled.span`
     box-shadow: 0px 15px 30px -10px rgba(0, 0, 0, 0.3);
     transform: scale(1.02) translateY(-1px);
   }
+
+  border: none;
+  outline: none;
 `;
