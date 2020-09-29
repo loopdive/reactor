@@ -1,7 +1,7 @@
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useState } from "react";
 
-export const useScrollFlags = (
+const useScrollFlags = (
   hideOnDownScroll: boolean
 ): { scrollUp: boolean; isTop: boolean } => {
   const [scrollUp, setScrollUp] = useState<boolean>(true);
@@ -26,3 +26,5 @@ export const useScrollFlags = (
 
   return { scrollUp, isTop };
 };
+
+export default useScrollFlags;

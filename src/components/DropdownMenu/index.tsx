@@ -1,10 +1,13 @@
 import * as React from "react";
 import { FC, useRef, useState, ElementType, ReactNode } from "react";
-import { SwitchButtonType } from "../Switch/useSwitch";
 import { OnClick } from "../types";
 import useOnClickOutside from "use-onclickoutside";
 
-export type { SwitchButtonType };
+type SwitchButtonType = ElementType<{
+  activated?: boolean;
+  children?: ReactNode;
+  onClick: OnClick;
+}>;
 
 type Props = {
   Button: SwitchButtonType;

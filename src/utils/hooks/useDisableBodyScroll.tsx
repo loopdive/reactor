@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 
-// Hook
-export const useDisableBodyScroll = (): [(value: boolean) => void] => {
+const useDisableBodyScroll = (): [(value: boolean) => void] => {
   const handler = useCallback((value: boolean) => {
     if (value) {
       document.body.style.overflow = "hidden";
@@ -12,3 +11,5 @@ export const useDisableBodyScroll = (): [(value: boolean) => void] => {
 
   return [handler];
 };
+
+export default useDisableBodyScroll;
