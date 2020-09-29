@@ -14,7 +14,7 @@ type Props = {
   activated?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   style?: CSSProperties;
-  styles: FlattenSimpleInterpolation;
+  styles?: FlattenSimpleInterpolation;
   animatedProps?: AnimatedProps;
   theme?: Theme;
 };
@@ -52,7 +52,7 @@ const Switch: FC<Props> = ({
   </Container>
 );
 
-const Container = styled(animated.div)<{ styles: FlattenSimpleInterpolation }>`
+const Container = styled(animated.div)<{ styles?: FlattenSimpleInterpolation }>`
   height: 3.2em;
   width: 6.8em;
   border: 0.19em solid ${(props: { theme: Theme }) => props.theme.switch.border};
