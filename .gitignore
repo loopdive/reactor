@@ -39,3 +39,4 @@ yarn-error.log*
 .stylelintcache
 
 example/node_modules
+example/build
