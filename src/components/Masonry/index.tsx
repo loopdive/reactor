@@ -30,7 +30,7 @@ const Masonry: FC<Props> = ({ data }) => {
 
   const heights = new Array(columns).fill(0);
 
-  const gridItems = items.map((child, i) => {
+  const gridItems = items.map((child) => {
     const column = heights.indexOf(Math.min(...heights)); // Basic masonry-grid placing, puts tile into the smallest column using Math.min
     const xy = [
       (width / columns) * column,
@@ -50,19 +50,25 @@ const Masonry: FC<Props> = ({ data }) => {
 
   return (
     <List ref={ref} style={{ height: Math.max(...heights) }}>
-      {transitions.map(({ item, props: { xy, ...rest }, key }) => (
-        <animated.div
-          key={key}
-          style={{
-            transform: xy.interpolate(
-              (x: number, y: number) => `translate3d(${x}px,${y}px,0)`
-            ),
-            ...rest,
-          }}
-        >
-          <div style={{ backgroundImage: item.css }} />
-        </animated.div>
-      ))}
+      {
+        // @ts-ignore
+        transitions.map(({ item, props: { xy, ...rest }, key }) => {
+          console.log(xy);
+          return (
+            <animated.div
+              key={key}
+              style={{
+                transform: xy.interpolate(
+                  (x: number, y: number) => `translate3d(${x}px,${y}px,0)`
+                ),
+                ...rest,
+              }}
+            >
+              <div style={{ backgroundImage: item.css }} />
+            </animated.div>
+          );
+        })
+      }
     </List>
   );
 };

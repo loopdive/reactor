@@ -3,11 +3,11 @@ import { FC, ReactNode } from "react";
 
 import { animated, useSpring } from "react-spring";
 
-import { useScrollFlags } from "./useScrollFlags";
+import { useScrollFlags } from "../../utils";
 
 type Props = { children: ReactNode; hideOnDownScroll?: boolean };
 
-const Topbar: FC<Props> = ({ children, hideOnDownScroll }) => {
+const Topbar: FC<Props> = ({ children, hideOnDownScroll = false }) => {
   const { scrollUp, isTop } = useScrollFlags(hideOnDownScroll);
   return (
     <animated.div
