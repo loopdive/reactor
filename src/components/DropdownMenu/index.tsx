@@ -3,7 +3,7 @@ import { FC, useRef, useState, ElementType, ReactNode } from "react";
 import { OnClick } from "../types";
 import useOnClickOutside from "use-onclickoutside";
 
-type SwitchButtonType = ElementType<{
+export type SwitchButtonType = ElementType<{
   activated?: boolean;
   children?: ReactNode;
   onClick: OnClick;
