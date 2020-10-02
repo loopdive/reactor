@@ -10,16 +10,16 @@ import styled from "styled-components";
 
 type Props = {
   data: { css: string; height: number }[];
-  shuffleItems?: boolean;
+  shuffle?: boolean;
 };
 
-const Masonry: FC<Props> = ({ data, shuffleItems = false }) => {
+const Masonry: FC<Props> = ({ data, shuffle: shuffleItems = false }) => {
   const columns = useMedia(
     [
       "(min-width: 1300px)",
       "(min-width: 1000px)",
-      "(min-width: 600px)",
-      "(min-width: 300px)",
+      "(min-width: 800px)",
+      "(min-width: 420px)",
     ],
     [5, 4, 3, 2],
     1
@@ -60,7 +60,7 @@ const Masonry: FC<Props> = ({ data, shuffleItems = false }) => {
     enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
     update: ({ xy, width, height }) => ({ xy, width, height }),
     leave: { height: 0, opacity: 0 },
-    config: { mass: 5, tension: 500, friction: 100 },
+    config: { mass: 5, tension: 500, friction: 150 },
     trail: 25,
   });
 
@@ -91,12 +91,16 @@ export const List = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
+  box-sizing: border-box;
 `;
 
 const ItemContainer = styled(animated.div)`
   position: absolute;
   will-change: transform, width, height, opacity;
-  padding: 15px;
+  padding: 10px;
+
+  box-sizing: inherit;
 `;
 
 const Item = styled.div`
@@ -107,9 +111,9 @@ const Item = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 10px;
   box-shadow: 0px 10px 50px -10px rgba(0, 0, 0, 0.2);
-  margin: 10px;
+  box-sizing: inherit;
 `;
 
 export default Masonry;
