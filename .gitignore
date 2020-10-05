@@ -37,3 +37,6 @@ yarn-error.log*
 
 .eslintcache
 .stylelintcache
+
+example/node_modules
+example/build
