@@ -112,5 +112,10 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "jest": {
+    "watchPathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
 }
