@@ -6,3 +6,4 @@ export { default as Popup } from "./Popup";
 export { default as SearchBar } from "./SearchBar";
 export { default as Sidebar } from "./Sidebar";
 export { default as Switch } from "./Switch";
+export { default as Masonry } from "./Masonry";
