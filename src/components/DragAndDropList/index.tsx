@@ -29,22 +29,21 @@ const fn = ({
   originalIndex?: number;
   curIndex?: number;
   y?: number;
-  height?: number;
 }) => (index: number) => {
-  const test = [...order]
+  const translateY = [...order]
     .slice(0, down && index === originalIndex ? curIndex : order.indexOf(index))
     .reduce((prev, current) => prev + items[current].height + margin, 0);
 
   return down && index === originalIndex
     ? {
-        y: test + y,
+        y: translateY + y,
         scale: 1.05,
         zIndex: 1,
         shadow: 15,
         immediate: (n: string) => n === "y" || n === "zIndex",
       }
     : {
-        y: test,
+        y: translateY,
         scale: 1,
         zIndex: 0,
         shadow: 1,
