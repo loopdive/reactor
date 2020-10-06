@@ -10,6 +10,7 @@ import swap from "lodash-move";
 
 type Props = {
   items: { height: number; text: string }[];
+  margin?: number;
 };
 
 const fn = ({
@@ -19,7 +20,9 @@ const fn = ({
   originalIndex,
   curIndex = 0,
   y = 0,
+  margin,
 }: {
+  margin: number;
   items: { height: number; text: string }[];
   order: number[];
   down?: boolean;
@@ -30,7 +33,7 @@ const fn = ({
 }) => (index: number) => {
   const test = [...order]
     .slice(0, down && index === originalIndex ? curIndex : order.indexOf(index))
-    .reduce((prev, current) => prev + items[current].height + 10, 0);
+    .reduce((prev, current) => prev + items[current].height + margin, 0);
 
   return down && index === originalIndex
     ? {
@@ -49,7 +52,7 @@ const fn = ({
       };
 };
 
-const DragAndDropList: FC<Props> = ({ items }) => {
+const DragAndDropList: FC<Props> = ({ items, margin = 10 }) => {
   const order = useRef(items.map((_, index) => index));
 
   const [springs, setSprings] = useSprings<{
@@ -57,7 +60,7 @@ const DragAndDropList: FC<Props> = ({ items }) => {
     scale: number;
     zIndex: number;
     shadow: number;
-  }>(items.length, fn({ order: order.current, items }));
+  }>(items.length, fn({ order: order.current, items, margin }));
 
   const bind = useDrag(({ args: [originalIndex], down, movement: [, y] }) => {
     const curIndex = order.current.indexOf(originalIndex);
@@ -77,13 +80,22 @@ const DragAndDropList: FC<Props> = ({ items }) => {
         originalIndex,
         curIndex,
         y,
+        margin,
       })
     );
     if (!down) order.current = newOrder;
   });
 
   return (
-    <Container>
+    <Container
+      style={{
+        height: items.reduce(
+          (prev, { height }, index) =>
+            prev + height + (index === items.length - 1 ? 0 : margin),
+          0
+        ),
+      }}
+    >
       {springs.map(({ zIndex, shadow, y, scale }, i: number) => (
         <ListItem
           {...bind(i)}
@@ -116,7 +128,6 @@ const Container = styled.div`
 const ListItem = styled(animated.div)`
   position: absolute;
   width: 100%;
-  height: 100px;
   border-radius: 5px;
   display: flex;
   align-items: center;
