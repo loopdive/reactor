@@ -1,0 +1,130 @@
+import React, { FC, useRef } from "react";
+
+import styled from "styled-components";
+import { animated, useSprings, interpolate } from "react-spring";
+
+import { useDrag } from "react-use-gesture";
+
+import clamp from "lodash.clamp";
+import swap from "lodash-move";
+
+type Props = {
+  items: { height: number; text: string }[];
+};
+
+const fn = ({
+  order,
+  down,
+  originalIndex,
+  curIndex = 0,
+  y = 0,
+}: {
+  order: number[];
+  down?: boolean;
+  originalIndex?: number;
+  curIndex?: number;
+  y?: number;
+}) => (index: number) => {
+  return down && index === originalIndex
+    ? {
+        y: curIndex * 110 + y,
+        scale: 1.1,
+        zIndex: 1,
+        shadow: 15,
+        immediate: (n: string) => n === "y" || n === "zIndex",
+      }
+    : {
+        y: order.indexOf(index) * 110,
+        scale: 1,
+        zIndex: 0,
+        shadow: 1,
+        immediate: false,
+      };
+};
+
+const DragAndDropList: FC<Props> = ({ items }) => {
+  const order = useRef(items.map((_, index) => index));
+
+  const [springs, setSprings] = useSprings<{
+    y: number;
+    scale: number;
+    zIndex: number;
+    shadow: number;
+  }>(items.length, fn({ order: order.current }));
+
+  const bind = useDrag(({ args: [originalIndex], down, movement: [, y] }) => {
+    const curIndex = order.current.indexOf(originalIndex);
+    const curRow = clamp(
+      Math.round((curIndex * 100 + y) / 100),
+      0,
+      items.length - 1
+    );
+    const newOrder = swap(order.current, curIndex, curRow);
+
+    setSprings(
+      // @ts-ignore
+      fn({
+        order: newOrder,
+        down,
+        originalIndex,
+        curIndex,
+        y,
+      })
+    );
+    if (!down) order.current = newOrder;
+  });
+
+  return (
+    <Container>
+      {springs.map(({ zIndex, shadow, y, scale }, i: number) => (
+        <ListItem
+          {...bind(i)}
+          key={i}
+          style={{
+            height: items[i].height,
+            zIndex,
+            boxShadow: shadow.interpolate(
+              (s: number) => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`
+            ),
+            transform: interpolate(
+              [y, scale],
+              (y: number, s: number) => `translate3d(0,${y}px,0) scale(${s})`
+            ),
+          }}
+        >
+          {items[i].text}
+        </ListItem>
+      ))}
+    </Container>
+  );
+};
+
+const Container = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+`;
+
+const ListItem = styled(animated.div)`
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  &:nth-child(1) {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  }
+
+  &:nth-child(2) {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+  &:nth-child(3) {
+    background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+  }
+`;
+
+export default DragAndDropList;
