@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import styled from "styled-components";
+
 import DragAndDropList from "./index";
 
 export default {
@@ -8,7 +10,7 @@ export default {
 
 export const withDragAndDropList: FC = () => {
   return (
-    <div
+    <Container
       style={{
         background: "white",
         width: "100vw",
@@ -29,6 +31,14 @@ export const withDragAndDropList: FC = () => {
           margin={10}
         />
       </div>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;1,500&display=swap");
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+`;

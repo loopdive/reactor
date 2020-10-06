@@ -38,7 +38,7 @@ const fn = ({
   return down && index === originalIndex
     ? {
         y: test + y,
-        scale: 1.1,
+        scale: 1.05,
         zIndex: 1,
         shadow: 15,
         immediate: (n: string) => n === "y" || n === "zIndex",
