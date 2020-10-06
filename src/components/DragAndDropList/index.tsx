@@ -13,28 +13,35 @@ type Props = {
 };
 
 const fn = ({
+  items,
   order,
   down,
   originalIndex,
   curIndex = 0,
   y = 0,
 }: {
+  items: { height: number; text: string }[];
   order: number[];
   down?: boolean;
   originalIndex?: number;
   curIndex?: number;
   y?: number;
+  height?: number;
 }) => (index: number) => {
+  const test = [...order]
+    .slice(0, down && index === originalIndex ? curIndex : order.indexOf(index))
+    .reduce((prev, current) => prev + items[current].height + 10, 0);
+
   return down && index === originalIndex
     ? {
-        y: curIndex * 110 + y,
+        y: test + y,
         scale: 1.1,
         zIndex: 1,
         shadow: 15,
         immediate: (n: string) => n === "y" || n === "zIndex",
       }
     : {
-        y: order.indexOf(index) * 110,
+        y: test,
         scale: 1,
         zIndex: 0,
         shadow: 1,
@@ -50,7 +57,7 @@ const DragAndDropList: FC<Props> = ({ items }) => {
     scale: number;
     zIndex: number;
     shadow: number;
-  }>(items.length, fn({ order: order.current }));
+  }>(items.length, fn({ order: order.current, items }));
 
   const bind = useDrag(({ args: [originalIndex], down, movement: [, y] }) => {
     const curIndex = order.current.indexOf(originalIndex);
@@ -64,6 +71,7 @@ const DragAndDropList: FC<Props> = ({ items }) => {
     setSprings(
       // @ts-ignore
       fn({
+        items,
         order: newOrder,
         down,
         originalIndex,

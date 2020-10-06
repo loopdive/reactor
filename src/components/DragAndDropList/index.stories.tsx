@@ -11,8 +11,8 @@ export const withDragAndDropList: FC = () => {
     <DragAndDropList
       items={[
         { height: 100, text: "Hello" },
-        { height: 100, text: "Mr" },
-        { height: 100, text: "Smoop" },
+        { height: 160, text: "Mr" },
+        { height: 80, text: "Smoop" },
       ]}
     />
   );
