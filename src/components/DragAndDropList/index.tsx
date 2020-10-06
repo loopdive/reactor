@@ -144,6 +144,10 @@ const ListItem = styled(animated.div)`
   &:nth-child(3) {
     background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
   }
+
+  &:nth-child(4) {
+    background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%);
+  }
 `;
 
 export default DragAndDropList;

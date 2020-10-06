@@ -24,6 +24,7 @@ export const withDragAndDropList: FC = () => {
             { height: 100, text: "Hello" },
             { height: 160, text: "Mr" },
             { height: 80, text: "Smoop" },
+            { height: 120, text: "Noop" },
           ]}
           margin={10}
         />
