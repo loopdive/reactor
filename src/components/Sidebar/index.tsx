@@ -1,9 +1,10 @@
-import React, { FC, ReactNode, useEffect, useRef } from "react";
+import * as React from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 import { animated, useSpring } from "react-spring";
 
 import useOnClickOutside from "use-onclickoutside";
 import { AnimatedProps } from "../types";
-import { useDisableBodyScroll } from "./useDisableBodyScroll";
+import { useDisableBodyScroll } from "../../utils";
 
 type Props = {
   orientation?: "left" | "right";
@@ -28,7 +29,7 @@ const SideBar: FC<Props> = ({
 }) => {
   const left = orientation === "left";
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [disableBodyScrollHandler] = useDisableBodyScroll();
 
@@ -39,7 +40,7 @@ const SideBar: FC<Props> = ({
   }, [open]);
 
   useOnClickOutside(ref, () =>
-    setTimeout(() => closeOnOutsideClick && open && onClose(), 150)
+    setTimeout(() => closeOnOutsideClick && open && onClose && onClose(), 150)
   );
 
   return (

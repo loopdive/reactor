@@ -11,9 +11,14 @@
 # next.js
 /.next/
 /out/
+/dist/
+/lib/
 
 # production
 /build
+
+# builds
+.rpt2_cache
 
 # misc
 .DS_Store
@@ -30,8 +35,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
-
 .eslintcache
 .stylelintcache
+
+example/node_modules
+example/build

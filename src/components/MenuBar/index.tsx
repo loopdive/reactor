@@ -1,4 +1,5 @@
-import React, { FC, ElementType, ReactNode } from "react";
+import * as React from "react";
+import { FC, ElementType, ReactNode } from "react";
 import DropdownMenu, { SwitchButtonType } from "../DropdownMenu";
 
 import { OnClick } from "../types";
@@ -21,6 +22,7 @@ const MenuBar: FC<{
       <DropdownMenu
         key={`${category}${index}`}
         Button={({ onClick }: { onClick: OnClick }) => (
+          // @ts-ignore
           <MenuButton onClick={onClick}>{category}</MenuButton>
         )}
         List={Menu}

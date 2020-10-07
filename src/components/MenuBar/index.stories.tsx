@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import * as React from "react";
+import { FC } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import MenuBar from ".";
 import ToggleButton from "../themes/default/ToggleButton";
@@ -17,13 +18,13 @@ export const example: FC = () => {
     <>
       <ThemeSelector />
       <ThemeProvider theme={theme}>
-        {/* <MenuBar
+        <MenuBar
           categories={categories}
           Bar={Bar}
           MenuButton={ToggleButton}
           Menu={Menu}
           MenuItemButton={RowButton}
-        /> */}
+        />
       </ThemeProvider>
     </>
   );

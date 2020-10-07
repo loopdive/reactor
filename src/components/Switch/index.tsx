@@ -1,4 +1,5 @@
-import React, { CSSProperties, FC } from "react";
+import * as React from "react";
+import { CSSProperties, FC } from "react";
 
 import { animated, useSpring } from "react-spring";
 import styled, {
@@ -51,7 +52,7 @@ const Switch: FC<Props> = ({
   </Container>
 );
 
-const Container = styled(animated.div)<{ styles: FlattenSimpleInterpolation }>`
+const Container = styled(animated.div)<{ styles?: FlattenSimpleInterpolation }>`
   height: 3.2em;
   width: 6.8em;
   border: 0.19em solid ${(props: { theme: Theme }) => props.theme.switch.border};

@@ -1,6 +1,7 @@
-import React, { FC, ReactNode, ElementType, useState, useEffect } from "react";
-import { animated, useSpring } from "react-spring";
-import useMeasure from "react-use-measure";
+import * as React from "react";
+import { FC, ReactNode, ElementType /* , useState, useEffect */ } from "react";
+// import { animated, useSpring } from "react-spring";
+// import useMeasure from "react-use-measure";
 
 export type Props = {
   children?: ReactNode;
@@ -10,7 +11,7 @@ export type Props = {
 /** a accordion component is either open or closed and opens a rectangular are that occupies space */
 export type AccordionElementType = ElementType<Props>;
 
-export const AccordionDisplayNone: FC<Props> = ({ open, children }) => {
+/* export const AccordionDisplayNone: FC<Props> = ({ open, children }) => {
   const [contentHeight, setContentHeight] = useState<number>(0);
 
   const [ref, { height }] = useMeasure();
@@ -42,7 +43,7 @@ export const AccordionDisplayNone: FC<Props> = ({ open, children }) => {
       <div ref={ref}>{children}</div>
     </animated.div>
   );
-};
+}; */
 
 export const AccordionMountUnmount: FC<Props> = ({ open, children }) =>
   open ? <div>{children}</div> : null;
@@ -52,4 +53,4 @@ export const AccordionMountUnmount: FC<Props> = ({ open, children }) =>
  * user wants to have reasonable defaults
  *
  */
-export default AccordionDisplayNone;
+export default AccordionMountUnmount;

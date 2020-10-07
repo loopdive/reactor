@@ -1,9 +1,13 @@
-import React, { FC, useRef, useState, ElementType, ReactNode } from "react";
-import { SwitchButtonType } from "../Switch/useSwitch";
+import * as React from "react";
+import { FC, useRef, useState, ElementType, ReactNode } from "react";
 import { OnClick } from "../types";
 import useOnClickOutside from "use-onclickoutside";
 
-export type { SwitchButtonType };
+export type SwitchButtonType = ElementType<{
+  activated?: boolean;
+  children?: ReactNode;
+  onClick: OnClick;
+}>;
 
 type Props = {
   Button: SwitchButtonType;
@@ -28,6 +32,7 @@ const DropdownMenu: FC<Props> = ({ Button, List, options }) => {
     >
       <Button
         activated={open}
+        // @ts-ignore
         onClick={() => {
           setOpen(!open);
         }}

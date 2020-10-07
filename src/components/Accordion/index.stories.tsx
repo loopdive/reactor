@@ -1,4 +1,5 @@
-import React, { useState, FC } from "react";
+import * as React from "react";
+import { useState, FC } from "react";
 
 import Accordion from "./index";
 

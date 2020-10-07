@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import * as React from "react";
+import { FC } from "react";
 import { ThemeProvider } from "styled-components";
 import DropdownMenu from ".";
 import { OnClick } from "../types";
