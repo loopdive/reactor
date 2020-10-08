@@ -1,20 +1,20 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, RefObject } from "react";
 
-export const useAnimation = (
+export function useAnimation<Ref extends Element>(
   keyframes: Keyframe[] | PropertyIndexedKeyframes,
   options?: KeyframeAnimationOptions
 ): {
-  ref: React.MutableRefObject<HTMLDivElement | undefined>;
-  animation: Animation | undefined;
+  ref: RefObject<Ref>;
+  animation: Animation | null;
   pause: () => void;
   play: () => void;
   reverse: () => void;
   playback: (value: number) => void;
   position: (percentage: number) => void;
-} => {
-  const ref = useRef<HTMLDivElement>();
+} {
+  const ref = useRef<Ref>(null);
 
-  let { current: animation } = useRef<Animation>();
+  let { current: animation } = useRef<Animation>(null);
 
   const pause = () => animation?.pause();
 
@@ -37,7 +37,7 @@ export const useAnimation = (
 
   useEffect(() => {
     if (ref.current && keyframes) {
-      animation = ref?.current?.animate(keyframes, options);
+      animation = ref?.current?.animate(keyframes, options) || null;
     }
   }, [ref.current, keyframes, options]);
 
@@ -50,4 +50,4 @@ export const useAnimation = (
     playback,
     position,
   };
-};
+}
