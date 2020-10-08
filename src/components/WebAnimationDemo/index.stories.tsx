@@ -49,7 +49,7 @@ export const test: FC = () => {
 };
 
 export const chaining: FC = () => {
-  const { ref } = useAnimation<SVGRectElement>(
+  const { ref: rectRef } = useAnimation<SVGRectElement>(
     [
       { transform: "translate3d(0, 0, 0)" },
       { transform: "translate3d(100px, 0, 0)" },
@@ -59,10 +59,11 @@ export const chaining: FC = () => {
       iterations: 1,
     }
   );
+
   return (
     <svg width="200" height="250">
       <rect
-        ref={ref}
+        ref={rectRef}
         x="10"
         y="10"
         width="30"
