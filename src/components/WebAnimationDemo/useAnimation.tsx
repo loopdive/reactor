@@ -16,11 +16,11 @@ export const useAnimation = (
 
   let { current: animation } = useRef<Animation>();
 
-  const pause = () => animation && animation?.pause();
+  const pause = () => animation?.pause();
 
-  const play = () => animation && animation.play();
+  const play = () => animation?.play();
 
-  const reverse = () => animation && animation.reverse();
+  const reverse = () => animation?.reverse();
 
   const playback = (value: number) => {
     if (animation) animation.playbackRate = value;
@@ -37,7 +37,7 @@ export const useAnimation = (
 
   useEffect(() => {
     if (ref.current && keyframes) {
-      animation = ref.current.animate(keyframes, options);
+      animation = ref?.current?.animate(keyframes, options);
     }
   }, [ref.current, keyframes, options]);
 
