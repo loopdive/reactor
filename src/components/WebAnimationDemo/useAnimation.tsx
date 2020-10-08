@@ -4,8 +4,8 @@ export const useAnimation = (
   keyframes: Keyframe[] | PropertyIndexedKeyframes,
   options?: KeyframeAnimationOptions
 ): {
-  ref: React.MutableRefObject<HTMLDivElement>;
-  animation: Animation;
+  ref: React.MutableRefObject<HTMLDivElement | undefined>;
+  animation: Animation | undefined;
   pause: () => void;
   play: () => void;
   reverse: () => void;
@@ -27,7 +27,7 @@ export const useAnimation = (
   };
 
   const position = useCallback((percent: number) => {
-    if (animation && options.duration) {
+    if (animation && options?.duration) {
       if (animation.playState !== "paused") {
         pause();
       }
