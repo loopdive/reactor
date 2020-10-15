@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import InfiniteCarousel from ".";
+import InfiniteCarouselV1 from ".";
+import InfiniteCarouselV2 from "./v2";
 
 export default { title: "InfiniteCarousel" };
 
@@ -20,9 +21,9 @@ const colors = [
   "violet",
 ];
 
-export const TestInfiniteCarousel: FC = () => {
+export const TestInfiniteCarouselV1: FC = () => {
   return (
-    <InfiniteCarousel
+    <InfiniteCarouselV1
       linearMovement={{ from: { x: -1200 }, to: { x: 1200 } }}
       animationDuration="28s"
     >
@@ -32,6 +33,64 @@ export const TestInfiniteCarousel: FC = () => {
           style={{ backgroundColor, height: 200, width: 300, borderRadius: 10 }}
         />
       ))}
-    </InfiniteCarousel>
+    </InfiniteCarouselV1>
+  );
+};
+
+export const TestInfiniteCarouselV2: FC = () => {
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: 100,
+        overflow: "hidden",
+      }}
+    >
+      <InfiniteCarouselV2>
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png"
+          height="100"
+          width="250"
+          alt=""
+        />
+
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png"
+          height="100"
+          width="250"
+          alt=""
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png"
+          height="100"
+          width="250"
+          alt=""
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png"
+          height="100"
+          width="250"
+          alt=""
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png"
+          height="100"
+          width="250"
+          alt=""
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png"
+          height="100"
+          width="250"
+          alt=""
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png"
+          height="100"
+          width="250"
+          alt=""
+        />
+      </InfiniteCarouselV2>
+    </div>
   );
 };
