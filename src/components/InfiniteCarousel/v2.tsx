@@ -1,12 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import useMeasure from "react-use-measure";
 
-import styled, { keyframes, css } from "styled-components";
-
-import "./styles.css";
-
 type Props = {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[];
 };
 
 const repititions = (viewportWidth: number, carouselWidth: number) => {
@@ -35,6 +31,17 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
 
   const reps = repititions(containerWidth, carouselWidth);
 
+  useEffect(() => {
+    addAnimation(
+      "slide-animation",
+      `@keyframes slide {
+      100% {
+        transform: translate3d(-${carouselWidth}px, 0, 0);
+      }
+    }`
+    );
+  }, [carouselWidth]);
+
   return (
     <>
       <div style={{ position: "absolute" }}>
@@ -51,34 +58,43 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
         </div>
       </div>
 
-      <div className="carousel" ref={containerRef}>
-        <CarouselItems amount={children.length} carouselWidth={carouselWidth}>
+      <div
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          width: "100%",
+          height: "100%",
+        }}
+        ref={containerRef}
+      >
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            transform: "translate3d(0, 0, 0)",
+            animation: `${
+              (Array.isArray(children) ? children.length : 1) * 2
+            }s slide linear infinite`,
+          }}
+        >
           {new Array(reps).fill(0).map(() => children)}
-        </CarouselItems>
+        </div>
       </div>
     </>
   );
 };
 
-const CarouselItems = styled.div<{ amount: number; carouselWidth: number }>`
-  width: 100%;
-  display: flex;
-  transform: translate3d(0, 0, 0);
-  animation: ${({ amount, carouselWidth }) =>
-      css`
-        ${amount * 2}s ${slide(carouselWidth)}
-      `}
-    linear infinite;
+const addAnimation = (animation: string, keyframe: string) => {
+  let element = document.getElementById(animation);
 
-  &:hover {
-    animation-play-state: paused;
+  if (element) {
+    element.innerText = keyframe;
+  } else {
+    element = document.createElement("style");
+    element.setAttribute("id", "slide-animation");
+    element.innerText = keyframe;
+    document.head.appendChild(element);
   }
-`;
-
-const slide = (width: number) => keyframes`
-  100% {
-    transform: translate3d(-${width}px, 0, 0);
-  }
-  `;
+};
 
 export default InfiniteCarousel;
