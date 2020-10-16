@@ -1,4 +1,8 @@
-export const addAnimation = (animation: string, keyframe: string): void => {
+export const addAnimation = (
+  animation: string,
+  keyframe: string,
+  parent?: HTMLElement
+): void => {
   let element = document.getElementById(animation);
 
   if (element) {
@@ -7,6 +11,6 @@ export const addAnimation = (animation: string, keyframe: string): void => {
     element = document.createElement("style");
     element.setAttribute("id", animation);
     element.innerText = keyframe;
-    document.head.appendChild(element);
+    (parent || document.head).appendChild(element);
   }
 };

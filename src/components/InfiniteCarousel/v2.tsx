@@ -1,5 +1,6 @@
-import React, { FC, ReactNode, useEffect } from "react";
+import React, { FC, ReactNode, useEffect, useRef } from "react";
 import useMeasure from "react-use-measure";
+import mergeRefs from "react-merge-refs";
 import { addAnimation } from "../../utils";
 
 type Props = {
@@ -29,6 +30,7 @@ const repetitions = (viewportWidth: number, carouselWidth: number) => {
 const animationName = "interfacers-reactor-slide-animation";
 
 const InfiniteCarousel: FC<Props> = ({ children }) => {
+  const parent = useRef<HTMLDivElement>();
   // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasure();
 
@@ -41,10 +43,11 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
     addAnimation(
       animationName,
       `@keyframes ${animationName} {
-      100% {
-        transform: translate3d(-${carouselWidth}px, 0, 0);
-      }
-    }`
+        100% {
+          transform: translate3d(-${carouselWidth}px, 0, 0);
+        }
+      }`,
+      parent.current
     );
   }, [carouselWidth]);
 
@@ -70,7 +73,8 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
           width: "100%",
           height: "100%",
         }}
-        ref={containerRef}
+        // @ts-ignore
+        ref={mergeRefs([parent, containerRef])}
       >
         <div
           style={{
