@@ -26,9 +26,13 @@ const repetitions = (viewportWidth: number, carouselWidth: number) => {
   return amount * 2;
 };
 
+const animationName = "slide-animation";
+
 const InfiniteCarousel: FC<Props> = ({ children }) => {
+  // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasure();
 
+  // Get the width of all elements aligned horizontally
   const [carouselRef, { width: carouselWidth }] = useMeasure();
 
   const reps = repetitions(containerWidth, carouselWidth);
@@ -36,7 +40,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
   useEffect(() => {
     addAnimation(
       "slide-animation",
-      `@keyframes slide {
+      `@keyframes ${animationName} {
       100% {
         transform: translate3d(-${carouselWidth}px, 0, 0);
       }
@@ -76,7 +80,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
             transform: "translate3d(0, 0, 0)",
             animation: `${
               (Array.isArray(children) ? children.length : 1) * 2
-            }s slide linear infinite`,
+            }s ${animationName} linear infinite`,
           }}
         >
           {new Array(reps).fill(0).map(() => children)}
