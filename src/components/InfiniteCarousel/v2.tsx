@@ -33,16 +33,14 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
   const parent = useRef<HTMLDivElement>();
   // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasure();
-
   // Get the width of all elements aligned horizontally
   const [carouselRef, { width: carouselWidth }] = useMeasure();
-
   const reps = repetitions(containerWidth, carouselWidth);
 
   useEffect(() => {
     const count = Array.isArray(children) ? children.length : 1;
-    const movementDuration = 100 / (count * 2) / 4;
-    const stopDuration = (100 / (count * 2)) * 4;
+    const movementDuration = 100 / count / 4;
+    const stopDuration = (100 / count / 4) * 3;
 
     const keyframes = [];
 
@@ -57,13 +55,12 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
         `);
     }
 
-    addAnimation(
-      animationName,
-      `@keyframes ${animationName} {
-        ${keyframes.join(" ")}
-      }`,
-      parent.current
-    );
+    const keyframesSection = `@keyframes ${animationName} {
+      ${keyframes.join(" ")}
+    }`;
+    console.log(keyframesSection);
+
+    addAnimation(animationName, keyframesSection, parent.current);
   }, [carouselWidth]);
 
   return (
