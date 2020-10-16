@@ -26,7 +26,7 @@ const repetitions = (viewportWidth: number, carouselWidth: number) => {
   return amount * 2;
 };
 
-const animationName = "slide-animation";
+const animationName = "interfacers-reactor-slide-animation";
 
 const InfiniteCarousel: FC<Props> = ({ children }) => {
   // Get the width of the container element
@@ -39,7 +39,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     addAnimation(
-      "slide-animation",
+      animationName,
       `@keyframes ${animationName} {
       100% {
         transform: translate3d(-${carouselWidth}px, 0, 0);
