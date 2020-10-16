@@ -3,7 +3,7 @@ export const addAnimation = (
   keyframe: string,
   parent?: HTMLElement
 ): void => {
-  let element = document.querySelector<HTMLElement>(
+  let element = (parent || document).querySelector<HTMLElement>(
     `[data-animation="${animation}"`
   );
 
