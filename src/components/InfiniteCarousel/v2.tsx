@@ -54,7 +54,6 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
         <div
           style={{
             display: "flex",
-            opacity: 0,
             visibility: "hidden",
             zIndex: -1,
           }}
