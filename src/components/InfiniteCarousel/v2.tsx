@@ -6,7 +6,7 @@ type Props = {
   children: JSX.Element | JSX.Element[];
 };
 
-const repititions = (viewportWidth: number, carouselWidth: number) => {
+const repetitions = (viewportWidth: number, carouselWidth: number) => {
   if (viewportWidth === 0 || carouselWidth === 0) {
     return 1;
   }
@@ -31,7 +31,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
 
   const [carouselRef, { width: carouselWidth }] = useMeasure();
 
-  const reps = repititions(containerWidth, carouselWidth);
+  const reps = repetitions(containerWidth, carouselWidth);
 
   useEffect(() => {
     addAnimation(
