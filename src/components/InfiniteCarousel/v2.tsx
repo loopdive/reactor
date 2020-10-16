@@ -1,4 +1,11 @@
-import React, { FC, ReactNode, useEffect, useRef } from "react";
+import React, {
+  cloneElement,
+  FC,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import useMeasure from "react-use-measure";
 import mergeRefs from "react-merge-refs";
 import { addAnimation } from "../../utils";
@@ -31,40 +38,74 @@ const animationName = "interfacers-reactor-slide-animation";
 
 const InfiniteCarousel: FC<Props> = ({ children }) => {
   const parent = useRef<HTMLDivElement>();
+
+  // Amount of children
+  const childrenCount = Array.isArray(children) ? children.length : 1;
+
+  // Store all children widths
+  const [widths, setWidths] = useState<number[]>(
+    new Array(childrenCount).fill(0)
+  );
+
   // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasure();
   // Get the width of all elements aligned horizontally
   const [carouselRef, { width: carouselWidth }] = useMeasure();
+
   const reps = repetitions(containerWidth, carouselWidth);
   const speed = 0.5;
 
+  const setWidthsHandler = (value: number, index: number) => {
+    setWidths((w) => {
+      const temp = [...w];
+      temp[index] = value;
+      return temp;
+    });
+  };
+
   useEffect(() => {
-    const count = Array.isArray(children) ? children.length : 1;
-    const speedup = 5;
+    if (carouselWidth > 0 && widths[childrenCount - 1] > 0) {
+      const speedup = 5;
 
-    const movementDuration = 100 / count / speedup;
-    const stopDuration = (100 / count / speedup) * (speedup - 1);
+      const movementDuration = 100 / childrenCount / speedup;
+      const stopDuration = (100 / childrenCount / speedup) * (speedup - 1);
 
-    const keyframes = [];
+      const keyframes = [];
 
-    for (let i = 0; i <= count; i += 1) {
-      const stop = (movementDuration + stopDuration) * i;
-      const start = stop + stopDuration; /* movementDuration * (i * 2 + 1) */
+      // Store sum of all previous indices in current index (for all children widths)
+      let summedWidths = [...widths];
+      summedWidths = summedWidths.map((_, index) =>
+        summedWidths.slice(0, index + 1).reduce((a, b) => a + b)
+      );
 
-      keyframes.push(`
-        ${stop}%${start < 100 ? `, ${start}%` : ""} {
-          transform: translate3d(-${(carouselWidth / count) * i + 125}px, 0, 0);
-        }
+      for (let i = 0; i < childrenCount; i += 1) {
+        const stop = (movementDuration + stopDuration) * i;
+        const start = stop + stopDuration;
+
+        keyframes.push(`
+          ${stop}%${start < 100 ? `, ${start}%` : ""} {
+            transform: translate3d(-${summedWidths[i] - widths[i] / 2}px, 0, 0);
+          }
         `);
+      }
+
+      const keyframesSection = `@keyframes ${animationName} {
+        ${keyframes.join(" ")}
+
+        
+        100% {
+            transform: translate3d(-${
+              carouselWidth + widths[childrenCount - 1] / 2
+            }px, 0, 0);
+        }
+        
+      }`;
+
+      console.log(keyframesSection);
+
+      addAnimation(animationName, keyframesSection, parent.current);
     }
-
-    const keyframesSection = `@keyframes ${animationName} {
-      ${keyframes.join(" ")}
-    }`;
-    console.log(keyframesSection);
-
-    addAnimation(animationName, keyframesSection, parent.current);
-  }, [carouselWidth]);
+  }, [carouselWidth, parent.current, childrenCount, widths]);
 
   return (
     <>
@@ -77,7 +118,22 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
           }}
           ref={carouselRef}
         >
-          {children}
+          {Array.isArray(children) ? (
+            children.map((child, index) => (
+              <CarouselItem
+                key={index}
+                setWidth={(value: number) => setWidthsHandler(value, index)}
+              >
+                {child}
+              </CarouselItem>
+            ))
+          ) : (
+            <CarouselItem
+              setWidth={(value: number) => setWidthsHandler(value, 0)}
+            >
+              {children}
+            </CarouselItem>
+          )}
         </div>
       </div>
 
@@ -107,6 +163,26 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
       </div>
     </>
   );
+};
+
+const CarouselItem: FC<{
+  children: ReactNode;
+  setWidth: (width: number) => void;
+}> = ({ children, setWidth }) => {
+  const [ref, { width }] = useMeasure();
+
+  useEffect(() => {
+    if (width) {
+      setWidth(width);
+    }
+  }, [width]);
+
+  if (!children) {
+    return null;
+  }
+
+  // @ts-ignore
+  return cloneElement(children, { ref });
 };
 
 export default InfiniteCarousel;
