@@ -4,7 +4,7 @@ export const addAnimation = (
   parent?: HTMLElement
 ): void => {
   let element = (parent || document).querySelector<HTMLElement>(
-    `[data-animation="${animation}"`
+    `[data-animation="${animation}]"`
   );
 
   if (element) {
