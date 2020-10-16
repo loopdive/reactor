@@ -5,7 +5,7 @@ export const addAnimation = (animation: string, keyframe: string): void => {
     element.innerText = keyframe;
   } else {
     element = document.createElement("style");
-    element.setAttribute("id", "slide-animation");
+    element.setAttribute("id", animation);
     element.innerText = keyframe;
     document.head.appendChild(element);
   }
