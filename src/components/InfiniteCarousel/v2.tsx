@@ -91,7 +91,6 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
 
       const keyframesSection = `@keyframes ${animationName} {
         ${keyframes.join(" ")}
-
         
         100% {
             transform: translate3d(-${
