@@ -36,11 +36,14 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
   // Get the width of all elements aligned horizontally
   const [carouselRef, { width: carouselWidth }] = useMeasure();
   const reps = repetitions(containerWidth, carouselWidth);
+  const speed = 0.5;
 
   useEffect(() => {
     const count = Array.isArray(children) ? children.length : 1;
-    const movementDuration = 100 / count / 4;
-    const stopDuration = (100 / count / 4) * 3;
+    const speedup = 5;
+
+    const movementDuration = 100 / count / speedup;
+    const stopDuration = (100 / count / speedup) * (speedup - 1);
 
     const keyframes = [];
 
@@ -94,7 +97,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
             display: "flex",
             transform: "translate3d(0, 0, 0)",
             animation: `${
-              (Array.isArray(children) ? children.length : 1) * 2
+              (Array.isArray(children) ? children.length : 1) / speed
             }s ${animationName} ease-in-out infinite`,
             animationFillMode: "forwards",
           }}
