@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from "react";
 import useMeasure from "react-use-measure";
+import { addAnimation } from "../../utils";
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -24,6 +25,7 @@ const repititions = (viewportWidth: number, carouselWidth: number) => {
 
   return amount * 2;
 };
+
 const InfiniteCarousel: FC<Props> = ({ children }) => {
   const [containerRef, { width: containerWidth }] = useMeasure();
 
@@ -82,19 +84,6 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
       </div>
     </>
   );
-};
-
-const addAnimation = (animation: string, keyframe: string) => {
-  let element = document.getElementById(animation);
-
-  if (element) {
-    element.innerText = keyframe;
-  } else {
-    element = document.createElement("style");
-    element.setAttribute("id", "slide-animation");
-    element.innerText = keyframe;
-    document.head.appendChild(element);
-  }
 };
 
 export default InfiniteCarousel;
