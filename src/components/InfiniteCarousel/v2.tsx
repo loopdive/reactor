@@ -1,9 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import useMeasure from "react-use-measure";
 import { addAnimation } from "../../utils";
 
 type Props = {
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode | ReactNode[];
 };
 
 const repetitions = (viewportWidth: number, carouselWidth: number) => {
