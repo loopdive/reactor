@@ -40,12 +40,27 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
   const reps = repetitions(containerWidth, carouselWidth);
 
   useEffect(() => {
+    const count = Array.isArray(children) ? children.length : 1;
+    const movementDuration = 100 / (count * 2) / 4;
+    const stopDuration = (100 / (count * 2)) * 4;
+
+    const keyframes = [];
+
+    for (let i = 0; i <= count; i += 1) {
+      const stop = (movementDuration + stopDuration) * i;
+      const start = stop + stopDuration; /* movementDuration * (i * 2 + 1) */
+
+      keyframes.push(`
+        ${stop}%${start < 100 ? `, ${start}%` : ""} {
+          transform: translate3d(-${(carouselWidth / count) * i + 125}px, 0, 0);
+        }
+        `);
+    }
+
     addAnimation(
       animationName,
       `@keyframes ${animationName} {
-        100% {
-          transform: translate3d(-${carouselWidth}px, 0, 0);
-        }
+        ${keyframes.join(" ")}
       }`,
       parent.current
     );
@@ -83,7 +98,8 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
             transform: "translate3d(0, 0, 0)",
             animation: `${
               (Array.isArray(children) ? children.length : 1) * 2
-            }s ${animationName} linear infinite`,
+            }s ${animationName} ease-in-out infinite`,
+            animationFillMode: "forwards",
           }}
         >
           {new Array(reps).fill(0).map(() => children)}
