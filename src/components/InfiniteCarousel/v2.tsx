@@ -25,6 +25,8 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
     new Array(childrenCount).fill(0)
   );
 
+  const [pause, setPause] = useState(false);
+
   // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasure();
   // Get the width of all elements aligned horizontally
@@ -132,6 +134,9 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
         }}
         // @ts-ignore
         ref={mergeRefs([parent, containerRef])}
+        onFocus={() => {}}
+        onMouseOver={() => setPause(true)}
+        onMouseLeave={() => setPause(false)}
       >
         <div
           ref={carouselRef}
@@ -142,7 +147,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
             animation: `${
               (Array.isArray(children) ? children.length : 1) / speed
             }s ${animationName} ease-in-out infinite`,
-            animationFillMode: "forwards",
+            animationPlayState: pause ? "paused" : "running",
           }}
         >
           {new Array(reps).fill(0).map(() => children)}
