@@ -46,7 +46,7 @@ export const TestInfiniteCarouselV2: FC = () => {
         overflow: "hidden",
       }}
     >
-      <InfiniteCarouselV2>
+      <InfiniteCarouselV2 speed={0.25}>
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png"
           height="100"
