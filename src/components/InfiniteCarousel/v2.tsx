@@ -84,8 +84,6 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
 
       }`;
 
-      console.log(keyframesSection, containerWidth);
-
       addAnimation(animationName, keyframesSection, parent.current);
     }
   }, [carouselWidth, childrenCount, widths, containerWidth]);
