@@ -28,7 +28,8 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
   // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasure();
   // Get the width of all elements aligned horizontally
-  const [carouselRef, { width: carouselWidth }] = useMeasure();
+  const [hiddenCarouselRef, { width: carouselWidth }] = useMeasure();
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const reps = repetitions(containerWidth, carouselWidth);
   const speed = 0.5;
@@ -97,7 +98,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
             visibility: "hidden",
             zIndex: -1,
           }}
-          ref={carouselRef}
+          ref={hiddenCarouselRef}
         >
           {Array.isArray(children) ? (
             children.map((child, index) => (
@@ -129,6 +130,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
         ref={mergeRefs([parent, containerRef])}
       >
         <div
+          ref={carouselRef}
           style={{
             width: "100%",
             display: "flex",
