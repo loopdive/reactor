@@ -145,7 +145,7 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
             display: "flex",
             transform: "translate3d(0, 0, 0)",
             animation: `${
-              (Array.isArray(children) ? children.length : 1) / speed
+              childrenCount / speed
             }s ${animationName} ease-in-out infinite`,
             animationPlayState: pause ? "paused" : "running",
           }}
