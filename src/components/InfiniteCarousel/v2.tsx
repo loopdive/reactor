@@ -14,16 +14,6 @@ type Props = {
   children: ReactNode | ReactNode[];
 };
 
-const repetitions = (viewportWidth: number, carouselWidth: number) => {
-  if (viewportWidth === 0 || carouselWidth === 0) {
-    return 1;
-  }
-
-  return Math.ceil(viewportWidth / carouselWidth) * 2;
-};
-
-const animationName = "interfacers-reactor-slide-animation";
-
 const InfiniteCarousel: FC<Props> = ({ children }) => {
   const parent = useRef<HTMLDivElement>();
 
@@ -54,10 +44,8 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
   useEffect(() => {
     if (carouselWidth > 0 && widths[childrenCount - 1] > 0) {
       const speedup = 5;
-
       const movementDuration = 100 / childrenCount / speedup;
       const stopDuration = (100 / childrenCount / speedup) * (speedup - 1);
-
       const keyframes = [];
 
       // Store sum of all previous indices in current index (for all children widths)
@@ -72,7 +60,12 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
 
         keyframes.push(`
           ${stop}%${start < 100 ? `, ${start}%` : ""} {
-            transform: translate3d(-${summedWidths[i] - widths[i] / 2}px, 0, 0);
+            transform: translate3d(${
+              -1 *
+              (carouselWidth +
+                summedWidths[i] -
+                (containerWidth / 2 + widths[i] / 2))
+            }px, 0, 0);
           }
         `);
       }
@@ -81,18 +74,21 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
         ${keyframes.join(" ")}
 
         100% {
-            transform: translate3d(-${
-              carouselWidth + widths[childrenCount - 1] / 2
+            transform: translate3d(${
+              -1 *
+              (2 * carouselWidth +
+                widths[0] -
+                (containerWidth / 2 + widths[0] / 2))
             }px, 0, 0);
         }
 
       }`;
 
-      console.log(keyframesSection);
+      console.log(keyframesSection, containerWidth);
 
       addAnimation(animationName, keyframesSection, parent.current);
     }
-  }, [carouselWidth, childrenCount, widths]);
+  }, [carouselWidth, childrenCount, widths, containerWidth]);
 
   return (
     <>
@@ -151,16 +147,19 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
     </>
   );
 };
+export default InfiniteCarousel;
 
 const CarouselItem: FC<{
   children: ReactNode;
   setWidth: (width: number) => void;
 }> = ({ children, setWidth }) => {
+  const [oldWidth, setOldWidth] = useState(0);
   const [ref, { width }] = useMeasure();
 
   useEffect(() => {
-    if (width) {
+    if (width !== oldWidth) {
       setWidth(width);
+      setOldWidth(width);
     }
   }, [width, setWidth]);
 
@@ -168,8 +167,17 @@ const CarouselItem: FC<{
     return null;
   }
 
+  // FIXME: this should not be ignored since a string cannot be cloned
   // @ts-ignore
   return cloneElement(children, { ref });
 };
 
-export default InfiniteCarousel;
+const repetitions = (viewportWidth: number, carouselWidth: number) => {
+  if (viewportWidth === 0 || carouselWidth === 0) {
+    return 1;
+  }
+
+  return Math.ceil(viewportWidth / carouselWidth) * 3;
+};
+
+const animationName = "interfacers-reactor-slide-animation";
