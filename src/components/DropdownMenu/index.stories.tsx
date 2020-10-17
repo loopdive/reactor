@@ -13,7 +13,7 @@ export default {
   title: "DropdownMenu",
 };
 
-export const withText: FC = () => {
+export const WithText: FC = () => {
   const [ThemeSelector, theme] = useThemeSelector(dark, { dark, light });
 
   return (

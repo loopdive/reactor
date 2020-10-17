@@ -37,7 +37,7 @@ const SideBar: FC<Props> = ({
     if (disableBodyScroll) {
       disableBodyScrollHandler(open);
     }
-  }, [open]);
+  }, [open, disableBodyScroll, disableBodyScrollHandler]);
 
   useOnClickOutside(ref, () =>
     setTimeout(() => closeOnOutsideClick && open && onClose && onClose(), 150)

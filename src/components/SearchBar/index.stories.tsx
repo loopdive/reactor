@@ -28,7 +28,7 @@ const SearchContainer: FC<{
   </Container>
 );
 
-export const test: FC = () => {
+export const Test: FC = () => {
   const [value, setValue] = useState<string>("");
 
   const [ThemeSelector, theme] = useThemeSelector(light, { dark, light });

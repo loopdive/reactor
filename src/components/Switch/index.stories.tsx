@@ -1,16 +1,15 @@
 import * as React from "react";
 import { FC, useState } from "react";
-
 import { ThemeProvider } from "styled-components";
 import { dark, light } from "../themes/default/colors";
-
 import Switch from "./index";
 import { useThemeSelector } from "../themes/useThemeSelector";
+
 export default {
   title: "Switch",
 };
 
-export const withSwitch: FC = () => {
+export const WithSwitch: FC = () => {
   const [ThemeSelector, theme] = useThemeSelector(light, { dark, light });
 
   const [selected, setSelected] = useState(false);

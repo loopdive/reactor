@@ -6,7 +6,7 @@ import SideBar from "./index";
 
 export default { title: "SideBar" };
 
-export const test: FC = () => {
+export const Test: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (

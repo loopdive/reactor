@@ -12,7 +12,7 @@ export default {
   title: "MenuBar",
 };
 
-export const example: FC = () => {
+export const Example: FC = () => {
   const [ThemeSelector, theme] = useThemeSelector(dark, { dark, light });
   return (
     <>

@@ -28,8 +28,11 @@ const InfiniteCarousel: FC<Props> = ({
   return (
     <>
       {children.map((element, index) => {
+        // FIXME: Line 32:34:  React Hook "useMeasure" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const [ref, { width }] = useMeasure();
-
+        // FIXME: Line 34:9:  React Hook "useEffect" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
           if (width) {
             setWidths((w) => {
@@ -38,7 +41,7 @@ const InfiniteCarousel: FC<Props> = ({
               return n;
             });
           }
-        }, [width]);
+        }, [width, index]);
 
         return (
           <Item
