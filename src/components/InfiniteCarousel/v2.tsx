@@ -43,7 +43,11 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
   };
 
   useEffect(() => {
-    if (carouselWidth > 0 && widths[childrenCount - 1] > 0) {
+    if (
+      containerWidth > 0 &&
+      carouselWidth > 0 &&
+      widths[childrenCount - 1] > 0
+    ) {
       const speedup = 5;
       const movementDuration = 100 / childrenCount / speedup;
       const stopDuration = (100 / childrenCount / speedup) * (speedup - 1);
