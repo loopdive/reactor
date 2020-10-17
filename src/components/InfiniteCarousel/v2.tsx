@@ -19,19 +19,7 @@ const repetitions = (viewportWidth: number, carouselWidth: number) => {
     return 1;
   }
 
-  if (carouselWidth > viewportWidth) {
-    return 2;
-  }
-
-  let amount = 1;
-  let count = carouselWidth;
-
-  while (count < viewportWidth) {
-    amount += 1;
-    count += carouselWidth;
-  }
-
-  return amount * 2;
+  return Math.ceil(viewportWidth / carouselWidth) * 2;
 };
 
 const animationName = "interfacers-reactor-slide-animation";
@@ -91,20 +79,20 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
 
       const keyframesSection = `@keyframes ${animationName} {
         ${keyframes.join(" ")}
-        
+
         100% {
             transform: translate3d(-${
               carouselWidth + widths[childrenCount - 1] / 2
             }px, 0, 0);
         }
-        
+
       }`;
 
       console.log(keyframesSection);
 
       addAnimation(animationName, keyframesSection, parent.current);
     }
-  }, [carouselWidth, parent.current, childrenCount, widths]);
+  }, [carouselWidth, childrenCount, widths]);
 
   return (
     <>
@@ -174,7 +162,7 @@ const CarouselItem: FC<{
     if (width) {
       setWidth(width);
     }
-  }, [width]);
+  }, [width, setWidth]);
 
   if (!children) {
     return null;
