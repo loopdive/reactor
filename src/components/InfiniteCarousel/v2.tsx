@@ -12,10 +12,14 @@ import { addAnimation } from "../../utils";
 
 type Props = {
   children: ReactNode | ReactNode[];
+  speed?: number;
 };
 
-const InfiniteCarousel: FC<Props> = ({ children }) => {
+const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
+  // Reference for carousel wrapping element
   const parent = useRef<HTMLDivElement>();
+
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Amount of children
   const childrenCount = Array.isArray(children) ? children.length : 1;
@@ -25,16 +29,17 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
     new Array(childrenCount).fill(0)
   );
 
+  // Pause state for carousel animation
   const [pause, setPause] = useState(false);
 
   // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasure();
+
   // Get the width of all elements aligned horizontally
   const [hiddenCarouselRef, { width: carouselWidth }] = useMeasure();
-  const carouselRef = useRef<HTMLDivElement>(null);
 
-  const reps = repetitions(containerWidth, carouselWidth);
-  const speed = 0.5;
+  // The amount of times children are duplicated
+  const [reps, setReps] = useState(repetitions(containerWidth, carouselWidth));
 
   const setWidthsHandler = (value: number, index: number) => {
     setWidths((w) => {
@@ -43,6 +48,10 @@ const InfiniteCarousel: FC<Props> = ({ children }) => {
       return temp;
     });
   };
+
+  useEffect(() => {
+    setReps(repetitions(containerWidth, carouselWidth));
+  }, [containerWidth, carouselWidth]);
 
   useEffect(() => {
     if (
