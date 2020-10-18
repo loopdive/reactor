@@ -1,6 +1,6 @@
 import React, { FC, forwardRef } from "react";
-import InfiniteCarouselV1 from "./wip";
-import InfiniteCarouselV2 from "./experimental";
+import InfiniteCarouselV1 from "./experimental";
+import InfiniteCarouselV2 from ".";
 
 export default { title: "InfiniteCarousel" };
 
