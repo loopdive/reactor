@@ -2,10 +2,9 @@ import * as React from "react";
 import { FC, ReactNode, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import SearchBar from "./index";
-
-import { light, dark, Theme } from "../themes/default/colors";
-import { useThemeSelector } from "../themes/useThemeSelector";
-import { SearchIcon, DeleteIcon, Input } from "../themes/default/SearchBar";
+import { light, dark, Theme } from "../../themes/default/colors";
+import { useThemeSelector } from "../../themes/useThemeSelector";
+import { SearchIcon, DeleteIcon, Input } from "../../themes/default/SearchBar";
 
 export default {
   title: "SearchBar",

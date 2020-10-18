@@ -7,7 +7,7 @@ import styled, {
   withTheme,
 } from "styled-components";
 import { Theme } from "../colors";
-import { AnimatedProps } from "../../../types";
+import { AnimatedProps } from "../../../generic/types";
 
 type Props = {
   size?: number;

@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import useMeasure from "react-use-measure";
 import mergeRefs from "react-merge-refs";
-import { addAnimation } from "../../utils";
+import { addAnimation } from "../../../utils";
 
 type Props = {
   children: ReactNode | ReactNode[];

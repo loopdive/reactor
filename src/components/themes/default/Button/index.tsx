@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { ButtonType } from "../../../generic/Button";
 
-export const DefaultButton = styled.button`
+export const DefaultButton: ButtonType = styled.button`
   display: inline-block;
   padding: 15px 25px;
   border-radius: 25px;

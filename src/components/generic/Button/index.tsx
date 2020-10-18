@@ -1,12 +1,5 @@
-import React, {
-  ElementType,
-  forwardRef,
-  ForwardRefRenderFunction,
-  ReactNode,
-} from "react";
+import { ElementType, ReactNode } from "react";
 import { OnClick } from "../types";
-import { DefaultButton } from "../themes/default/Button";
-
 type Props = {
   Component?: ElementType;
   children: ReactNode;
@@ -14,8 +7,10 @@ type Props = {
   activated?: boolean;
 };
 
-const Button: ForwardRefRenderFunction<HTMLElement, Props> = (
-  { Component = DefaultButton, children, onClick, activated },
+export type ButtonType = ElementType<Props>;
+
+/* const Button: ForwardRefRenderFunction<HTMLElement, Props> = (
+  { Component, children, onClick, activated },
   ref
 ) => {
   return (
@@ -25,4 +20,4 @@ const Button: ForwardRefRenderFunction<HTMLElement, Props> = (
   );
 };
 
-export default forwardRef<HTMLElement, Props>(Button);
+export default forwardRef<HTMLElement, Props>(Button); */
