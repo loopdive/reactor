@@ -20,7 +20,7 @@ const Image: FC<{ src: string }> = forwardRef<
 >(({ src }, ref) => {
   return <img src={src} alt="" style={{ height: 100, width: 250 }} ref={ref} />;
 });
-export const TestInfiniteCarouselV2: FC = () => {
+export const TestInfiniteCarousel: FC = () => {
   return (
     <div
       style={{
@@ -55,7 +55,7 @@ const colors = [
   "violet",
 ];
 
-export const TestInfiniteCarouselV1: FC = () => {
+export const TestInfiniteCarouselExperimentalVersion: FC = () => {
   return (
     <InfiniteCarouselExperimentalVersion
       linearMovement={{ from: { x: -1200 }, to: { x: 1200 } }}
