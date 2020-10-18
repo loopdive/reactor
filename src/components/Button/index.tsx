@@ -4,13 +4,16 @@ import React, {
   ForwardRefRenderFunction,
   ReactNode,
 } from "react";
+import { OnClick } from "../types";
 import { DefaultButton } from "../themes/default/Button";
+
 type Props = {
   Component?: ElementType;
   children: ReactNode;
-  onClick?: () => void;
+  onClick?: OnClick;
   activated?: boolean;
 };
+
 const Button: ForwardRefRenderFunction<HTMLElement, Props> = (
   { Component = DefaultButton, children, onClick, activated },
   ref
