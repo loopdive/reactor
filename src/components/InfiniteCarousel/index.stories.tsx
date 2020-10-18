@@ -1,41 +1,8 @@
 import React, { FC, forwardRef } from "react";
-import InfiniteCarouselV1 from "./experimental";
-import InfiniteCarouselV2 from ".";
+import InfiniteCarousel from ".";
+import InfiniteCarouselExperimentalVersion from "./experimental";
 
 export default { title: "InfiniteCarousel" };
-
-const colors = [
-  "red",
-  "green",
-  "blue",
-  "orange",
-  "purple",
-  "yellow",
-  "violet",
-  "red",
-  "green",
-  "blue",
-  "orange",
-  "purple",
-  "yellow",
-  "violet",
-];
-
-export const TestInfiniteCarouselV1: FC = () => {
-  return (
-    <InfiniteCarouselV1
-      linearMovement={{ from: { x: -1200 }, to: { x: 1200 } }}
-      animationDuration="28s"
-    >
-      {colors.map((backgroundColor) => (
-        <div
-          key={backgroundColor}
-          style={{ backgroundColor, height: 200, width: 300, borderRadius: 10 }}
-        />
-      ))}
-    </InfiniteCarouselV1>
-  );
-};
 
 const images = [
   "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
@@ -62,11 +29,44 @@ export const TestInfiniteCarouselV2: FC = () => {
         overflow: "hidden",
       }}
     >
-      <InfiniteCarouselV2 speed={0.25}>
+      <InfiniteCarousel speed={0.5}>
         {images.map((src) => (
           <Image key={src} src={src} />
         ))}
-      </InfiniteCarouselV2>
+      </InfiniteCarousel>
     </div>
+  );
+};
+
+const colors = [
+  "red",
+  "green",
+  "blue",
+  "orange",
+  "purple",
+  "yellow",
+  "violet",
+  "red",
+  "green",
+  "blue",
+  "orange",
+  "purple",
+  "yellow",
+  "violet",
+];
+
+export const TestInfiniteCarouselV1: FC = () => {
+  return (
+    <InfiniteCarouselExperimentalVersion
+      linearMovement={{ from: { x: -1200 }, to: { x: 1200 } }}
+      animationDuration="28s"
+    >
+      {colors.map((backgroundColor) => (
+        <div
+          key={backgroundColor}
+          style={{ backgroundColor, height: 200, width: 300, borderRadius: 10 }}
+        />
+      ))}
+    </InfiniteCarouselExperimentalVersion>
   );
 };
