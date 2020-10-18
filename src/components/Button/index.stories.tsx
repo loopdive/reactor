@@ -6,7 +6,7 @@ export default {
   title: "Button",
 };
 
-export const withText: FC = () => {
+export const WithText: FC = () => {
   const [activated, setActivated] = useState(false);
 
   return (

@@ -7,7 +7,7 @@ export default {
   title: "Accordion",
 };
 
-export const withAccordion: FC = () => {
+export const WithAccordion: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
