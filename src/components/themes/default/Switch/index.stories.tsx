@@ -1,9 +1,9 @@
 import * as React from "react";
 import { FC, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { dark, light } from "../themes/default/colors";
+import { dark, light } from "../colors";
 import Switch from "./index";
-import { useThemeSelector } from "../themes/useThemeSelector";
+import { useThemeSelector } from "../../useThemeSelector";
 
 export default {
   title: "Switch",

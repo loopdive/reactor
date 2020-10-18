@@ -6,8 +6,8 @@ import styled, {
   FlattenSimpleInterpolation,
   withTheme,
 } from "styled-components";
-import { Theme } from "../themes/default/colors";
-import { AnimatedProps } from "../types";
+import { Theme } from "../colors";
+import { AnimatedProps } from "../../../types";
 
 type Props = {
   size?: number;
