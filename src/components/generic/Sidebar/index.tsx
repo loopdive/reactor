@@ -4,7 +4,7 @@ import { animated, useSpring } from "react-spring";
 
 import useOnClickOutside from "use-onclickoutside";
 import { AnimatedProps } from "../types";
-import { useDisableBodyScroll } from "../../utils";
+import { useDisableBodyScroll } from "../../../utils";
 
 type Props = {
   orientation?: "left" | "right";
@@ -17,6 +17,7 @@ type Props = {
   animatedProps?: AnimatedProps;
 };
 
+// TODO: separate theme from generic interfaces and props like orientation
 const SideBar: FC<Props> = ({
   orientation = "left",
   open,

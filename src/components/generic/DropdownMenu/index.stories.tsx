@@ -3,11 +3,11 @@ import { FC } from "react";
 import { ThemeProvider } from "styled-components";
 import DropdownMenu from ".";
 import { OnClick } from "../types";
-import ToggleButton from "../themes/default/ToggleButton";
-import Menu from "../themes/default/Menu";
-import RowButton from "../themes/default/RowButton";
-import { useThemeSelector } from "../themes/useThemeSelector";
-import { dark, light } from "../themes/default/colors";
+import ToggleButton from "../../themes/default/ToggleButton";
+import Menu from "../../themes/default/Menu";
+import RowButton from "../../themes/default/RowButton";
+import { useThemeSelector } from "../../themes/useThemeSelector";
+import { dark, light } from "../../themes/default/colors";
 
 export default {
   title: "DropdownMenu",

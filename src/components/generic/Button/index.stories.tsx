@@ -1,6 +1,5 @@
 import React, { FC, useState } from "react";
-
-import Button from "./index";
+import { DefaultButton } from "../../themes/default/Button";
 
 export default {
   title: "Button",
@@ -10,8 +9,11 @@ export const WithText: FC = () => {
   const [activated, setActivated] = useState(false);
 
   return (
-    <Button onClick={() => setActivated((a) => !a)} activated={activated}>
+    <DefaultButton
+      onClick={() => setActivated((a) => !a)}
+      activated={activated}
+    >
       Click On Me!
-    </Button>
+    </DefaultButton>
   );
 };
