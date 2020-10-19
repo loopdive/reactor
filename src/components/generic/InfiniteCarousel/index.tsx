@@ -1,11 +1,4 @@
-import React, {
-  cloneElement,
-  FC,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
 import useMeasure from "react-use-measure";
 import mergeRefs from "react-merge-refs";
 import { addAnimation } from "../../../utils";
@@ -185,7 +178,7 @@ const CarouselItem: FC<{
     return null;
   }
 
-  return cloneElement(<div>{children}</div>, { ref });
+  return <div ref={ref}>{children}</div>;
 };
 
 const repetitions = (viewportWidth: number, carouselWidth: number) => {
