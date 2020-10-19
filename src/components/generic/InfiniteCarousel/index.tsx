@@ -185,9 +185,7 @@ const CarouselItem: FC<{
     return null;
   }
 
-  // FIXME: this should not be ignored since a string cannot be cloned
-  // @ts-ignore
-  return cloneElement(children, { ref });
+  return cloneElement(<div>{children}</div>, { ref });
 };
 
 const repetitions = (viewportWidth: number, carouselWidth: number) => {
