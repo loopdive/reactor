@@ -1,11 +1,4 @@
-import React, {
-  cloneElement,
-  FC,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
 import useMeasure from "react-use-measure";
 import mergeRefs from "react-merge-refs";
 import { addAnimation } from "../../../utils";
@@ -49,10 +42,13 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
     });
   };
 
+  // calculate the number of times the items in the carousel need to be
+  // repeated to simulate an infinite carousel without visible gaps
   useEffect(() => {
     setReps(repetitions(containerWidth, carouselWidth));
   }, [containerWidth, carouselWidth]);
 
+  // create keyframes for the animation visiting all the carousel items
   useEffect(() => {
     if (
       containerWidth > 0 &&
@@ -185,9 +181,7 @@ const CarouselItem: FC<{
     return null;
   }
 
-  // FIXME: this should not be ignored since a string cannot be cloned
-  // @ts-ignore
-  return cloneElement(children, { ref });
+  return <div ref={ref}>{children}</div>;
 };
 
 const repetitions = (viewportWidth: number, carouselWidth: number) => {
