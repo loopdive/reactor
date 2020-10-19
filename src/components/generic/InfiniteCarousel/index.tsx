@@ -42,10 +42,13 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
     });
   };
 
+  // calculate the number of times the items in the carousel need to be
+  // repeated to simulate an infinite carousel without visible gaps
   useEffect(() => {
     setReps(repetitions(containerWidth, carouselWidth));
   }, [containerWidth, carouselWidth]);
 
+  // create keyframes for the animation visiting all the carousel items
   useEffect(() => {
     if (
       containerWidth > 0 &&
