@@ -6,3 +6,4 @@ export { default as SearchBar } from "./generic/SearchBar";
 export { default as Sidebar } from "./generic/Sidebar";
 export { default as Hamburger } from "./themes/default/Hamburger";
 export { default as Switch } from "./themes/default/Switch";
+export { default as InfiniteCarousel } from "./generic/InfiniteCarousel/index";
