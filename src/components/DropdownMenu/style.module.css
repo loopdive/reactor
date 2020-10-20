@@ -4,10 +4,11 @@
   padding: 10px 20px;
   border: none;
   outline: none;
-  &:hover {
-    color: yellow;
-    background-color: rgb(63, 63, 255);
-  }
+}
+
+.toggle-button:hover {
+  color: yellow;
+  background-color: rgb(63, 63, 255);
 }
 
 .menu {
@@ -29,9 +30,10 @@
   padding: 10px 20px;
   background-color: rgb(30, 30, 30);
   white-space: nowrap;
-  &:hover {
-    background-color: rgb(63, 63, 255);
-  }
+}
+
+.row-button:hover {
+  background-color: rgb(63, 63, 255);
 }
 
 .row-button-active {
