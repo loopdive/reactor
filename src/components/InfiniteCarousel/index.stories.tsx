@@ -1,6 +1,5 @@
 import React, { FC, forwardRef } from "react";
 import InfiniteCarousel from ".";
-import InfiniteCarouselExperimentalVersion from "./experimental";
 
 export default { title: "InfiniteCarousel" };
 
@@ -35,38 +34,5 @@ export const TestInfiniteCarousel: FC = () => {
         ))}
       </InfiniteCarousel>
     </div>
-  );
-};
-
-const colors = [
-  "red",
-  "green",
-  "blue",
-  "orange",
-  "purple",
-  "yellow",
-  "violet",
-  "red",
-  "green",
-  "blue",
-  "orange",
-  "purple",
-  "yellow",
-  "violet",
-];
-
-export const TestInfiniteCarouselExperimentalVersion: FC = () => {
-  return (
-    <InfiniteCarouselExperimentalVersion
-      linearMovement={{ from: { x: -1200 }, to: { x: 1200 } }}
-      animationDuration="28s"
-    >
-      {colors.map((backgroundColor) => (
-        <div
-          key={backgroundColor}
-          style={{ backgroundColor, height: 200, width: 300, borderRadius: 10 }}
-        />
-      ))}
-    </InfiniteCarouselExperimentalVersion>
   );
 };
