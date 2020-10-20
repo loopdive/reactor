@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
 import DropdownMenu from ".";
+import { jsx } from "../../utils/react";
 import { OnClick } from "../types";
 
 import "./style.module.css";
-import { jsx } from "../../utils";
 
 export default {
   title: "DropdownMenu",

@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import MenuBar from ".";
-import { jsx } from "../../utils";
+import { jsx } from "../../utils/react";
 
 import "./style.module.css";
 

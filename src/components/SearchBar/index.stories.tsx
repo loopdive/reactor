@@ -4,7 +4,7 @@ import { BsSearch as SearchIcon } from "react-icons/bs";
 import { CgClose as DeleteIcon } from "react-icons/cg";
 
 import "./style.module.css";
-import { jsx } from "../../utils";
+import { jsx } from "../../utils/react";
 
 export default {
   title: "SearchBar",
