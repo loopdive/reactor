@@ -1,5 +1,6 @@
 import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
-import useMeasure from "react-use-measure";
+// @ts-ignore
+import useMeasure from "react-use-measure/dist/web.cjs";
 import mergeRefs from "react-merge-refs";
 import { addAnimation } from "../../utils";
 
