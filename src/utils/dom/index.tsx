@@ -1,7 +1,8 @@
+/** add a style element containing a keyframe animation */
 export const addAnimation = (
-  animation: string,
-  keyframe: string,
-  parent?: HTMLElement
+  animation: string /** animation name */,
+  keyframe: string /** keyframes string */,
+  parent?: HTMLElement /** parent element of the style element */
 ): void => {
   let element = (parent || document).querySelector<HTMLElement>(
     `[data-animation="${animation}"]`
