@@ -101,7 +101,8 @@
       "eslint --cache --fix --max-warnings 0"
     ],
     "*.{css,scss}": [
-      "prettier --write"
+      "prettier --write",
+      "stylelint --cache --fix"
     ],
     "*.{json,md}": [
       "prettier --write"
