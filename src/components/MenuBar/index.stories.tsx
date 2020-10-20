@@ -1,38 +1,41 @@
-import * as React from "react";
-import { FC } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import React, { FC, ReactNode } from "react";
 import MenuBar from ".";
-import ToggleButton from "../../themes/default/ToggleButton";
-import Menu from "../../themes/default/Menu";
-import RowButton from "../../themes/default/RowButton";
-import { useThemeSelector } from "../../utils/hooks/useThemeSelector";
-import { dark, light } from "../../themes/default/colors";
+import { jsx } from "../../utils/react";
+
+import "./style.module.css";
 
 export default {
   title: "MenuBar",
 };
 
-export const Example: FC = () => {
-  const [ThemeSelector, theme] = useThemeSelector(dark, { dark, light });
+const MenuItemButton: FC<{
+  children: ReactNode;
+  onClick: () => void;
+  activated: boolean;
+}> = ({ children, onClick, activated }) => {
   return (
-    <>
-      <ThemeSelector />
-      <ThemeProvider theme={theme}>
-        <MenuBar
-          categories={categories}
-          Bar={Bar}
-          MenuButton={ToggleButton}
-          Menu={Menu}
-          MenuItemButton={RowButton}
-        />
-      </ThemeProvider>
-    </>
+    <button
+      className={`row-button ${activated ? "row-button-active" : ""}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 };
 
-const Bar = styled.div`
-  display: flex;
-`;
+export const Example: FC = () => {
+  return (
+    <>
+      <MenuBar
+        categories={categories}
+        Bar={jsx(<div style={{ display: "flex" }} />)}
+        MenuButton={jsx(<button className="toggle-button" />)}
+        Menu={jsx(<div className="menu" />)}
+        MenuItemButton={MenuItemButton}
+      />
+    </>
+  );
+};
 
 const categories = [
   {

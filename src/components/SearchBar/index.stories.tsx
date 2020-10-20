@@ -1,10 +1,10 @@
-import * as React from "react";
-import { FC, ReactNode, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import React, { FC, ReactNode, useState } from "react";
 import SearchBar from "./index";
-import { light, dark, Theme } from "../../themes/default/colors";
-import { useThemeSelector } from "../../utils/hooks/useThemeSelector";
-import { SearchIcon, DeleteIcon, Input } from "../../themes/default/SearchBar";
+import { BsSearch as SearchIcon } from "react-icons/bs";
+import { CgClose as DeleteIcon } from "react-icons/cg";
+
+import "./style.module.css";
+import { jsx } from "../../utils/react";
 
 export default {
   title: "SearchBar",
@@ -15,47 +15,40 @@ const SearchContainer: FC<{
   onDelete: () => void;
   showDeleteIcon?: boolean;
 }> = ({ children, onDelete, showDeleteIcon }) => (
-  <Container style={{ fontSize: 12 }}>
-    <SearchIcon />
+  <div className="search-container" style={{ fontSize: 16 }}>
+    <SearchIcon
+      color="rgba(0, 0, 0, 0.4"
+      style={{ marginRight: 10 }}
+      size={18}
+    />
     {children}
     <DeleteIcon
+      color="rgba(0, 0, 0, 0.4"
       style={{
+        marginLeft: 10,
         visibility: showDeleteIcon ? "visible" : "hidden",
       }}
       onClick={onDelete}
+      size={14}
     />
-  </Container>
+  </div>
 );
 
 export const Test: FC = () => {
   const [value, setValue] = useState<string>("");
 
-  const [ThemeSelector, theme] = useThemeSelector(light, { dark, light });
-
   return (
     <>
-      <ThemeSelector />
-      <ThemeProvider theme={theme}>
-        <Container>
-          <div style={{ width: 500 }}>
-            <SearchBar
-              Input={Input}
-              Container={SearchContainer}
-              value={value}
-              onChange={(value: string) => setValue(value)}
-            />
-          </div>
-        </Container>
-      </ThemeProvider>
+      <div className="container">
+        <div style={{ width: 500 }}>
+          <SearchBar
+            Input={jsx(<input className="input" />)}
+            Container={SearchContainer}
+            value={value}
+            onChange={(value: string) => setValue(value)}
+          />
+        </div>
+      </div>
     </>
   );
 };
-
-const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
-  background-color: ${(props: { theme: Theme }) =>
-    props.theme.color.background};
-
-  padding: 2em 2em;
-`;

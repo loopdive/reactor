@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
-import { DefaultButton } from "../../themes/default/Button";
+
+import "./style.module.css";
 
 export default {
   title: "Button",
@@ -9,11 +10,13 @@ export const WithText: FC = () => {
   const [activated, setActivated] = useState(false);
 
   return (
-    <DefaultButton
-      onClick={() => setActivated((a) => !a)}
-      activated={activated}
-    >
-      Click On Me!
-    </DefaultButton>
+    <>
+      <button
+        className={`button ${activated ? "button-active" : ""}`}
+        onClick={() => setActivated((a) => !a)}
+      >
+        Click On Me!
+      </button>
+    </>
   );
 };

@@ -1,7 +1,9 @@
 import * as React from "react";
 import { FC } from "react";
 import DropdownMenu from ".";
+import { jsx } from "../../utils/react";
 import { OnClick } from "../types";
+
 import "./style.module.css";
 
 export default {
@@ -10,19 +12,21 @@ export default {
 
 export const WithText: FC = () => {
   return (
-    <DropdownMenu
-      Button={({ onClick }: { onClick: OnClick }) => (
-        <button className="button" onClick={onClick}>
-          {category}
-        </button>
-      )}
-      List={({ children }) => <div className="menu">{children}</div>}
-      options={items.map(({ label, onClick }) => () => (
-        <button className="row-button" onClick={onClick}>
-          {label}
-        </button>
-      ))}
-    />
+    <>
+      <DropdownMenu
+        Button={({ onClick }: { onClick: OnClick }) => (
+          <button className="toggle-button" onClick={onClick}>
+            {category}
+          </button>
+        )}
+        List={jsx(<div className="menu" />)}
+        options={items.map(({ label, onClick }) => () => (
+          <button className="row-button" onClick={onClick}>
+            {label}
+          </button>
+        ))}
+      />
+    </>
   );
 };
 
