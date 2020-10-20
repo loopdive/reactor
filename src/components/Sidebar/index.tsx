@@ -1,10 +1,9 @@
 import * as React from "react";
 import { FC, ReactNode, useEffect, useRef } from "react";
 import { animated, useSpring } from "react-spring";
-
 import useOnClickOutside from "use-onclickoutside";
 import { AnimatedProps } from "../types";
-import { useDisableBodyScroll } from "../../../utils";
+import { useDisableBodyScroll } from "../../utils";
 
 type Props = {
   orientation?: "left" | "right";

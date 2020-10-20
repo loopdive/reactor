@@ -1,34 +1,28 @@
 import * as React from "react";
 import { FC } from "react";
-import { ThemeProvider } from "styled-components";
 import DropdownMenu from ".";
 import { OnClick } from "../types";
-import { useThemeSelector } from "../../utils/hooks/useThemeSelector";
+import "./style.module.css";
 
 export default {
   title: "DropdownMenu",
 };
 
 export const WithText: FC = () => {
-  const [ThemeSelector, theme] = useThemeSelector(dark, { dark, light });
-
   return (
-    <>
-      <ThemeSelector />
-      <ThemeProvider theme={theme}>
-        <DropdownMenu
-          Button={({ onClick }: { onClick: OnClick }) => (
-            <ToggleButton onClick={onClick}>{category}</ToggleButton>
-          )}
-          List={Menu}
-          options={items.map(({ label, onClick }) => () => (
-            <RowButton selected={false} onClick={onClick}>
-              {label}
-            </RowButton>
-          ))}
-        />
-      </ThemeProvider>
-    </>
+    <DropdownMenu
+      Button={({ onClick }: { onClick: OnClick }) => (
+        <button className="button" onClick={onClick}>
+          {category}
+        </button>
+      )}
+      List={({ children }) => <div className="menu">{children}</div>}
+      options={items.map(({ label, onClick }) => () => (
+        <button className="row-button" onClick={onClick}>
+          {label}
+        </button>
+      ))}
+    />
   );
 };
 
