@@ -26,7 +26,7 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
     "lint:js": "eslint --cache --fix --ext .js,.ts,.tsx .",
-    "lint:css": "stylelint './src/**/*.{js,jsx,ts,tsx,css,scss}' --cache",
+    "lint:css": "stylelint './src/**/*.{css,scss}' --cache",
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -79,6 +79,7 @@
     "prettier": "^2.1.1",
     "react": "16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.11.0",
     "react-is": "^16.13.1",
     "react-merge-refs": "^1.1.0",
     "react-scripts": "^3.4.3",
