@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import MenuBar from ".";
-import { jsx } from "../../utils/react";
+import { useJsx } from "../../utils/react";
 
 import "./style.module.css";
 
@@ -28,9 +28,9 @@ export const Example: FC = () => {
     <>
       <MenuBar
         categories={categories}
-        Bar={jsx(<div style={{ display: "flex" }} />)}
-        MenuButton={jsx(<button className="toggle-button" />)}
-        Menu={jsx(<div className="menu" />)}
+        Bar={useJsx(<div style={{ display: "flex" }} />)}
+        MenuButton={useJsx(<button className="toggle-button" />)}
+        Menu={useJsx(<div className="menu" />)}
         MenuItemButton={MenuItemButton}
       />
     </>

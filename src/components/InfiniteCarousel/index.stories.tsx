@@ -28,7 +28,7 @@ export const TestInfiniteCarousel: FC = () => {
         overflow: "hidden",
       }}
     >
-      <InfiniteCarousel speed={0.5}>
+      <InfiniteCarousel>
         {images.map((src) => (
           <Image key={src} src={src} />
         ))}

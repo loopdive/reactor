@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import DropdownMenu from ".";
-import { jsx } from "../../utils/react";
+import { useJsx } from "../../utils/react";
 import { OnClick } from "../types";
 
 import "./style.module.css";
@@ -19,7 +19,7 @@ export const WithText: FC = () => {
             {category}
           </button>
         )}
-        List={jsx(<div className="menu" />)}
+        List={useJsx(<div className="menu" />)}
         options={items.map(({ label, onClick }) => () => (
           <button className="row-button" onClick={onClick}>
             {label}

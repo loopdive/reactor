@@ -4,7 +4,7 @@ import { BsSearch as SearchIcon } from "react-icons/bs";
 import { CgClose as DeleteIcon } from "react-icons/cg";
 
 import "./style.module.css";
-import { jsx } from "../../utils/react";
+import { useJsx } from "../../utils/react";
 
 export default {
   title: "SearchBar",
@@ -42,7 +42,7 @@ export const Test: FC = () => {
       <div className="container">
         <div style={{ width: 500 }}>
           <SearchBar
-            Input={jsx(<input className="input" />)}
+            Input={useJsx(<input className="input" />)}
             Container={SearchContainer}
             value={value}
             onChange={(value: string) => setValue(value)}
