@@ -111,6 +111,11 @@ const InfiniteCarousel: FC<Props> = ({
     }
   }, [carouselWidth, childrenCount, widths, containerWidth]);
 
+  const childrenToRender = useMemo(
+    () => new Array(reps).fill(0).map(() => children),
+    [reps, children]
+  );
+
   return (
     <>
       <div style={{ position: "absolute" }}>
@@ -166,7 +171,7 @@ const InfiniteCarousel: FC<Props> = ({
             animationPlayState: pause && pauseOnHover ? "paused" : "running",
           }}
         >
-          {new Array(reps).fill(0).map(() => children)}
+          {childrenToRender}
         </div>
       </div>
     </>
