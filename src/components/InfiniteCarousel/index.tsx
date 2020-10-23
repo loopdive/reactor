@@ -116,6 +116,25 @@ const InfiniteCarousel: FC<Props> = ({
     [reps, children]
   );
 
+  const preRenderChildren = useMemo(
+    () =>
+      Array.isArray(children) ? (
+        children.map((child, index) => (
+          <CarouselItem
+            key={index}
+            setWidth={(value: number) => setWidthsHandler(value, index)}
+          >
+            {child}
+          </CarouselItem>
+        ))
+      ) : (
+        <CarouselItem setWidth={(value: number) => setWidthsHandler(value, 0)}>
+          {children}
+        </CarouselItem>
+      ),
+    [children]
+  );
+
   return (
     <>
       <div style={{ position: "absolute" }}>
@@ -127,22 +146,7 @@ const InfiniteCarousel: FC<Props> = ({
           }}
           ref={hiddenCarouselRef}
         >
-          {Array.isArray(children) ? (
-            children.map((child, index) => (
-              <CarouselItem
-                key={index}
-                setWidth={(value: number) => setWidthsHandler(value, index)}
-              >
-                {child}
-              </CarouselItem>
-            ))
-          ) : (
-            <CarouselItem
-              setWidth={(value: number) => setWidthsHandler(value, 0)}
-            >
-              {children}
-            </CarouselItem>
-          )}
+          {preRenderChildren}
         </div>
       </div>
 
