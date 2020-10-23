@@ -1,4 +1,12 @@
-import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 // @ts-ignore
 import useMeasure from "react-use-measure/dist/web.cjs";
 import mergeRefs from "react-merge-refs";
@@ -7,9 +15,14 @@ import { addAnimation } from "../../utils";
 type Props = {
   children: ReactNode | ReactNode[];
   speed?: number;
+  pauseOnHover?: boolean;
 };
 
-const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
+const InfiniteCarousel: FC<Props> = ({
+  children,
+  speed = 0.5,
+  pauseOnHover = false,
+}) => {
   // Reference for carousel wrapping element
   const parent = useRef<HTMLDivElement>();
 
@@ -32,22 +45,20 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
   // Get the width of all elements aligned horizontally
   const [hiddenCarouselRef, { width: carouselWidth }] = useMeasure();
 
-  // The amount of times children are duplicated
-  const [reps, setReps] = useState(repetitions(containerWidth, carouselWidth));
+  // calculate the number of times the items in the carousel need to be
+  // repeated to simulate an infinite carousel without visible gaps
+  const reps = useMemo(() => repetitions(containerWidth, carouselWidth), [
+    containerWidth,
+    carouselWidth,
+  ]);
 
-  const setWidthsHandler = (value: number, index: number) => {
+  const setWidthsHandler = useCallback((value: number, index: number) => {
     setWidths((w) => {
       const temp = [...w];
       temp[index] = value;
       return temp;
     });
-  };
-
-  // calculate the number of times the items in the carousel need to be
-  // repeated to simulate an infinite carousel without visible gaps
-  useEffect(() => {
-    setReps(repetitions(containerWidth, carouselWidth));
-  }, [containerWidth, carouselWidth]);
+  }, []);
 
   // create keyframes for the animation visiting all the carousel items
   useEffect(() => {
@@ -101,6 +112,32 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
     }
   }, [carouselWidth, childrenCount, widths, containerWidth]);
 
+  // CHildren duplicated by the required repetitions
+  const childrenToRender = useMemo(
+    () => new Array(reps).fill(0).map(() => children),
+    [reps, children]
+  );
+
+  // Render children of screen to get element widths
+  const preRenderChildren = useMemo(
+    () =>
+      Array.isArray(children) ? (
+        children.map((child, index) => (
+          <CarouselItem
+            key={index}
+            setWidth={(value: number) => setWidthsHandler(value, index)}
+          >
+            {child}
+          </CarouselItem>
+        ))
+      ) : (
+        <CarouselItem setWidth={(value: number) => setWidthsHandler(value, 0)}>
+          {children}
+        </CarouselItem>
+      ),
+    [children, setWidthsHandler]
+  );
+
   return (
     <>
       <div style={{ position: "absolute" }}>
@@ -112,22 +149,7 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
           }}
           ref={hiddenCarouselRef}
         >
-          {Array.isArray(children) ? (
-            children.map((child, index) => (
-              <CarouselItem
-                key={index}
-                setWidth={(value: number) => setWidthsHandler(value, index)}
-              >
-                {child}
-              </CarouselItem>
-            ))
-          ) : (
-            <CarouselItem
-              setWidth={(value: number) => setWidthsHandler(value, 0)}
-            >
-              {children}
-            </CarouselItem>
-          )}
+          {preRenderChildren}
         </div>
       </div>
 
@@ -141,8 +163,8 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
         // @ts-ignore
         ref={mergeRefs([parent, containerRef])}
         onFocus={() => {}}
-        onMouseOver={() => setPause(true)}
-        onMouseLeave={() => setPause(false)}
+        onMouseOver={() => pauseOnHover && setPause(true)}
+        onMouseLeave={() => pauseOnHover && setPause(false)}
       >
         <div
           ref={carouselRef}
@@ -153,10 +175,10 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
             animation: `${
               childrenCount / speed
             }s ${animationName} ease-in-out infinite`,
-            animationPlayState: pause ? "paused" : "running",
+            animationPlayState: pause && pauseOnHover ? "paused" : "running",
           }}
         >
-          {new Array(reps).fill(0).map(() => children)}
+          {childrenToRender}
         </div>
       </div>
     </>
