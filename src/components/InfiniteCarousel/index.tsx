@@ -14,9 +14,14 @@ import { addAnimation } from "../../utils";
 type Props = {
   children: ReactNode | ReactNode[];
   speed?: number;
+  pauseOnHover?: boolean;
 };
 
-const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
+const InfiniteCarousel: FC<Props> = ({
+  children,
+  speed = 0.5,
+  pauseOnHover = false,
+}) => {
   // Reference for carousel wrapping element
   const parent = useRef<HTMLDivElement>();
 
@@ -158,7 +163,7 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
             animation: `${
               childrenCount / speed
             }s ${animationName} ease-in-out infinite`,
-            animationPlayState: pause ? "paused" : "running",
+            animationPlayState: pause && pauseOnHover ? "paused" : "running",
           }}
         >
           {new Array(reps).fill(0).map(() => children)}
