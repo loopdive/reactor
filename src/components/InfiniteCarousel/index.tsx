@@ -1,4 +1,11 @@
-import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 // @ts-ignore
 import useMeasure from "react-use-measure/dist/web.cjs";
 import mergeRefs from "react-merge-refs";
@@ -32,8 +39,12 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
   // Get the width of all elements aligned horizontally
   const [hiddenCarouselRef, { width: carouselWidth }] = useMeasure();
 
-  // The amount of times children are duplicated
-  const [reps, setReps] = useState(repetitions(containerWidth, carouselWidth));
+  // calculate the number of times the items in the carousel need to be
+  // repeated to simulate an infinite carousel without visible gaps
+  const reps = useMemo(() => repetitions(containerWidth, carouselWidth), [
+    containerWidth,
+    carouselWidth,
+  ]);
 
   const setWidthsHandler = (value: number, index: number) => {
     setWidths((w) => {
@@ -42,12 +53,6 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
       return temp;
     });
   };
-
-  // calculate the number of times the items in the carousel need to be
-  // repeated to simulate an infinite carousel without visible gaps
-  useEffect(() => {
-    setReps(repetitions(containerWidth, carouselWidth));
-  }, [containerWidth, carouselWidth]);
 
   // create keyframes for the animation visiting all the carousel items
   useEffect(() => {
