@@ -1,6 +1,7 @@
 import React, {
   FC,
   ReactNode,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -51,13 +52,13 @@ const InfiniteCarousel: FC<Props> = ({
     carouselWidth,
   ]);
 
-  const setWidthsHandler = (value: number, index: number) => {
+  const setWidthsHandler = useCallback((value: number, index: number) => {
     setWidths((w) => {
       const temp = [...w];
       temp[index] = value;
       return temp;
     });
-  };
+  }, []);
 
   // create keyframes for the animation visiting all the carousel items
   useEffect(() => {
@@ -111,11 +112,13 @@ const InfiniteCarousel: FC<Props> = ({
     }
   }, [carouselWidth, childrenCount, widths, containerWidth]);
 
+  // CHildren duplicated by the required repetitions
   const childrenToRender = useMemo(
     () => new Array(reps).fill(0).map(() => children),
     [reps, children]
   );
 
+  // Render children of screen to get element widths
   const preRenderChildren = useMemo(
     () =>
       Array.isArray(children) ? (
@@ -132,7 +135,7 @@ const InfiniteCarousel: FC<Props> = ({
           {children}
         </CarouselItem>
       ),
-    [children]
+    [children, setWidthsHandler]
   );
 
   return (
@@ -160,8 +163,8 @@ const InfiniteCarousel: FC<Props> = ({
         // @ts-ignore
         ref={mergeRefs([parent, containerRef])}
         onFocus={() => {}}
-        onMouseOver={() => setPause(true)}
-        onMouseLeave={() => setPause(false)}
+        onMouseOver={() => pauseOnHover && setPause(true)}
+        onMouseLeave={() => pauseOnHover && setPause(false)}
       >
         <div
           ref={carouselRef}
