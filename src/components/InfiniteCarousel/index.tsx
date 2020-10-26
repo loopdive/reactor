@@ -185,7 +185,7 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
           overflow: "hidden",
           width: "100%",
           height: "100%",
-          WebkitPerspective: "1000",
+          WebkitPerspective: "1000px",
           WebkitBackfaceVisibility: "hidden",
         }}
         // @ts-ignore
