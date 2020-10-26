@@ -193,8 +193,6 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
           overflow: "hidden",
           width: "100%",
           height: "100%",
-          WebkitPerspective: "1000px",
-          WebkitBackfaceVisibility: "hidden",
         }}
         // @ts-ignore
         ref={mergeRefs([parent, containerRef])}
@@ -209,8 +207,6 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
               childrenCount / speed
             }s ${animationName} ease-in-out infinite`,
             animationPlayState: "paused",
-            WebkitBackfaceVisibility: "hidden",
-            WebkitTransformStyle: "preserve-3d",
           }}
         >
           {childrenToRender}
