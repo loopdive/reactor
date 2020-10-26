@@ -14,22 +14,34 @@ import { addAnimation } from "../../utils";
 
 type Props = {
   children: ReactNode | ReactNode[];
-  speed?: number;
+  pauseDuration?: number; // in ms
+  transitionDuration?: number; // in ms
   pauseOnHover?: boolean;
 };
 
+/*
+  speed: what unit?
+  direction?
+  how long are the pauses?
+  how is the animation easing function defined?
+*/
+
+/** horizontal right to left moving items that repeat infinitely */
 const InfiniteCarousel: FC<Props> = ({
   children,
-  speed = 0.5,
+  pauseDuration = 5000,
+  transitionDuration = 500,
   pauseOnHover = false,
 }) => {
+  // Amount of children
+  const childrenCount = Array.isArray(children) ? children.length : 1;
+  const elementDuration = pauseDuration + transitionDuration;
+  // one round
+  const animationCycleDuration = elementDuration * childrenCount;
   // Reference for carousel wrapping element
   const parent = useRef<HTMLDivElement>();
 
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  // Amount of children
-  const childrenCount = Array.isArray(children) ? children.length : 1;
 
   // Store all children widths
   const [widths, setWidths] = useState<number[]>(
@@ -67,9 +79,10 @@ const InfiniteCarousel: FC<Props> = ({
       carouselWidth > 0 &&
       widths[childrenCount - 1] > 0
     ) {
-      const speedup = 5;
-      const movementDuration = 100 / childrenCount / speedup;
-      const stopDuration = (100 / childrenCount / speedup) * (speedup - 1);
+      const transitionDurationPercentage =
+        (100 / childrenCount) * (transitionDuration / elementDuration);
+      const pauseDurationPercentage =
+        (100 / childrenCount) * (pauseDuration / elementDuration);
       const keyframes = [];
 
       // Store sum of all previous indices in current index (for all children widths)
@@ -79,8 +92,9 @@ const InfiniteCarousel: FC<Props> = ({
       );
 
       for (let i = 0; i < childrenCount; i += 1) {
-        const stop = (movementDuration + stopDuration) * i;
-        const start = stop + stopDuration;
+        const stop =
+          (transitionDurationPercentage + pauseDurationPercentage) * i;
+        const start = stop + pauseDurationPercentage;
 
         keyframes.push(`
           ${stop}%${start < 100 ? `, ${start}%` : ""} {
@@ -110,7 +124,15 @@ const InfiniteCarousel: FC<Props> = ({
 
       addAnimation(animationName, keyframesSection, parent.current);
     }
-  }, [carouselWidth, childrenCount, widths, containerWidth]);
+  }, [
+    carouselWidth,
+    childrenCount,
+    widths,
+    containerWidth,
+    elementDuration,
+    pauseDuration,
+    transitionDuration,
+  ]);
 
   // CHildren duplicated by the required repetitions
   const childrenToRender = useMemo(
@@ -160,7 +182,6 @@ const InfiniteCarousel: FC<Props> = ({
           width: "100%",
           height: "100%",
         }}
-        // @ts-ignore
         ref={mergeRefs([parent, containerRef])}
         onFocus={() => {}}
         onMouseOver={() => pauseOnHover && setPause(true)}
@@ -172,9 +193,7 @@ const InfiniteCarousel: FC<Props> = ({
             width: "100%",
             display: "flex",
             transform: "translate3d(0, 0, 0)",
-            animation: `${
-              childrenCount / speed
-            }s ${animationName} ease-in-out infinite`,
+            animation: `${animationCycleDuration}s ${animationName} ease-in-out infinite`,
             animationPlayState: pause && pauseOnHover ? "paused" : "running",
           }}
         >
@@ -198,7 +217,7 @@ const CarouselItem: FC<{
       setWidth(width);
       setOldWidth(width);
     }
-  }, [width, setWidth]);
+  }, [width, setWidth, oldWidth]);
 
   if (!children) {
     return null;
