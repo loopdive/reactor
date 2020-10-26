@@ -91,13 +91,26 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
         const start = stop + stopDuration;
 
         keyframes.push(`
-          ${stop}%${start < 100 ? `, ${start}%` : ""} {
+          ${stop}% {
             transform: translate3d(${
               -1 *
               (carouselWidth +
                 summedWidths[i] -
                 (containerWidth / 2 + widths[i] / 2))
             }px, 0, 0);
+          }
+
+          ${
+            start < 100
+              ? `${start}% {
+            transform: translate3d(${
+              -1 *
+              (carouselWidth +
+                summedWidths[i] -
+                (containerWidth / 2 + widths[i] / 2))
+            }px, 0, 0);
+          }`
+              : ""
           }
         `);
       }
@@ -172,6 +185,8 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
           overflow: "hidden",
           width: "100%",
           height: "100%",
+          WebkitPerspective: "1000",
+          WebkitBackfaceVisibility: "hidden",
         }}
         // @ts-ignore
         ref={mergeRefs([parent, containerRef])}
@@ -185,6 +200,8 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
             animation: `${
               childrenCount / speed
             }s ${animationName} ease-in-out infinite`,
+            WebkitBackfaceVisibility: "hidden",
+            WebkitTransformStyle: "preserve-3d",
           }}
         >
           {childrenToRender}
