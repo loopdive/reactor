@@ -6,13 +6,16 @@
     "plugin:prettier/recommended",
     "prettier/standard",
     "prettier/react",
-    "plugin:@typescript-eslint/eslint-recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint"
   ],
   "env": {
     "node": true
   },
   "parserOptions": {
     "ecmaVersion": 2020,
+    "sourceType": "module", // Allows using import/export statements
     "ecmaFeatures": {
       "legacyDecorators": true,
       "jsx": true
@@ -20,7 +23,7 @@
   },
   "settings": {
     "react": {
-      "version": "16"
+      "version": "detect" // Automatically detect the react version
     }
   },
   "rules": {
@@ -28,7 +31,10 @@
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,
+    "react/react-in-jsx-scope": "off",
     "react/no-unused-prop-types": 0,
-    "import/export": 0
+    "import/export": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
