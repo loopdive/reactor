@@ -129,7 +129,12 @@ const InfiniteCarousel: FC<Props> = ({
 
   // CHildren duplicated by the required repetitions
   const childrenToRender = useMemo(
-    () => new Array(reps).fill(0).map(() => children),
+    () =>
+      new Array(reps).fill(0).map((_, index) => (
+        <div key={index} style={{ display: "flex" }}>
+          {children}
+        </div>
+      )),
     [reps, children]
   );
 
