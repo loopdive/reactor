@@ -12,10 +12,22 @@ import useMeasure from "react-use-measure/dist/web.cjs";
 import mergeRefs from "react-merge-refs";
 import { addAnimation } from "../../utils";
 
+import ResizeObserver from "resize-observer-polyfill";
+
 type Props = {
   children: ReactNode | ReactNode[];
   speed?: number;
   pauseOnHover?: boolean;
+};
+
+// Helper function to add polyfill to useMeasure hook
+export const useMeasureWithPolyfill = (): [
+  (element: HTMLElement | SVGElement | null) => void,
+  { width: number }
+] => {
+  const [ref, values] = useMeasure({ polyfill: ResizeObserver });
+
+  return [ref, values];
 };
 
 const InfiniteCarousel: FC<Props> = ({
@@ -40,10 +52,13 @@ const InfiniteCarousel: FC<Props> = ({
   const [pause, setPause] = useState(false);
 
   // Get the width of the container element
-  const [containerRef, { width: containerWidth }] = useMeasure();
+  const [containerRef, { width: containerWidth }] = useMeasureWithPolyfill();
 
   // Get the width of all elements aligned horizontally
-  const [hiddenCarouselRef, { width: carouselWidth }] = useMeasure();
+  const [
+    hiddenCarouselRef,
+    { width: carouselWidth },
+  ] = useMeasureWithPolyfill();
 
   // calculate the number of times the items in the carousel need to be
   // repeated to simulate an infinite carousel without visible gaps
@@ -114,7 +129,12 @@ const InfiniteCarousel: FC<Props> = ({
 
   // CHildren duplicated by the required repetitions
   const childrenToRender = useMemo(
-    () => new Array(reps).fill(0).map(() => children),
+    () =>
+      new Array(reps).fill(0).map((_, index) => (
+        <div key={index} style={{ display: "flex" }}>
+          {children}
+        </div>
+      )),
     [reps, children]
   );
 
@@ -191,7 +211,7 @@ const CarouselItem: FC<{
   setWidth: (width: number) => void;
 }> = ({ children, setWidth }) => {
   const [oldWidth, setOldWidth] = useState(0);
-  const [ref, { width }] = useMeasure();
+  const [ref, { width }] = useMeasureWithPolyfill();
 
   useEffect(() => {
     if (width !== oldWidth) {
