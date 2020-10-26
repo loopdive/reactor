@@ -35,6 +35,14 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
   const parent = useRef<HTMLDivElement>();
 
   const carouselRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (el) {
+      setTimeout(function () {
+        el.style.animationPlayState = "running";
+      }, 0);
+    }
+  }, [carouselRef]);
 
   // Amount of children
   const childrenCount = Array.isArray(children) ? children.length : 1;
@@ -200,6 +208,7 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
             animation: `${
               childrenCount / speed
             }s ${animationName} ease-in-out infinite`,
+            animationPlayState: "paused",
             WebkitBackfaceVisibility: "hidden",
             WebkitTransformStyle: "preserve-3d",
           }}
