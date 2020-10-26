@@ -20,6 +20,7 @@ type Props = {
   pauseOnHover?: boolean;
 };
 
+// Helper function to add polyfill to useMeasure hook
 export const useMeasureWithPolyfill = (): [
   (element: HTMLElement | SVGElement | null) => void,
   { width: number }
