@@ -30,15 +30,19 @@ export const useMeasureWithPolyfill = (): [
   return [ref, values];
 };
 
-const InfiniteCarousel: FC<Props> = ({
-  children,
-  speed = 0.5,
-  pauseOnHover = false,
-}) => {
+const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
   // Reference for carousel wrapping element
   const parent = useRef<HTMLDivElement>();
 
   const carouselRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (el) {
+      setTimeout(function () {
+        el.style.animationPlayState = "running";
+      }, 0);
+    }
+  }, [carouselRef]);
 
   // Amount of children
   const childrenCount = Array.isArray(children) ? children.length : 1;
@@ -47,9 +51,6 @@ const InfiniteCarousel: FC<Props> = ({
   const [widths, setWidths] = useState<number[]>(
     new Array(childrenCount).fill(0)
   );
-
-  // Pause state for carousel animation
-  const [pause, setPause] = useState(false);
 
   // Get the width of the container element
   const [containerRef, { width: containerWidth }] = useMeasureWithPolyfill();
@@ -98,13 +99,26 @@ const InfiniteCarousel: FC<Props> = ({
         const start = stop + stopDuration;
 
         keyframes.push(`
-          ${stop}%${start < 100 ? `, ${start}%` : ""} {
+          ${stop}% {
             transform: translate3d(${
               -1 *
               (carouselWidth +
                 summedWidths[i] -
                 (containerWidth / 2 + widths[i] / 2))
             }px, 0, 0);
+          }
+
+          ${
+            start < 100
+              ? `${start}% {
+            transform: translate3d(${
+              -1 *
+              (carouselWidth +
+                summedWidths[i] -
+                (containerWidth / 2 + widths[i] / 2))
+            }px, 0, 0);
+          }`
+              : ""
           }
         `);
       }
@@ -182,9 +196,6 @@ const InfiniteCarousel: FC<Props> = ({
         }}
         // @ts-ignore
         ref={mergeRefs([parent, containerRef])}
-        onFocus={() => {}}
-        onMouseOver={() => pauseOnHover && setPause(true)}
-        onMouseLeave={() => pauseOnHover && setPause(false)}
       >
         <div
           ref={carouselRef}
@@ -195,7 +206,7 @@ const InfiniteCarousel: FC<Props> = ({
             animation: `${
               childrenCount / speed
             }s ${animationName} ease-in-out infinite`,
-            animationPlayState: pause && pauseOnHover ? "paused" : "running",
+            animationPlayState: "paused",
           }}
         >
           {childrenToRender}
