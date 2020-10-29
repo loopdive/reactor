@@ -39,9 +39,9 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
     if (el) {
       setTimeout(function () {
         el.style.animationPlayState = "running";
-      }, 0);
+      }, 50);
     }
-  }, [carouselRef]);
+  }, [carouselRef.current]);
 
   // Amount of children
   const childrenCount = Array.isArray(children) ? children.length : 1;
