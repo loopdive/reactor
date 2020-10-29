@@ -34,14 +34,13 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
   const parent = useRef<HTMLDivElement>();
 
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  const el = carouselRef.current;
   useEffect(() => {
-    const el = carouselRef.current;
     if (el) {
-      setTimeout(function () {
-        el.style.animationPlayState = "running";
-      }, 50);
+      setTimeout(() => (el.style.animationPlayState = "running"), 50);
     }
-  }, [carouselRef.current]);
+  }, [el]);
 
   // Amount of children
   const childrenCount = Array.isArray(children) ? children.length : 1;
