@@ -17,7 +17,6 @@ import ResizeObserver from "resize-observer-polyfill";
 type Props = {
   children: ReactNode | ReactNode[];
   speed?: number;
-  pauseOnHover?: boolean;
 };
 
 // Helper function to add polyfill to useMeasure hook
