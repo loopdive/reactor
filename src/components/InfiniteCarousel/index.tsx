@@ -203,9 +203,10 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
             width: "100%",
             display: "flex",
             transform: "translate3d(0, 0, 0)",
-            animation: `${
-              childrenCount / speed
-            }s ${animationName} ease-in-out infinite`,
+            animationName,
+            animationDuration: `${childrenCount / speed}s`,
+            animationTimingFunction: "ease-in-out",
+            animationIterationCount: "infinite",
             animationPlayState: "paused",
           }}
         >
