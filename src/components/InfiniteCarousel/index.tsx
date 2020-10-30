@@ -1,4 +1,11 @@
-import React, { FC, ReactNode, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import ResizeObserver from "resize-observer-polyfill";
 import mergeRefs from "react-merge-refs";
 // @ts-ignore
@@ -66,12 +73,6 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
         parent.current
       );
     }
-    // bugfix for safari starting animation paused
-    setTimeout(() => {
-      if (carouselRef.current) {
-        carouselRef.current.style.animationPlayState = "running";
-      }
-    }, 0);
   }, [
     carouselRef.current,
     containerWidth,
@@ -81,6 +82,17 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
     parent.current,
   ]);
 
+  useEffect(() => {
+    // bugfix for safari starting animation paused
+    if (carouselRef.current) {
+      setTimeout(() => {
+        if (carouselRef.current) {
+          carouselRef.current.style.animationPlayState = "running";
+        }
+      }, 1000);
+    }
+  }, [carouselRef.current]);
+
   // Children duplicated by the required repetitions
   const childrenToRender = [];
   for (let i = 0; i < repetitions; ++i) {
@@ -88,7 +100,7 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
       <div
         key={i}
         ref={i === 0 ? carouselItemsRef : undefined}
-        style={{ display: "flex" }}
+        style={{ display: "flex", backfaceVisibility: "hidden" }}
       >
         {children}
       </div>
@@ -99,9 +111,9 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
     <div
       style={{
         position: "relative",
-        overflow: "hidden",
         width: "100%",
         height: "100%",
+        backfaceVisibility: "hidden",
       }}
       // @ts-ignore
       ref={mergeRefs([parent, containerRef])}
@@ -111,12 +123,13 @@ const InfiniteCarousel: FC<Props> = ({ children, speed = 0.5 }) => {
         style={{
           width: "100%",
           display: "flex",
-          transform: "translate3d(0, 0, 0)",
           animationName,
           animationDuration: `${childrenCount / speed}s`,
           animationTimingFunction: "ease-in-out",
+          animationDelay: "1s",
           animationIterationCount: "infinite",
           animationPlayState: "paused",
+          backfaceVisibility: "hidden",
         }}
       >
         {childrenToRender}
